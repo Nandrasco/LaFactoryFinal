@@ -8,6 +8,16 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entités",
+                "formateur": "Formateur",
+                "stagiaire": "Stagiaire",
+                "technicien": "Technicien",
+                "gestionnaire": "Gestionnaire",
+                "module": "Module",
+                "cursus": "Cursus",
+                "matiere": "Matiere",
+                "ordinateur": "Ordinateur",
+                "projecteur": "Projecteur",
+                "salle": "Salle",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

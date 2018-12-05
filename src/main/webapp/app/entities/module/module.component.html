@@ -1,0 +1,70 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="laFactoryFinalApp.module.home.title">Modules</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-module" [routerLink]="['/module/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="laFactoryFinalApp.module.home.createLabel">
+            Create new Module
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="modules">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="laFactoryFinalApp.module.nom">Nom</span></th>
+            <th><span jhiTranslate="laFactoryFinalApp.module.dateDebut">Date Debut</span></th>
+            <th><span jhiTranslate="laFactoryFinalApp.module.dateFin">Date Fin</span></th>
+            <th><span jhiTranslate="laFactoryFinalApp.module.matieres">Matieres</span></th>
+            <th><span jhiTranslate="laFactoryFinalApp.module.formateurs">Formateurs</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let module of modules ;trackBy: trackId">
+                <td><a [routerLink]="['/module', module.id, 'view' ]">{{module.id}}</a></td>
+                <td>{{module.nom}}</td>
+                <td>{{module.dateDebut | date:'mediumDate'}}</td>
+                <td>{{module.dateFin | date:'mediumDate'}}</td>
+                <td>
+                    <span *ngFor="let matieres of module.matieres; let last = last">
+                            <a class="form-control-static" [routerLink]="['../matiere', matieres?.id, 'view' ]">{{matieres.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let formateurs of module.formateurs; let last = last">
+                            <a class="form-control-static" [routerLink]="['../formateur', formateurs?.id, 'view' ]">{{formateurs.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/module', module.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/module', module.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'module/'+ module.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
