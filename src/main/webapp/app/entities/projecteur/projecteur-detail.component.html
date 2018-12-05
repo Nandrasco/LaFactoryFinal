@@ -16,7 +16,7 @@
                 <dt><span jhiTranslate="laFactoryFinalApp.projecteur.salle">Salle</span></dt>
                 <dd>
                     <div *ngIf="projecteur.salle">
-                        <a [routerLink]="['/salle', projecteur.salle?.id, 'view']">{{projecteur.salle?.id}}</a>
+                        <a [routerLink]="['/salle', projecteur.salle?.id, 'view']">{{projecteur.salle?.code}}</a>
                     </div>
                 </dd>
             </dl>

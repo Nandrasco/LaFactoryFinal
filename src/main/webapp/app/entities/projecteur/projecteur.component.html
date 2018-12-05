@@ -28,7 +28,7 @@
                 <td>{{projecteur.cout}}</td>
                 <td>
                     <div *ngIf="projecteur.salle">
-                        <a [routerLink]="['../salle', projecteur.salle?.id, 'view' ]" >{{projecteur.salle?.id}}</a>
+                        <a [routerLink]="['../salle', projecteur.salle?.id, 'view' ]" >{{projecteur.salle?.code}}</a>
                     </div>
                 </td>
                 <td class="text-right">

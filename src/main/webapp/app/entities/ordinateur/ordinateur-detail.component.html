@@ -32,7 +32,7 @@
                 <dt><span jhiTranslate="laFactoryFinalApp.ordinateur.stagiaire">Stagiaire</span></dt>
                 <dd>
                     <div *ngIf="ordinateur.stagiaire">
-                        <a [routerLink]="['/stagiaire', ordinateur.stagiaire?.id, 'view']">{{ordinateur.stagiaire?.id}}</a>
+                        <a [routerLink]="['/stagiaire', ordinateur.stagiaire?.id, 'view']">{{ordinateur.stagiaire?.prenom}} {{ordinateur.stagiaire?.nom}}</a>
                     </div>
                 </dd>
             </dl>
