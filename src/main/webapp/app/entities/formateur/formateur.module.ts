@@ -13,7 +13,6 @@ import {
 } from './';
 
 const ENTITY_STATES = [...formateurRoute, ...formateurPopupRoute];
-
 @NgModule({
     imports: [LaFactoryFinalSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [

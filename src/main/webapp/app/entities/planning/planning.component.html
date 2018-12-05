@@ -1,0 +1,37 @@
+<div class="calendar">
+    <div class="calendar-navs">
+        <div class="container">
+            <div class="month-nav">
+                <button (click)="prevMonth()">&lt;</button>
+                <span class="p4">{{ currentDate.format('MMMM') }}</span>
+                <button (click)="nextMonth()">&gt;</button>
+            </div>
+            <div class="year-nav ">
+                <button (click)="prevYear()">&lt;</button>
+                <span>{{ currentDate.format('YYYY') }}</span>
+                <button (click)="nextYear()">&gt;</button>
+            </div>
+        </div>
+
+        <div class="container  ">
+            <table class="table table-striped">
+                <div class="weeks">
+                    <div *ngFor="let week of weeks">
+                        <tr *ngFor="let day of week" class="table-hover " style="height: 100px" >
+                            <div class="week-date disabled" *ngIf="!isSelectedMonth(day.mDate)">
+                                    <td *ngFor="let salle of salles ;trackBy: trackId" ><a [routerLink]="['/salle', salle.id, 'view' ]">{{salle.id}}</a>  Ocuppation maximum : {{salle.capaciteMax}} </td>
+                            </div>
+                            <div class="week-date enabled"
+                                 *ngIf="isSelectedMonth(day.mDate)"
+                                 (click)="selectDate(day)"
+                                 [ngClass]="{ today: day.today, selected: day.selected }">
+                                <span class="date-text">{{ day.mDate.date() }}</span>
+                            </div>
+                        </tr>
+                    </div>
+                </div>
+
+            </table>
+        </div>
+    </div>
+</div>
