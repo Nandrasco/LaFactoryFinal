@@ -39,22 +39,22 @@
                 <td>{{cursus.contenu}}</td>
                 <td>
                     <div *ngIf="cursus.gestionnaire">
-                        <a [routerLink]="['../gestionnaire', cursus.gestionnaire?.id, 'view' ]" >{{cursus.gestionnaire?.id}}</a>
+                        <a [routerLink]="['../gestionnaire', cursus.gestionnaire?.id, 'view' ]" >{{cursus.gestionnaire?.prenom}} {{cursus.gestionnaire?.nom}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="cursus.salle">
-                        <a [routerLink]="['../salle', cursus.salle?.id, 'view' ]" >{{cursus.salle?.id}}</a>
+                        <a [routerLink]="['../salle', cursus.salle?.id, 'view' ]" >{{cursus.salle?.code}}</a>
                     </div>
                 </td>
                 <td>
                     <span *ngFor="let stagiaires of cursus.stagiaires; let last = last">
-                            <a class="form-control-static" [routerLink]="['../stagiaire', stagiaires?.id, 'view' ]">{{stagiaires.id}}</a>{{last ? '' : ', '}}
+                            <a class="form-control-static" [routerLink]="['../stagiaire', stagiaires?.id, 'view' ]">{{stagiaires.prenom}} {{stagiaires.nom}}</a>{{last ? '' : ', '}}
                         </span>
                 </td>
                 <td>
                     <span *ngFor="let modules of cursus.modules; let last = last">
-                            <a class="form-control-static" [routerLink]="['../module', modules?.id, 'view' ]">{{modules.id}}</a>{{last ? '' : ', '}}
+                            <a class="form-control-static" [routerLink]="['../module', modules?.id, 'view' ]">{{modules.nom}}</a>{{last ? '' : ', '}}
                         </span>
                 </td>
                 <td class="text-right">

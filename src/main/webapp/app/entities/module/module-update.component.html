@@ -38,13 +38,13 @@
                 <div class="form-group">
                     <label jhiTranslate="laFactoryFinalApp.module.matieres" for="field_matieres">Matieres</label>
                     <select class="form-control" id="field_matieres" multiple name="matieres" [(ngModel)]="module.matieres">
-                        <option [ngValue]="getSelected(module.matieres, matiereOption)" *ngFor="let matiereOption of matieres; trackBy: trackMatiereById">{{matiereOption.id}}</option>
+                        <option [ngValue]="getSelected(module.matieres, matiereOption)" *ngFor="let matiereOption of matieres; trackBy: trackMatiereById">{{matiereOption.nom}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label jhiTranslate="laFactoryFinalApp.module.formateurs" for="field_formateurs">Formateurs</label>
                     <select class="form-control" id="field_formateurs" multiple name="formateurs" [(ngModel)]="module.formateurs">
-                        <option [ngValue]="getSelected(module.formateurs, formateurOption)" *ngFor="let formateurOption of formateurs; trackBy: trackFormateurById">{{formateurOption.id}}</option>
+                        <option [ngValue]="getSelected(module.formateurs, formateurOption)" *ngFor="let formateurOption of formateurs; trackBy: trackFormateurById">{{formateurOption.prenom}} {{formateurOption.nom}}</option>
                     </select>
                 </div>
             </div>

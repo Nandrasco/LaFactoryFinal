@@ -12,7 +12,7 @@
                 <dt><span jhiTranslate="laFactoryFinalApp.matiere.formateurs">Formateurs</span></dt>
                 <dd>
                     <span *ngFor="let formateurs of matiere.formateurs; let last = last">
-                        <a [routerLink]="['/formateur', formateurs?.id, 'view' ]">{{formateurs.id}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/formateur', formateurs?.id, 'view' ]">{{formateurs.prenom}} {{formateurs.nom}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
             </dl>
