@@ -66,9 +66,9 @@ public class Formateur implements Serializable {
 	@JsonIgnore
 	private Set<Module> modules = new HashSet<>();
 
-	@OneToOne(mappedBy = "formateur")
-	@JsonIgnore
-	private User user;
+//	@OneToOne(mappedBy = "formateur")
+//	@JsonIgnore
+//	private User user;
 
 	// jhipster-needle-entity-add-field - JHipster will add fields here, do not
 	// remove
@@ -200,13 +200,13 @@ public class Formateur implements Serializable {
 		return modules;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 
 	public Formateur modules(Set<Module> modules) {
 		this.modules = modules;
