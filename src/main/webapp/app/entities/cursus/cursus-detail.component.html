@@ -32,25 +32,25 @@
                 <dt><span jhiTranslate="laFactoryFinalApp.cursus.gestionnaire">Gestionnaire</span></dt>
                 <dd>
                     <div *ngIf="cursus.gestionnaire">
-                        <a [routerLink]="['/gestionnaire', cursus.gestionnaire?.id, 'view']">{{cursus.gestionnaire?.id}}</a>
+                        <a [routerLink]="['/gestionnaire', cursus.gestionnaire?.id, 'view']">{{cursus.gestionnaire?.prenom}} {{cursus.gestionnaire?.nom}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="laFactoryFinalApp.cursus.salle">Salle</span></dt>
                 <dd>
                     <div *ngIf="cursus.salle">
-                        <a [routerLink]="['/salle', cursus.salle?.id, 'view']">{{cursus.salle?.id}}</a>
+                        <a [routerLink]="['/salle', cursus.salle?.id, 'view']">{{cursus.salle?.code}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="laFactoryFinalApp.cursus.stagiaires">Stagiaires</span></dt>
                 <dd>
                     <span *ngFor="let stagiaires of cursus.stagiaires; let last = last">
-                        <a [routerLink]="['/stagiaire', stagiaires?.id, 'view' ]">{{stagiaires.id}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/stagiaire', stagiaires?.id, 'view' ]">{{stagiaires.nom}} {{stagiaires.prenom}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
                 <dt><span jhiTranslate="laFactoryFinalApp.cursus.modules">Modules</span></dt>
                 <dd>
                     <span *ngFor="let modules of cursus.modules; let last = last">
-                        <a [routerLink]="['/module', modules?.id, 'view' ]">{{modules.id}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/module', modules?.id, 'view' ]">{{modules.nom}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
             </dl>

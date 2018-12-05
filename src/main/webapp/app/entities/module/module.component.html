@@ -31,12 +31,12 @@
                 <td>{{module.dateFin | date:'mediumDate'}}</td>
                 <td>
                     <span *ngFor="let matieres of module.matieres; let last = last">
-                            <a class="form-control-static" [routerLink]="['../matiere', matieres?.id, 'view' ]">{{matieres.id}}</a>{{last ? '' : ', '}}
+                            <a class="form-control-static" [routerLink]="['../matiere', matieres?.id, 'view' ]">{{matieres.nom}}</a>{{last ? '' : ', '}}
                         </span>
                 </td>
                 <td>
                     <span *ngFor="let formateurs of module.formateurs; let last = last">
-                            <a class="form-control-static" [routerLink]="['../formateur', formateurs?.id, 'view' ]">{{formateurs.id}}</a>{{last ? '' : ', '}}
+                            <a class="form-control-static" [routerLink]="['../formateur', formateurs?.id, 'view' ]">{{formateurs.prenom}} {{formateurs.nom}}</a>{{last ? '' : ', '}}
                         </span>
                 </td>
                 <td class="text-right">

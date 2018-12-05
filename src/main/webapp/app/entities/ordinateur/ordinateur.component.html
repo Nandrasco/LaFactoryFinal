@@ -36,7 +36,7 @@
                 <td>{{ordinateur.dateAchat | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="ordinateur.stagiaire">
-                        <a [routerLink]="['../stagiaire', ordinateur.stagiaire?.id, 'view' ]" >{{ordinateur.stagiaire?.id}}</a>
+                        <a [routerLink]="['../stagiaire', ordinateur.stagiaire?.id, 'view' ]" >{{ordinateur.stagiaire?.prenom}} {{ordinateur.stagiaire?.nom}}</a>
                     </div>
                 </td>
                 <td class="text-right">

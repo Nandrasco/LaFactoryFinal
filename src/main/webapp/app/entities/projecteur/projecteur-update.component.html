@@ -24,7 +24,7 @@
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.projecteur.salle" for="field_salle">Salle</label>
                     <select class="form-control" id="field_salle" name="salle" [(ngModel)]="projecteur.salle">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="salleOption.id === projecteur.salle?.id ? projecteur.salle : salleOption" *ngFor="let salleOption of salles; trackBy: trackSalleById">{{salleOption.id}}</option>
+                        <option [ngValue]="salleOption.id === projecteur.salle?.id ? projecteur.salle : salleOption" *ngFor="let salleOption of salles; trackBy: trackSalleById">{{salleOption.code}}</option>
                     </select>
                 </div>
             </div>
