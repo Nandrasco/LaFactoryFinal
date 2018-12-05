@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { ISalle } from 'app/shared/model/salle.model';
+import { IStagiaire } from 'app/shared/model/stagiaire.model';
 
 type EntityResponseType = HttpResponse<ISalle>;
 type EntityArrayResponseType = HttpResponse<ISalle[]>;
@@ -25,6 +26,10 @@ export class SalleService {
 
     find(id: number): Observable<EntityResponseType> {
         return this.http.get<ISalle>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    }
+
+    findBySalleId(id: number): Observable<EntityArrayResponseType> {
+        return this.http.get<IStagiaire[]>(this.resourceUrl, { observe: 'response' });
     }
 
     query(req?: any): Observable<EntityArrayResponseType> {

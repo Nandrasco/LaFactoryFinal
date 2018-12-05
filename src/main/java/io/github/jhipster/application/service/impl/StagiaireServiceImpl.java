@@ -53,6 +53,18 @@ public class StagiaireServiceImpl implements StagiaireService {
         return stagiaireRepository.findAll();
     }
 
+    /**
+     * Get all the stagiaires by salle ID.
+     *
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<Stagiaire> findStagiaireBySalleId(Long id) {
+        log.debug("Request to get all Stagiaires");
+        return stagiaireRepository.findStagiaireBySalleId(id);
+    }
+
 
 
     /**

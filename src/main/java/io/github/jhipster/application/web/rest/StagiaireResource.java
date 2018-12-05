@@ -95,6 +95,19 @@ public class StagiaireResource {
     }
 
     /**
+     * GET  /stagiaires : get all the stagiaires.
+     *
+     * @param filter the filter of the request
+     * @return the ResponseEntity with status 200 (OK) and the list of stagiaires in body
+     */
+    @GetMapping("/stagiaires/salle/{id}")
+    @Timed
+    public List<Stagiaire> getStagiairesBySalleId(@PathVariable Long id) {
+        log.debug("REST request to get all Stagiaires");
+        return stagiaireService.findStagiaireBySalleId(id);
+    }
+
+    /**
      * GET  /stagiaires/:id : get the "id" stagiaire.
      *
      * @param id the id of the stagiaire to retrieve
