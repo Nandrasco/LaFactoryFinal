@@ -1,6 +1,7 @@
 package io.github.jhipster.application.domain;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -65,6 +66,21 @@ public class Formateur implements Serializable {
 	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 	@JsonIgnore
 	private Set<Module> modules = new HashSet<>();
+	
+//	@Column(name = "matieres_debutant")
+//	private Set<Matiere> matieresDebutant = new HashSet<>();
+//	
+//	@Column(name = "matieres_intermediaire")
+//	private Set<Matiere> matieresIntermediaire = new HashSet<>();
+//	
+//	@Column(name = "matieres_avance")
+//	private Set<Matiere> matieresAvance = new HashSet<>();
+//	
+//	@Column(name = "matieres_confirme")
+//	private Set<Matiere> matieresConfirme = new HashSet<>();
+
+
+
 
 //	@OneToOne(mappedBy = "formateur")
 //	@JsonIgnore
