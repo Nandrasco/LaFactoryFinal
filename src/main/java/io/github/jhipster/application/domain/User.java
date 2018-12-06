@@ -99,9 +99,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
 	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 	private Set<PersistentToken> persistentTokens = new HashSet<>();
 
-	@OneToOne(mappedBy = "user")
-	@JsonIgnore
-	private Formateur formateur;
+//	@OneToOne(mappedBy = "user")
+//	@JsonIgnore
+//	private Formateur formateur;
 
 	public Long getId() {
 		return id;
@@ -212,13 +212,13 @@ public class User extends AbstractAuditingEntity implements Serializable {
 		return persistentTokens;
 	}
 
-	public Formateur getFormateur() {
-		return formateur;
-	}
-
-	public void setFormateur(Formateur formateur) {
-		this.formateur = formateur;
-	}
+//	public Formateur getFormateur() {
+//		return formateur;
+//	}
+//
+//	public void setFormateur(Formateur formateur) {
+//		this.formateur = formateur;
+//	}
 
 	public void setPersistentTokens(Set<PersistentToken> persistentTokens) {
 		this.persistentTokens = persistentTokens;
