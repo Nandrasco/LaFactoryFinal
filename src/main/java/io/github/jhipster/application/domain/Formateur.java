@@ -19,7 +19,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Objects;
 
 /**
  * A Formateur.
@@ -39,8 +44,7 @@ public class Formateur implements Serializable {
 	@Column(name = "nom")
 	private String nom;
 
-	@Column(name = "prenom")
-	private String prenom;
+	@Column(name = "prenom")	private String prenom;
 
 	@Column(name = "coordonnees")
 	private String coordonnees;
@@ -215,14 +219,6 @@ public class Formateur implements Serializable {
 	public Set<Module> getModules() {
 		return modules;
 	}
-
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
 
 	public Formateur modules(Set<Module> modules) {
 		this.modules = modules;

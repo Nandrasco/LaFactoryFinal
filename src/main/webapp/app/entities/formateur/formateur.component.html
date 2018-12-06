@@ -1,9 +1,9 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="laFactoryFinalApp.formateur.home.title">Formateurs</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-formateur" *jhiHasAnyAuthority="['ROLE_USER']" [routerLink]="['/formateur/new']">
+        <button *jhiHasAnyAuthority="['ROLE_USER']" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-formateur" [routerLink]="['/formateur/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="laFactoryFinalApp.formateur.home.createLabel" >
+            <span  jhiTranslate="laFactoryFinalApp.formateur.home.createLabel">
             Create new Formateur
             </span>
         </button>
@@ -40,7 +40,7 @@
                 <td>{{formateur.codePostal}}</td>
                 <td>{{formateur.ville}}</td>
                 <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
+                    <div class="btn-group flex-btn-group-container" *jhiHasAnyAuthority="['ROLE_USER']">
                         <button type="submit"
                                 [routerLink]="['/formateur', formateur.id, 'view' ]"
                                 class="btn btn-info btn-sm">

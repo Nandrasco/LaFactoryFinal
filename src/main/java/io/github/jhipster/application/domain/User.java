@@ -89,7 +89,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "jhi_user_authority", joinColumns = {
 			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "authority_name", referencedColumnName = "name") })
+					@JoinColumn(name = "authority_name", referencedColumnName = "name")})
 	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 	@BatchSize(size = 20)
 	private Set<Authority> authorities = new HashSet<>();
@@ -98,10 +98,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
 	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 	private Set<PersistentToken> persistentTokens = new HashSet<>();
-
-//	@OneToOne(mappedBy = "user")
-//	@JsonIgnore
-//	private Formateur formateur;
 
 	public Long getId() {
 		return id;
@@ -211,14 +207,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
 	public Set<PersistentToken> getPersistentTokens() {
 		return persistentTokens;
 	}
-
-//	public Formateur getFormateur() {
-//		return formateur;
-//	}
-//
-//	public void setFormateur(Formateur formateur) {
-//		this.formateur = formateur;
-//	}
 
 	public void setPersistentTokens(Set<PersistentToken> persistentTokens) {
 		this.persistentTokens = persistentTokens;
