@@ -10,6 +10,7 @@ import { StagiaireComponent } from './stagiaire.component';
 import { StagiaireDetailComponent } from './stagiaire-detail.component';
 import { StagiaireUpdateComponent } from './stagiaire-update.component';
 import { StagiaireDeletePopupComponent } from './stagiaire-delete-dialog.component';
+import { StagiairesSalleComponent } from 'app/entities/stagiaire/stagiaires-salle.component';
 import { IStagiaire } from 'app/shared/model/stagiaire.model';
 
 @Injectable({ providedIn: 'root' })
@@ -71,6 +72,16 @@ export const stagiaireRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'laFactoryFinalApp.stagiaire.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+
+    {
+        path: 'stagiaire/salle/:id/view',
+        component: StagiairesSalleComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'laFactoryFinalApp.stagiairebySalle.home.title'
         },
         canActivate: [UserRouteAccessService]
     }

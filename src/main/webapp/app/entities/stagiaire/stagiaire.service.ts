@@ -27,6 +27,10 @@ export class StagiaireService {
         return this.http.get<IStagiaire>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
+    findBySalleId(id: number): Observable<EntityArrayResponseType> {
+        return this.http.get<IStagiaire[]>(`${this.resourceUrl}/salle/${id}`, { observe: 'response' });
+    }
+
     query(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
         return this.http.get<IStagiaire[]>(this.resourceUrl, { params: options, observe: 'response' });

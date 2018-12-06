@@ -4,41 +4,33 @@ import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { IStagiaire } from 'app/shared/model/stagiaire.model';
-import { Principal } from 'app/core';
 import { StagiaireService } from './stagiaire.service';
 import index from '@angular/cli/lib/cli';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-stagiaire',
     templateUrl: './stagiaire.component.html'
 })
-export class StagiaireComponent implements OnInit, OnDestroy {
+export class StagiairesSalleComponent implements OnInit, OnDestroy {
     stagiaires: IStagiaire[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
     constructor(
+        private activatedRoute: ActivatedRoute,
+        private route: Router,
         private stagiaireService: StagiaireService,
         private jhiAlertService: JhiAlertService,
-        private eventManager: JhiEventManager,
-        private principal: Principal
+        private eventManager: JhiEventManager
     ) {}
 
-    loadAll() {
-        this.stagiaireService.query().subscribe(
-            (res: HttpResponse<IStagiaire[]>) => {
-                this.stagiaires = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-    }
-
     ngOnInit() {
-        this.loadAll();
-        this.principal.identity().then(account => {
-            this.currentAccount = account;
+        this.activatedRoute.params.subscribe(param => {
+            this.stagiaireService.findBySalleId(param.id).subscribe(res => {
+                this.stagiaires = res.body;
+            });
         });
-        this.registerChangeInStagiaires();
     }
 
     ngOnDestroy() {
@@ -47,10 +39,6 @@ export class StagiaireComponent implements OnInit, OnDestroy {
 
     trackId(index: number, item: IStagiaire) {
         return item.id;
-    }
-
-    registerChangeInStagiaires() {
-        this.eventSubscriber = this.eventManager.subscribe('stagiaireListModification', response => this.loadAll());
     }
 
     private onError(errorMessage: string) {
