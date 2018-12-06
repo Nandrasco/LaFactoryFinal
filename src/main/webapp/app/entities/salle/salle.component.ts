@@ -14,7 +14,6 @@ import { IStagiaire } from 'app/shared/model/stagiaire.model';
 })
 export class SalleComponent implements OnInit, OnDestroy {
     salles: ISalle[];
-    stagiaires: IStagiaire[];
     currentAccount: any;
     eventSubscriber: Subscription;
 

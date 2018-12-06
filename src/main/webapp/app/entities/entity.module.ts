@@ -10,7 +10,6 @@ import { LaFactoryFinalMatiereModule } from './matiere/matiere.module';
 import { LaFactoryFinalOrdinateurModule } from './ordinateur/ordinateur.module';
 import { LaFactoryFinalProjecteurModule } from './projecteur/projecteur.module';
 import { LaFactoryFinalSalleModule } from './salle/salle.module';
-import { SalleStagiairesComponent } from './salle-stagiaires/salle-stagiaires.component';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -28,7 +27,7 @@ import { SalleStagiairesComponent } from './salle-stagiaires/salle-stagiaires.co
         LaFactoryFinalSalleModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
-    declarations: [SalleStagiairesComponent],
+    declarations: [],
     entryComponents: [],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

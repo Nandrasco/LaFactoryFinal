@@ -11,6 +11,7 @@ import {
     stagiaireRoute,
     stagiairePopupRoute
 } from './';
+import { StagiairesSalleComponent } from 'app/entities/stagiaire/stagiaires-salle.component';
 
 const ENTITY_STATES = [...stagiaireRoute, ...stagiairePopupRoute];
 
@@ -21,9 +22,16 @@ const ENTITY_STATES = [...stagiaireRoute, ...stagiairePopupRoute];
         StagiaireDetailComponent,
         StagiaireUpdateComponent,
         StagiaireDeleteDialogComponent,
-        StagiaireDeletePopupComponent
+        StagiaireDeletePopupComponent,
+        StagiairesSalleComponent
     ],
-    entryComponents: [StagiaireComponent, StagiaireUpdateComponent, StagiaireDeleteDialogComponent, StagiaireDeletePopupComponent],
+    entryComponents: [
+        StagiaireComponent,
+        StagiaireUpdateComponent,
+        StagiaireDeleteDialogComponent,
+        StagiaireDeletePopupComponent,
+        StagiairesSalleComponent
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class LaFactoryFinalStagiaireModule {}

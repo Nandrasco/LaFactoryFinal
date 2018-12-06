@@ -61,7 +61,7 @@ public class StagiaireServiceImpl implements StagiaireService {
     @Override
     @Transactional(readOnly = true)
     public List<Stagiaire> findStagiaireBySalleId(Long id) {
-        log.debug("Request to get all Stagiaires");
+        log.debug("Request to get Stagiaires by salle");
         return stagiaireRepository.findStagiaireBySalleId(id);
     }
 
