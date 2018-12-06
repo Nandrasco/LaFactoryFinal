@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<div>
+        <div *ngFor="let item of matieres">{{item.nom}}</div>
+
+    <div>Select the fields where your competence level is "Beginner"</div>
+        aaa
+       <dual-list [source]="matieres" [(destination)]="formateur.matieresDebutant" display="nom"></dual-list>
+    </div>
+<br>
+<div>
+    <div>Select the fields where your competence level is "Intermediate"</div>
+    <dual-list [source]="formateur.matieres" [(destination)]="formateur.matieresIntermediaire"></dual-list>
+</div>
+<br>
+<div>
+    <div>Select the fields where your competence level is "Advanced"</div>
+    <dual-list [source]="formateur.matieres" [(destination)]="formateur.matieresAvance"></dual-list>
+</div>
+<br>
+<div>
+    <div>Select the fields where your competence level is "Confirmed"</div>
+    <dual-list [source]="formateur.matieres" [(destination)]="formateur.matieresDebutant"></dual-list>
+</div>
+
+
+
+
+<!-- <div>
+    <form name="matieresDebutant" (ngSubmit)="confirmMatieresDebutant()">
+        <select ng-model="leftSelect" multiple>
+            <option *ngFor="let matDeb of formateur.matieresDebutant" value="{{matDeb}}"></option>
+        </select>
+        <button ng-click="moveRight(), check()">>></button>
+        <button ng-click="moveLeft()"><<</button>
+        <select ng-model="toRemove" ng-options="el for el in rightSelect" multiple></select>
+        <br>
+        <button type="submit" class="btn btn-success">Validate List</button>
+    </form>
+</div>
+<br>
+<div>
+    <form name="matieresIntermediaire" (ngSubmit)="confirmMatieresIntermediaire()">
+        <select ng-model="leftSelect" multiple>
+            <option *ngFor="let matDeb of formateur.matieresIntermediaire" value="{{matDeb}}"></option>
+        </select>
+        <button ng-click="moveRight(), check()">>></button>
+        <button ng-click="moveLeft()"><<</button>
+        <select ng-model="toRemove" ng-options="el for el in rightSelect" multiple></select>
+        <br>
+        <button type="submit" class="btn btn-success">Validate List</button>
+    </form>
+</div>
+<br>
+<div>
+    <form name="matieresAvance" (ngSubmit)="confirmMatieresAvance()">
+        <select ng-model="leftSelect" multiple>
+            <option *ngFor="let matDeb of formateur.matieresAvance" value="{{matDeb}}"></option>
+        </select>
+        <button ng-click="moveRight(), check()">>></button>
+        <button ng-click="moveLeft()"><<</button>
+        <select ng-model="toRemove" ng-options="el for el in rightSelect" multiple></select>
+        <br>
+        <button type="submit" class="btn btn-success">Validate List</button>        
+    </form>
+</div>
+<br>
+<div>
+    <form name="matieresConfirme" (ngSubmit)="confirmMatieresConfirme()">
+        <select ng-model="leftSelect" multiple>
+            <option *ngFor="let matDeb of formateur.matieresConfirme" value="{{matDeb}}"></option>
+        </select>
+        <button ng-click="moveRight(), check()">>></button>
+        <button ng-click="moveLeft()"><<</button>
+        <select ng-model="toRemove" ng-options="el for el in rightSelect" multiple></select>
+        <br>
+        <button type="submit" class="btn btn-success">Validate List</button>        
+    </form>
+</div>
+<br> -->
+
+</html>

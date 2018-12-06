@@ -11,6 +11,7 @@ import { FormateurDetailComponent } from './formateur-detail.component';
 import { FormateurUpdateComponent } from './formateur-update.component';
 import { FormateurDeletePopupComponent } from './formateur-delete-dialog.component';
 import { IFormateur } from 'app/shared/model/formateur.model';
+import { FormateurListeMatiereComponent } from 'app/entities/formateur/formateur-listematiere.component';
 
 @Injectable({ providedIn: 'root' })
 export class FormateurResolve implements Resolve<IFormateur> {
@@ -29,6 +30,18 @@ export class FormateurResolve implements Resolve<IFormateur> {
 }
 
 export const formateurRoute: Routes = [
+    {
+        path: 'formateur/editListMatieresCompetence/:id',
+        component: FormateurListeMatiereComponent,
+        resolve: {
+            formateur: FormateurResolve
+        },
+        data: {
+            authorities: ['ROLE_USER', 'ROLE_FORMATEUR']
+            // pageTitle: 'laFactoryFinalApp.formateur.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
     {
         path: 'formateur',
         component: FormateurComponent,

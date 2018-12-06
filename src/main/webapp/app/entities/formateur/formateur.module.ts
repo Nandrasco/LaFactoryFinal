@@ -9,7 +9,8 @@ import {
     FormateurDeletePopupComponent,
     FormateurDeleteDialogComponent,
     formateurRoute,
-    formateurPopupRoute
+    formateurPopupRoute,
+    FormateurListeMatiereComponent
 } from './';
 
 const ENTITY_STATES = [...formateurRoute, ...formateurPopupRoute];
@@ -21,9 +22,16 @@ const ENTITY_STATES = [...formateurRoute, ...formateurPopupRoute];
         FormateurDetailComponent,
         FormateurUpdateComponent,
         FormateurDeleteDialogComponent,
-        FormateurDeletePopupComponent
+        FormateurDeletePopupComponent,
+        FormateurListeMatiereComponent
     ],
-    entryComponents: [FormateurComponent, FormateurUpdateComponent, FormateurDeleteDialogComponent, FormateurDeletePopupComponent],
+    entryComponents: [
+        FormateurComponent,
+        FormateurUpdateComponent,
+        FormateurDeleteDialogComponent,
+        FormateurDeletePopupComponent,
+        FormateurListeMatiereComponent
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class LaFactoryFinalFormateurModule {}
