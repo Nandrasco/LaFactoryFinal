@@ -63,6 +63,16 @@ export const matiereRoute: Routes = [
     },
 
     {
+        path: 'matiere/stagiaire/:id/view',
+        component: MatieresStagiaireComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'laFactoryFinalApp.matiere.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+
+    {
         path: 'matiere/new',
         component: MatiereUpdateComponent,
         resolve: {
