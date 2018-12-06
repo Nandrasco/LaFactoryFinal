@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cursus">
+            <h2><span jhiTranslate="laFactoryFinalApp.cursus.detail.title">Cursus</span> {{cursus.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="laFactoryFinalApp.cursus.nom">Nom</span></dt>
+                <dd>
+                    <span>{{cursus.nom}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.cursus.dateDebut">Date Debut</span></dt>
+                <dd>
+                    <span>{{cursus.dateDebut}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.cursus.dateFin">Date Fin</span></dt>
+                <dd>
+                    <span>{{cursus.dateFin}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.cursus.prerequis">Prerequis</span></dt>
+                <dd>
+                    <span>{{cursus.prerequis}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.cursus.objectifs">Objectifs</span></dt>
+                <dd>
+                    <span>{{cursus.objectifs}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.cursus.contenu">Contenu</span></dt>
+                <dd>
+                    <span>{{cursus.contenu}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.cursus.gestionnaire">Gestionnaire</span></dt>
+                <dd>
+                    <div *ngIf="cursus.gestionnaire">
+                        <a [routerLink]="['/gestionnaire', cursus.gestionnaire?.id, 'view']">{{cursus.gestionnaire?.prenom}} {{cursus.gestionnaire?.nom}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.cursus.salle">Salle</span></dt>
+                <dd>
+                    <div *ngIf="cursus.salle">
+                        <a [routerLink]="['/salle', cursus.salle?.id, 'view']">{{cursus.salle?.code}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.cursus.stagiaires">Stagiaires</span></dt>
+                <dd>
+                    <span *ngFor="let stagiaires of cursus.stagiaires; let last = last">
+                        <a [routerLink]="['/stagiaire', stagiaires?.id, 'view' ]">{{stagiaires.nom}} {{stagiaires.prenom}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.cursus.modules">Modules</span></dt>
+                <dd>
+                    <span *ngFor="let modules of cursus.modules; let last = last">
+                        <a [routerLink]="['/module', modules?.id, 'view' ]">{{modules.nom}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cursus', cursus.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

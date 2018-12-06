@@ -1,0 +1,29 @@
+{
+    "laFactoryFinalApp": {
+        "stagiaire": {
+            "home": {
+                "title": "Stagiaires",
+                "createLabel": "Create a new Stagiaire",
+                "createOrEditLabel": "Create or edit a Stagiaire"
+            },
+            "created": "A new Stagiaire is created with identifier {{ param }}",
+            "updated": "A Stagiaire is updated with identifier {{ param }}",
+            "deleted": "A Stagiaire is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Stagiaire {{ id }}?"
+            },
+            "detail": {
+                "title": "Stagiaire"
+            },
+            "nom": "Nom",
+            "prenom": "Prenom",
+            "coordonnees": "Coordonnees",
+            "numeroRue": "Numero Rue",
+            "rue": "Rue",
+            "codePostal": "Code Postal",
+            "ville": "Ville",
+            "ordinateur": "Ordinateur",
+            "cursus": "Cursus"
+        }
+    }
+}

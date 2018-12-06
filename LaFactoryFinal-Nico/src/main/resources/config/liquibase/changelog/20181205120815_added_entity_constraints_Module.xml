@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Module.
+    -->
+    <changeSet id="20181205120815-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="modules_id"
+                                 baseTableName="module_matieres"
+                                 constraintName="fk_module_matieres_modules_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="module"/>
+        <addForeignKeyConstraint baseColumnNames="matieres_id"
+                                 baseTableName="module_matieres"
+                                 constraintName="fk_module_matieres_matieres_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="matiere"/>
+        
+        <addForeignKeyConstraint baseColumnNames="modules_id"
+                                 baseTableName="module_formateurs"
+                                 constraintName="fk_module_formateurs_modules_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="module"/>
+        <addForeignKeyConstraint baseColumnNames="formateurs_id"
+                                 baseTableName="module_formateurs"
+                                 constraintName="fk_module_formateurs_formateurs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="formateur"/>
+        
+    </changeSet>
+</databaseChangeLog>

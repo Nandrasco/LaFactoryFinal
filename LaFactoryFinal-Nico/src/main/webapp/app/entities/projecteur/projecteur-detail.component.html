@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="projecteur">
+            <h2><span jhiTranslate="laFactoryFinalApp.projecteur.detail.title">Projecteur</span> {{projecteur.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="laFactoryFinalApp.projecteur.code">Code</span></dt>
+                <dd>
+                    <span>{{projecteur.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.projecteur.cout">Cout</span></dt>
+                <dd>
+                    <span>{{projecteur.cout}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.projecteur.salle">Salle</span></dt>
+                <dd>
+                    <div *ngIf="projecteur.salle">
+                        <a [routerLink]="['/salle', projecteur.salle?.id, 'view']">{{projecteur.salle?.code}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/projecteur', projecteur.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
