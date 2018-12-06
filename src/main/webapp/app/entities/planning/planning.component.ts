@@ -1,12 +1,14 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import {ISalle} from "app/shared/model/salle.model";
-import {SalleService} from "app/entities/salle";
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
-import {Subscription} from "rxjs";
-import {JhiAlertService, JhiEventManager} from "ng-jhipster";
-import {Principal} from "app/core";
+import {ISalle, Salle} from "app/shared/model/salle.model";
+import {SalleService} from 'app/entities/salle';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {Subscription} from 'rxjs';
+import {JhiAlertService, JhiEventManager} from 'ng-jhipster';
+import {Principal} from 'app/core';
+import {Cursus, ICursus} from 'app/shared/model/cursus.model';
+import {CursusService} from 'app/entities/cursus';
 
 export interface CalendarDate {
     mDate: moment.Moment;
@@ -27,11 +29,14 @@ export class PlanningComponent implements OnInit, OnChanges  {
     salles: ISalle[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    cursuses: ICursus[];
 
     @Input() selectedDates: CalendarDate[] = [];
     @Output() onSelectDate = new EventEmitter<CalendarDate>();
 
-    constructor( private salleService: SalleService,
+    constructor(
+        private cursusService: CursusService,
+        private salleService: SalleService,
                  private jhiAlertService: JhiAlertService,
                  private eventManager: JhiEventManager,
                  private principal: Principal) {}
@@ -40,6 +45,12 @@ export class PlanningComponent implements OnInit, OnChanges  {
         this.salleService.query().subscribe(
             (res: HttpResponse<ISalle[]>) => {
                 this.salles = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.cursusService.query().subscribe(
+            (res: HttpResponse<ICursus[]>) => {
+                this.cursuses = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -112,6 +123,7 @@ export class PlanningComponent implements OnInit, OnChanges  {
     nextYear(): void {
         this.currentDate = moment(this.currentDate).add(1, 'year');
         this.generateCalendar();
+        console.log(this.salles.length);
     }
 
     // generate the calendar grid
@@ -147,4 +159,22 @@ export class PlanningComponent implements OnInit, OnChanges  {
     trackId(index: number, item: ISalle) {
         return item.id;
     }
+
+    trackIdCusus(index: number, item: ICursus) {
+        return item.id;
+    }
+    private DipslaySalle(cursus: Cursus, salle: Salle): Boolean{
+        if ( cursus.dateDebut.day() <= this.currentDate.day() && cursus.dateDebut.month() <= this.currentDate.month()
+    &&  cursus.dateDebut.year() <= this.currentDate.year()
+    && cursus.dateFin.day() >= this.currentDate.day() && cursus.dateFin.month() >= this.currentDate.month()
+    && cursus.dateFin.year() >= this.currentDate.year()&& cursus === salle.cursus ) {
+            return true;
+        } else {
+            console.log("something is off");
+            return false;
+        }
+
+
+}
+
 }
