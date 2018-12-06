@@ -31,6 +31,7 @@ public interface StagiaireService {
      */
     List<Stagiaire> findAllWhereOrdinateurIsNull();
 
+    List<Stagiaire> findStagiaireBySalleId(Long id);
 
     /**
      * Get the "id" stagiaire.
