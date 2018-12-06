@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
@@ -12,6 +12,7 @@ import { MatiereService } from './matiere.service';
     templateUrl: './matiere.component.html'
 })
 export class MatiereComponent implements OnInit, OnDestroy {
+    @Input()
     matieres: IMatiere[];
     currentAccount: any;
     eventSubscriber: Subscription;

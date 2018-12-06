@@ -1,4 +1,4 @@
-import { IMatiere } from 'app/shared/model//matiere.model';
+import { IMatiere, Matiere } from 'app/shared/model//matiere.model';
 import { IModule } from 'app/shared/model//module.model';
 
 export interface IFormateur {
@@ -12,6 +12,10 @@ export interface IFormateur {
     ville?: string;
     matieres?: IMatiere[];
     modules?: IModule[];
+    matieresDebutant?: IMatiere[];
+    matieresIntermediaire?: IMatiere[];
+    matieresAvance?: IMatiere[];
+    matieresConfirme?: IMatiere[];
 }
 
 export class Formateur implements IFormateur {
@@ -25,6 +29,10 @@ export class Formateur implements IFormateur {
         public codePostal?: string,
         public ville?: string,
         public matieres?: IMatiere[],
-        public modules?: IModule[]
+        public modules?: IModule[],
+        public matieresDebutant?: IMatiere[],
+        public matieresIntermediaire?: IMatiere[],
+        public matieresAvance?: IMatiere[],
+        public matieresConfirme?: IMatiere[]
     ) {}
 }
