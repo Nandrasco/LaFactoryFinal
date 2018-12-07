@@ -12,8 +12,6 @@
                 <button (click)="nextYear()">&gt;</button>
             </div>
         </div>
-
-
         <table class="table table-striped">
             <tr>
                 <th> Date</th>
@@ -39,17 +37,9 @@
 
                         <td *ngFor="let salle of salles ;trackBy: trackId">
                                     <span *ngFor="let cursus of cursuses; trackBy: trackIdCusus">
-                                       {{ cursus.dateDebut.day()}} {{ this.currentDate.day()}}<br/>
-                                        {{ cursus.dateDebut.month()}}  {{ this.currentDate.month()}} <br/>
-                                        {{ cursus.dateDebut.year()   }}{{ this.currentDate.year()}}
 
                                         <br/>
-                                    <span *ngIf="DipslaySalle(cursus, salle)">
-                                        Cursus : {{ cursus.nom}} <br/>
-                                    Capacité d'accueil : {{ salle.capaciteMax}} <br/>
-                                    </span>
 
-                                </span>
 
                         </td>
 

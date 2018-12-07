@@ -20,7 +20,7 @@ export interface CalendarDate {
     selector: 'jhi-planning',
     templateUrl: './planning.component.html'
 })
-export class PlanningComponent implements OnInit, OnChanges  {
+export class PlanningComponent implements OnInit, OnChanges {
 
     currentDate = moment();
     dayNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
@@ -37,9 +37,10 @@ export class PlanningComponent implements OnInit, OnChanges  {
     constructor(
         private cursusService: CursusService,
         private salleService: SalleService,
-                 private jhiAlertService: JhiAlertService,
-                 private eventManager: JhiEventManager,
-                 private principal: Principal) {}
+        private jhiAlertService: JhiAlertService,
+        private eventManager: JhiEventManager,
+        private principal: Principal) {
+    }
 
     loadAll() {
         this.salleService.query().subscribe(
@@ -55,6 +56,7 @@ export class PlanningComponent implements OnInit, OnChanges  {
             (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
+
     ngOnInit(): void {
         this.generateCalendar();
         this.loadAll();
@@ -66,7 +68,7 @@ export class PlanningComponent implements OnInit, OnChanges  {
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.selectedDates &&
             changes.selectedDates.currentValue &&
-            changes.selectedDates.currentValue.length  > 1) {
+            changes.selectedDates.currentValue.length > 1) {
             // sort on date changes for better performance when range checking
             this.sortedDates = _.sortBy(changes.selectedDates.currentValue, (m: CalendarDate) => m.mDate.valueOf());
             this.generateCalendar();
@@ -163,18 +165,9 @@ export class PlanningComponent implements OnInit, OnChanges  {
     trackIdCusus(index: number, item: ICursus) {
         return item.id;
     }
-    private DipslaySalle(cursus: Cursus, salle: Salle): Boolean{
-        if ( cursus.dateDebut.day() <= this.currentDate.day() && cursus.dateDebut.month() <= this.currentDate.month()
-    &&  cursus.dateDebut.year() <= this.currentDate.year()
-    && cursus.dateFin.day() >= this.currentDate.day() && cursus.dateFin.month() >= this.currentDate.month()
-    && cursus.dateFin.year() >= this.currentDate.year()&& cursus === salle.cursus ) {
-            return true;
-        } else {
-            console.log("something is off");
-            return false;
-        }
 
+    private DipslaySalle(cursus: Cursus, salle: Salle) {
+    }
 
-}
 
 }

@@ -1,0 +1,30 @@
+{
+    "laFactoryFinalApp": {
+        "cursus": {
+            "home": {
+                "title": "Cursuses",
+                "createLabel": "Create a new Cursus",
+                "createOrEditLabel": "Create or edit a Cursus"
+            },
+            "created": "A new Cursus is created with identifier {{ param }}",
+            "updated": "A Cursus is updated with identifier {{ param }}",
+            "deleted": "A Cursus is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Cursus {{ id }}?"
+            },
+            "detail": {
+                "title": "Cursus"
+            },
+            "nom": "Nom",
+            "dateDebut": "Date Debut",
+            "dateFin": "Date Fin",
+            "prerequis": "Prerequis",
+            "objectifs": "Objectifs",
+            "contenu": "Contenu",
+            "gestionnaire": "Gestionnaire",
+            "salle": "Salle",
+            "stagiaires": "Stagiaires",
+            "modules": "Modules"
+        }
+    }
+}

@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="stagiaire">
+            <h2><span jhiTranslate="laFactoryFinalApp.stagiaire.detail.title">Stagiaire</span> {{stagiaire.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="laFactoryFinalApp.stagiaire.nom">Nom</span></dt>
+                <dd>
+                    <span>{{stagiaire.nom}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.stagiaire.prenom">Prenom</span></dt>
+                <dd>
+                    <span>{{stagiaire.prenom}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.stagiaire.coordonnees">Coordonnees</span></dt>
+                <dd>
+                    <span>{{stagiaire.coordonnees}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.stagiaire.numeroRue">Numero Rue</span></dt>
+                <dd>
+                    <span>{{stagiaire.numeroRue}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.stagiaire.rue">Rue</span></dt>
+                <dd>
+                    <span>{{stagiaire.rue}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.stagiaire.codePostal">Code Postal</span></dt>
+                <dd>
+                    <span>{{stagiaire.codePostal}}</span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.stagiaire.ville">Ville</span></dt>
+                <dd>
+                    <span>{{stagiaire.ville}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/stagiaire', stagiaire.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+{
+    "laFactoryFinalApp": {
+        "ordinateur": {
+            "home": {
+                "title": "Ordinateurs",
+                "createLabel": "Create a new Ordinateur",
+                "createOrEditLabel": "Create or edit a Ordinateur"
+            },
+            "created": "A new Ordinateur is created with identifier {{ param }}",
+            "updated": "A Ordinateur is updated with identifier {{ param }}",
+            "deleted": "A Ordinateur is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ordinateur {{ id }}?"
+            },
+            "detail": {
+                "title": "Ordinateur"
+            },
+            "code": "Code",
+            "cout": "Cout",
+            "processeur": "Processeur",
+            "ram": "Ram",
+            "dd": "Dd",
+            "dateAchat": "Date Achat",
+            "stagiaire": "Stagiaire"
+        }
+    }
+}

@@ -38,6 +38,7 @@ public class Salle implements Serializable {
     private Projecteur projecteur;
 
     @OneToOne(mappedBy = "salle")
+    @JsonIgnore
     private Cursus cursus;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

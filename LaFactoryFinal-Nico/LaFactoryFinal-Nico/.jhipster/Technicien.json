@@ -1,0 +1,43 @@
+{
+    "name": "Technicien",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "coordonnees",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numeroRue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rue",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "codePostal",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ville",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181205120813",
+    "entityTableName": "technicien",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
