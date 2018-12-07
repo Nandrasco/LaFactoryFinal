@@ -10,7 +10,29 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
+    <div id="search-component">
+        <h4> Formateur search by name : </h4>
+
+        <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+        <ul class="search-result">
+                <li *ngFor="let formateur of formateurs | async" >
+                <a routerLink="/view/{{formateur.id}}">
+                    {{formateur.nom}}
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="right">
+        <form id="search">
+            <input #search type="search" placeholder="Search" [ngClass]="{'filled':filled}"
+                   (click)="filled=true" (blur)="filled=search.value?true:false">
+        </form>
+    </div>
+
     <div class="table-responsive" *ngIf="formateurs">
+
         <table class="table table-striped">
             <thead>
             <tr>
