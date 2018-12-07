@@ -1,10 +1,12 @@
 package io.github.jhipster.application.domain;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +20,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Objects;
 
 /**
  * A Formateur.
@@ -38,8 +45,7 @@ public class Formateur implements Serializable {
 	@Column(name = "nom")
 	private String nom;
 
-	@Column(name = "prenom")
-	private String prenom;
+	@Column(name = "prenom")	private String prenom;
 
 	@Column(name = "coordonnees")
 	private String coordonnees;
@@ -65,6 +71,21 @@ public class Formateur implements Serializable {
 	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 	@JsonIgnore
 	private Set<Module> modules = new HashSet<>();
+	
+//	@Column(name = "matieres_debutant")
+//	private Set<Matiere> matieresDebutant = new HashSet<>();
+//	
+//	@Column(name = "matieres_intermediaire")
+//	private Set<Matiere> matieresIntermediaire = new HashSet<>();
+//	
+//	@Column(name = "matieres_avance")
+//	private Set<Matiere> matieresAvance = new HashSet<>();
+//	
+//	@Column(name = "matieres_confirme")
+//	private Set<Matiere> matieresConfirme = new HashSet<>();
+
+
+
 
 //	@OneToOne(mappedBy = "formateur")
 //	@JsonIgnore
@@ -199,14 +220,6 @@ public class Formateur implements Serializable {
 	public Set<Module> getModules() {
 		return modules;
 	}
-
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
 
 	public Formateur modules(Set<Module> modules) {
 		this.modules = modules;

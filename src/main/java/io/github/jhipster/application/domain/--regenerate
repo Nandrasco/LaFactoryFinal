@@ -1,0 +1,14 @@
+INFO! Using JHipster version installed globally
+INFO! Executing jhipster:entity
+INFO! Options: from-cli: true
+Error: Did not provide required argument name!
+    at _arguments.forEach (C:\Users\ajc\AppData\Roaming\npm\node_modules\generator-jhipster\node_modules\yeoman-generator\lib\index.js:366:11)
+    at Array.forEach (<anonymous>)
+    at module.exports.checkRequiredArgs (C:\Users\ajc\AppData\Roaming\npm\node_modules\generator-jhipster\node_modules\yeoman-generator\lib\index.js:360:21)
+    at module.exports.parseOptions (C:\Users\ajc\AppData\Roaming\npm\node_modules\generator-jhipster\node_modules\yeoman-generator\lib\index.js:345:10)
+    at module.exports.argument (C:\Users\ajc\AppData\Roaming\npm\node_modules\generator-jhipster\node_modules\yeoman-generator\lib\index.js:268:10)
+    at new module.exports (C:\Users\ajc\AppData\Roaming\npm\node_modules\generator-jhipster\generators\entity\index.js:39:14)
+    at Environment.instantiate (C:\Users\ajc\AppData\Roaming\npm\node_modules\generator-jhipster\node_modules\yeoman-environment\lib\environment.js:408:12)
+    at Environment.create (C:\Users\ajc\AppData\Roaming\npm\node_modules\generator-jhipster\node_modules\yeoman-environment\lib\environment.js:386:17)
+    at Environment.run (C:\Users\ajc\AppData\Roaming\npm\node_modules\generator-jhipster\node_modules\yeoman-environment\lib\environment.js:443:28)
+    at runYoCommand (C:\Users\ajc\AppData\Roaming\npm\node_modules\generator-jhipster\cli\cli.js:46:13)

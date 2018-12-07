@@ -6,6 +6,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { ISalle } from 'app/shared/model/salle.model';
 import { Principal } from 'app/core';
 import { SalleService } from './salle.service';
+import { IStagiaire } from 'app/shared/model/stagiaire.model';
 
 @Component({
     selector: 'jhi-salle',
