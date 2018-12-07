@@ -11,6 +11,7 @@ import { MatiereDetailComponent } from './matiere-detail.component';
 import { MatiereUpdateComponent } from './matiere-update.component';
 import { MatiereDeletePopupComponent } from './matiere-delete-dialog.component';
 import { IMatiere } from 'app/shared/model/matiere.model';
+import { MatieresStagiaireComponent } from 'app/entities/matiere/matieres-stagiaire.component';
 
 @Injectable({ providedIn: 'root' })
 export class MatiereResolve implements Resolve<IMatiere> {
@@ -50,6 +51,27 @@ export const matiereRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     },
+
+    {
+        path: 'matiere/stagiaire/:id/view',
+        component: MatieresStagiaireComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'laFactoryFinalApp.matiere.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+
+    {
+        path: 'matiere/stagiaire/:id/view',
+        component: MatieresStagiaireComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'laFactoryFinalApp.matiere.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+
     {
         path: 'matiere/new',
         component: MatiereUpdateComponent,

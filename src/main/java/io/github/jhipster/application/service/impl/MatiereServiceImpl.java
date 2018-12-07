@@ -54,6 +54,18 @@ public class MatiereServiceImpl implements MatiereService {
     }
 
     /**
+     * Get matieres of a stagiaire.
+     *
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<Matiere> findMatieresByStagiaireId(Long id) {
+        log.debug("Request to get Matieres by stagiaire id: {}", id);
+        return matiereRepository.findMatieresByStagiaireId(id);
+    }
+
+    /**
      * Get all the Matiere with eager load of many-to-many relationships.
      *
      * @return the list of entities
