@@ -12,8 +12,8 @@ import { CursusService } from './cursus.service';
     templateUrl: './cursus.component.html'
 })
 export class CursusComponent implements OnInit, OnDestroy {
-    cursuses: ICursus[];
     currentAccount: any;
+    cursuses: ICursus[];
     eventSubscriber: Subscription;
 
     constructor(
