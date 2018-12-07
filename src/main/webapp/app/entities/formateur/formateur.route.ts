@@ -58,7 +58,7 @@ export const formateurRoute: Routes = [
             formateur: FormateurResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'ROLE_FORMATEUR'],
+            authorities: ['ROLE_USER'],
             pageTitle: 'laFactoryFinalApp.formateur.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -70,7 +70,7 @@ export const formateurRoute: Routes = [
             formateur: FormateurResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'ROLE_FORMATEUR'],
+            authorities: ['ROLE_USER'],
             pageTitle: 'laFactoryFinalApp.formateur.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -82,7 +82,7 @@ export const formateurRoute: Routes = [
             formateur: FormateurResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'ROLE_FORMATEUR'],
+            authorities: ['ROLE_USER'],
             pageTitle: 'laFactoryFinalApp.formateur.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -97,7 +97,7 @@ export const formateurPopupRoute: Routes = [
             formateur: FormateurResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'ROLE_FORMATEUR'],
+            authorities: ['ROLE_USER'],
             pageTitle: 'laFactoryFinalApp.formateur.home.title'
         },
         canActivate: [UserRouteAccessService],

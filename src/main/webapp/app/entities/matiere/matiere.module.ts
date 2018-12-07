@@ -11,6 +11,7 @@ import {
     matiereRoute,
     matierePopupRoute
 } from './';
+import { MatieresStagiaireComponent } from './matieres-stagiaire.component';
 
 const ENTITY_STATES = [...matiereRoute, ...matierePopupRoute];
 
@@ -21,9 +22,16 @@ const ENTITY_STATES = [...matiereRoute, ...matierePopupRoute];
         MatiereDetailComponent,
         MatiereUpdateComponent,
         MatiereDeleteDialogComponent,
-        MatiereDeletePopupComponent
+        MatiereDeletePopupComponent,
+        MatieresStagiaireComponent
     ],
-    entryComponents: [MatiereComponent, MatiereUpdateComponent, MatiereDeleteDialogComponent, MatiereDeletePopupComponent],
+    entryComponents: [
+        MatiereComponent,
+        MatiereUpdateComponent,
+        MatiereDeleteDialogComponent,
+        MatiereDeletePopupComponent,
+        MatieresStagiaireComponent
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class LaFactoryFinalMatiereModule {}
