@@ -10,9 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-matiere',
-    templateUrl: './matiere.component.html'
+    templateUrl: './matieres-stagiaire.component.html'
 })
-export class MatieresStagiaireComponent implements OnInit, OnDestroy {
+export class MatieresStagiaireComponent implements OnInit {
     matieres: IMatiere[];
     currentAccount: any;
     eventSubscriber: Subscription;
@@ -35,10 +35,6 @@ export class MatieresStagiaireComponent implements OnInit, OnDestroy {
         this.principal.identity().then(account => {
             this.currentAccount = account;
         });
-    }
-
-    ngOnDestroy() {
-        this.eventManager.destroy(this.eventSubscriber);
     }
 
     trackId(index: number, item: IMatiere) {

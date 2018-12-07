@@ -15,8 +15,6 @@ import { LaFactoryFinalAppRoutingModule } from './app-routing.module';
 import { LaFactoryFinalHomeModule } from './home/home.module';
 import { LaFactoryFinalAccountModule } from './account/account.module';
 import { LaFactoryFinalEntityModule } from './entities/entity.module';
-import { DualListComponent } from 'angular-dual-listbox';
-import { AngularDualListBoxModule } from 'angular-dual-listbox';
 
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
@@ -24,7 +22,6 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
 
 @NgModule({
     imports: [
-        AngularDualListBoxModule,
         BrowserModule,
         LaFactoryFinalAppRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),

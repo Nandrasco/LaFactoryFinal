@@ -26,7 +26,7 @@
                 <td>{{matiere.nom}}</td>
                 <td>
                     <span *ngFor="let formateurs of matiere.formateurs; let last = last">
-                            <a class="form-control-static" [routerLink]="['../formateur', formateurs?.id, 'view' ]">{{formateurs.prenom}} {{formateurs.nom}}</a>{{last ? '' : ', '}}
+                            <a class="form-control-static" [routerLink]="['/formateur', formateurs?.id, 'view' ]">{{formateurs.prenom}} {{formateurs.nom}}</a>{{last ? '' : ', '}}
                         </span>
                 </td>
                 <td class="text-right">
