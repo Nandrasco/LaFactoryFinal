@@ -36,13 +36,10 @@ export class FormateurListeMatiereComponent implements OnInit {
     ngOnInit() {
         this.matiereService.query().subscribe(
             (res: HttpResponse<IMatiere[]>) => {
-                console.log('aaaaaaaaaaah');
                 this.matieres = res.body;
-                console.log(res.body, this.matieres);
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        console.log('aaaaa', this.matieres);
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ formateur }) => {
             this.formateur = formateur;
