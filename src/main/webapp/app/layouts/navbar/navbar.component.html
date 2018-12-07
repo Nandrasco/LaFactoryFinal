@@ -19,7 +19,7 @@
                     </span>
                 </a>
             </li>
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li *jhiHasAnyAuthority="['ROLE_USER', 'ROLE_GESTIONNAIRE', 'ROLE_TECHNICIEN', 'ROLE_FORMATEUR']" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="planning" (click)="collapseNavbar()">
                     <span>
                         <fa-icon icon="home"></fa-icon>
