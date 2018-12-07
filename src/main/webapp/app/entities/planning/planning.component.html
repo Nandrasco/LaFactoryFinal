@@ -1,55 +1,39 @@
-<div class="calendar">
-    <div class="calendar-navs">
-        <div class="container">
-            <div class="month-nav">
-                <button (click)="prevMonth()">&lt;</button>
-                <span class="p4">{{ currentDate.format('MMMM') }}</span>
-                <button (click)="nextMonth()">&gt;</button>
-            </div>
-            <div class="year-nav ">
-                <button (click)="prevYear()">&lt;</button>
-                <span>{{ currentDate.format('YYYY') }}</span>
-                <button (click)="nextYear()">&gt;</button>
-            </div>
-        </div>
-        <table class="table table-striped">
-            <tr>
-                <th> Date</th>
-                <th *ngFor="let salle of salles; trackBy:trackId">  {{salle.code }}
-                </th>
-            </tr>
+<jhi-demo-utils-calendar-header
+    [(view)]="view"
+    [(viewDate)]="viewDate"
+    (viewDateChange)="fetchEvents()"
+    (viewChange)="fetchEvents()">
+</jhi-demo-utils-calendar-header>
 
-            <div class="weeks">
-                <div *ngFor="let week of weeks" class="week">
-
-                    <tr *ngFor="let day of week"> >
-                        <td>
-                            <div class="week-date disabled" *ngIf="!isSelectedMonth(day.mDate)">
-                                <span class="date-text">{{ day.mDate.date() }}</span>
-                            </div>
-                            <div class="week-date enabled"
-                                 *ngIf="isSelectedMonth(day.mDate)"
-                                 (click)="selectDate(day)"
-                                 [ngClass]="{ today: day.today, selected: day.selected }">
-                                <span class="date-text">{{ day.mDate.date() }}</span>
-                            </div>
-                        </td>
-
-                        <td *ngFor="let salle of salles ;trackBy: trackId">
-                                    <span *ngFor="let cursus of cursuses; trackBy: trackIdCusus">
-
-                                        <br/>
-
-
-                        </td>
-
-                    </tr>
-                </div>
-            </div>
-        </table>
+<ng-template #loading>
+    <div class="text-center">
+        <i class="fa fa-spin fa-spinner fa-5x"></i>
+        <br>
+        Loading events...
     </div>
+</ng-template>
 
+<div *ngIf="events$ | async; else loading; let events">
+    <div [ngSwitch]="view">
+        <mwl-calendar-month-view
+            *ngSwitchCase="'month'"
+            [viewDate]="viewDate"
+            [events]="events"
+            [activeDayIsOpen]="activeDayIsOpen"
+            (dayClicked)="dayClicked($event.day)"
+            (eventClicked)="eventClicked($event.event)">
+        </mwl-calendar-month-view>
+        <mwl-calendar-week-view
+            *ngSwitchCase="'week'"
+            [viewDate]="viewDate"
+            [events]="events"
+            (eventClicked)="eventClicked($event.event)">
+        </mwl-calendar-week-view>
+        <mwl-calendar-day-view
+            *ngSwitchCase="'day'"
+            [viewDate]="viewDate"
+            [events]="events"
+            (eventClicked)="eventClicked($event.event)">
+        </mwl-calendar-day-view>
+    </div>
 </div>
-
-
-

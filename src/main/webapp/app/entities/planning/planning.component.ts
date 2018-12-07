@@ -1,173 +1,128 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import * as moment from 'moment';
-import * as _ from 'lodash';
-import {ISalle, Salle} from "app/shared/model/salle.model";
-import {SalleService} from 'app/entities/salle';
-import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {Subscription} from 'rxjs';
-import {JhiAlertService, JhiEventManager} from 'ng-jhipster';
-import {Principal} from 'app/core';
-import {Cursus, ICursus} from 'app/shared/model/cursus.model';
-import {CursusService} from 'app/entities/cursus';
+import {Component, ChangeDetectionStrategy, OnInit, ViewEncapsulation} from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { CalendarEvent } from 'angular-calendar';
+import {
+    isSameMonth,
+    isSameDay,
+    startOfMonth,
+    endOfMonth,
+    startOfWeek,
+    endOfWeek,
+    startOfDay,
+    endOfDay,
+    format
+} from 'date-fns';
+import { Observable } from 'rxjs';
+import {colors} from "app/entities/demo-modules/colors";
+import {SERVER_API_URL} from "app/app.constants";
+import {Salle} from "app/shared/model/salle.model";
 
-export interface CalendarDate {
-    mDate: moment.Moment;
-    selected?: boolean;
-    today?: boolean;
+interface Film {
+    id: number;
+    title: string;
+    release_date: string;
+}
+
+function getTimezoneOffsetString(date: Date): string {
+    const timezoneOffset = date.getTimezoneOffset();
+    const hoursOffset = String(
+        Math.floor(Math.abs(timezoneOffset / 60))
+    ).padStart(2, '0');
+    const minutesOffset = String(Math.abs(timezoneOffset % 60)).padEnd(2, '0');
+    const direction = timezoneOffset > 0 ? '-' : '+';
+    return `T00:00:00${direction}${hoursOffset}${minutesOffset}`;
 }
 
 @Component({
     selector: 'jhi-planning',
-    templateUrl: './planning.component.html'
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './planning.component.html',
+    styleUrls: ["angular-calendar.css"], encapsulation: ViewEncapsulation.None
 })
-export class PlanningComponent implements OnInit, OnChanges {
+export class PlanningComponent implements OnInit {
+    view: string = 'month';
 
-    currentDate = moment();
-    dayNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
-    weeks: CalendarDate[][] = [];
-    sortedDates: CalendarDate[] = [];
-    salles: ISalle[];
-    currentAccount: any;
-    eventSubscriber: Subscription;
-    cursuses: ICursus[];
+    viewDate: Date = new Date();
 
-    @Input() selectedDates: CalendarDate[] = [];
-    @Output() onSelectDate = new EventEmitter<CalendarDate>();
+    events$: Observable<Array<CalendarEvent<{ salle: Salle }>>>;
 
-    constructor(
-        private cursusService: CursusService,
-        private salleService: SalleService,
-        private jhiAlertService: JhiAlertService,
-        private eventManager: JhiEventManager,
-        private principal: Principal) {
-    }
+    activeDayIsOpen: boolean = false;
 
-    loadAll() {
-        this.salleService.query().subscribe(
-            (res: HttpResponse<ISalle[]>) => {
-                this.salles = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.cursusService.query().subscribe(
-            (res: HttpResponse<ICursus[]>) => {
-                this.cursuses = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-    }
+    constructor(private http: HttpClient) {}
 
     ngOnInit(): void {
-        this.generateCalendar();
-        this.loadAll();
-        this.principal.identity().then(account => {
-            this.currentAccount = account;
-        });
+        this.fetchEvents();
+    }
+    fetchEvents(): void {
+        const getStart: any = {
+            month: startOfMonth,
+            week: startOfWeek,
+            day: startOfDay
+        }[this.view];
+
+        const getEnd: any = {
+            month: endOfMonth,
+            week: endOfWeek,
+            day: endOfDay
+        }[this.view];
+
+        const params = new HttpParams()
+            .set(
+                'primary_release_date.gte',
+                format(getStart(this.viewDate), 'YYYY-MM-DD')
+            )
+            .set(
+                'primary_release_date.lte',
+                format(getEnd(this.viewDate), 'YYYY-MM-DD')
+            )
+            .set('api_key', '0ec33936a68018857d727958dca1424f');
+
+        this.events$ = this.http
+            .get(SERVER_API_URL + 'api/salles', { params })
+            .pipe(
+                map(({ results }: { results: Salle[] }) => {
+                    return results.map((salle: Salle) => {
+                        return {
+                            title: salle.code,
+                            start: new Date(
+                                salle.cursus.dateDebut + getTimezoneOffsetString(this.viewDate)
+                            ),
+                            color: colors.yellow,
+                            allDay: true,
+                            meta: {
+                                salle
+                            }
+                        };
+                    });
+                })
+            );
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
-        if (changes.selectedDates &&
-            changes.selectedDates.currentValue &&
-            changes.selectedDates.currentValue.length > 1) {
-            // sort on date changes for better performance when range checking
-            this.sortedDates = _.sortBy(changes.selectedDates.currentValue, (m: CalendarDate) => m.mDate.valueOf());
-            this.generateCalendar();
+    dayClicked({
+                   date,
+                   events
+               }: {
+        date: Date;
+        events: Array<CalendarEvent<{ salle: Salle }>>;
+    }): void {
+        if (isSameMonth(date, this.viewDate)) {
+            if (
+                (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+                events.length === 0
+            ) {
+                this.activeDayIsOpen = false;
+            } else {
+                this.activeDayIsOpen = true;
+                this.viewDate = date;
+            }
         }
     }
 
-    // date checkers
-
-    isToday(date: moment.Moment): boolean {
-        return moment().isSame(moment(date), 'day');
+    eventClicked(event: CalendarEvent<{ salle: Salle }>): void {
+        window.open(
+            SERVER_API_URL + 'api/salles/${event.meta.salle.id}/view',
+            '_blank'
+        );
     }
-
-    isSelected(date: moment.Moment): boolean {
-        return _.findIndex(this.selectedDates, (selectedDate) => {
-            return moment(date).isSame(selectedDate.mDate, 'day');
-        }) > -1;
-    }
-
-    isSelectedMonth(date: moment.Moment): boolean {
-        return moment(date).isSame(this.currentDate, 'month');
-    }
-
-    selectDate(date: CalendarDate): void {
-        this.onSelectDate.emit(date);
-    }
-
-    // actions from calendar
-
-    prevMonth(): void {
-        this.currentDate = moment(this.currentDate).subtract(1, 'months');
-        this.generateCalendar();
-    }
-
-    nextMonth(): void {
-        this.currentDate = moment(this.currentDate).add(1, 'months');
-        this.generateCalendar();
-    }
-
-    firstMonth(): void {
-        this.currentDate = moment(this.currentDate).startOf('year');
-        this.generateCalendar();
-    }
-
-    lastMonth(): void {
-        this.currentDate = moment(this.currentDate).endOf('year');
-        this.generateCalendar();
-    }
-
-    prevYear(): void {
-        this.currentDate = moment(this.currentDate).subtract(1, 'year');
-        this.generateCalendar();
-    }
-
-    nextYear(): void {
-        this.currentDate = moment(this.currentDate).add(1, 'year');
-        this.generateCalendar();
-        console.log(this.salles.length);
-    }
-
-    // generate the calendar grid
-
-    generateCalendar(): void {
-        const dates = this.fillDates(this.currentDate);
-        const weeks: CalendarDate[][] = [];
-        while (dates.length > 0) {
-            weeks.push(dates.splice(0, 7));
-        }
-        this.weeks = weeks;
-    }
-
-    fillDates(currentMoment: moment.Moment): CalendarDate[] {
-        const firstOfMonth = moment(currentMoment).startOf('month').day();
-        const firstDayOfGrid = moment(currentMoment).startOf('month').subtract(firstOfMonth, 'days');
-        const start = firstDayOfGrid.date();
-        return _.range(start, start + 42)
-            .map((date: number): CalendarDate => {
-                const d = moment(firstDayOfGrid).date(date);
-                return {
-                    today: this.isToday(d),
-                    selected: this.isSelected(d),
-                    mDate: d,
-                };
-            });
-    }
-
-    private onError(errorMessage: string) {
-        this.jhiAlertService.error(errorMessage, null, null);
-    }
-
-    trackId(index: number, item: ISalle) {
-        return item.id;
-    }
-
-    trackIdCusus(index: number, item: ICursus) {
-        return item.id;
-    }
-
-    private DipslaySalle(cursus: Cursus, salle: Salle) {
-    }
-
-
 }
