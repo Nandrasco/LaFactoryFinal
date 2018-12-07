@@ -49,35 +49,37 @@
                     <span>{{formateur.ville}}</span>
                 </dd>
 
-                <dt>Field list where competence : "Beginner"</dt>
+                <dt>Fields list where competence : "Beginner"</dt>
                 <dd>
                     <div>
+                        {{formateur.matieresDebutant}}
                         <ul>
-                            <li *ngFor="let matiere of formateur.matieresDebutant">{{matiere.id}}{{matiere.nom}}</li>
+                            <li>{{formateur.nom}}</li>
+                            <li *ngFor="let item of formateur.matieresDebutant">{{item.nom}}</li>
                         </ul>
                     </div>
                 </dd>
-                <dt>Field list where competence : "Intermediate"</dt>
+                <dt>Fields list where competence : "Intermediate"</dt>
                 <dd>
                     <div>
                         <ul>
-                            <li *ngFor="let matiereI of formateur.matieresIntermediaire">{{matiereI.id}}{{matiereI.nom}}</li>
+                            <li *ngFor="let matiereI of formateur.matieresIntermediaire">{{matiereI.nom}}</li>
                         </ul>
                     </div>
                 </dd>
-                <dt>Field list where competence : "Advanced"</dt>
+                <dt>Fields list where competence : "Advanced"</dt>
                 <dd>
                     <div>
                         <ul>
-                            <li *ngFor="let matiereA of formateur.matieresAvance">{{matiereA.id}}{{matiereA.nom}}</li>
+                            <li *ngFor="let matiereA of formateur.matieresAvance">{{matiereA.nom}}</li>
                         </ul>
                     </div>
                 </dd>
-                <dt>Field list where competence : "Confirmed"</dt>
+                <dt>Fields list where competence : "Confirmed"</dt>
                 <dd>
                     <div>
                         <ul>
-                            <li *ngFor="let matiereC of formateur.matieresConfirme">{{matiereC.id}}{{matiereC.nom}}</li>
+                            <li *ngFor="let matiereC of formateur.matieresConfirme">{{matiereC.nom}}</li>
                         </ul>
                     </div>
                 </dd>
