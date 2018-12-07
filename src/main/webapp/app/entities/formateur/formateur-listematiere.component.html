@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html>
-
 <div>
-        <div *ngFor="let item of matieres">{{item.nom}}</div>
+    <form (ngSubmit)="save()">
+        <div>
+            <p>Select the fields where your competence level is: "Beginner"</p>
+            <select class="form-control" id="field_matieresDebutant" [(ngModel)]="formateur.matieresDebutant" name="matieresDebutant" multiple>
+                <option>math</option>
+                <!-- <option *ngFor="let item of matieres">{{item.nom}}</option> -->
+            </select>
+        </div>
+        <br>
+        <div>
+            <p>Select the fields where your competence level is: "Intermediate"</p>
+            <select class="form-control" id="field_matieresDebutant" [(ngModel)]="formateur.matieresIntermediaire" name="matieresIntermediaire" multiple>
+                <option *ngFor="let item of matieres">{{item.nom}}</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <p>Select the fields where your competence level is: "Advanced"</p>
+            <select class="form-control" id="field_matieresDebutant" [(ngModel)]="formateur.matieresAvance" name="matieresAvance" multiple>
+                <option *ngFor="let item of matieres">{{item.nom}}</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <p>Select the fields where your competence level is: "Confirmed"</p>
+            <select class="form-control" id="field_matieresDebutant" [(ngModel)]="formateur.matieresConfirme" name="matieresConfirme" multiple>
+                <option *ngFor="let item of matieres">{{item.nom}}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Save changes</button>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">Return</button>
+    </form>
+</div>
+
+
+
+
+<!-- <div>
+    <div *ngFor="let item of matieres">{{item.nom}}</div>
 
     <div>Select the fields where your competence level is "Beginner"</div>
-        aaa
-       <dual-list [source]="matieres" [(destination)]="formateur.matieresDebutant" display="nom"></dual-list>
-    </div>
+    aaa
+    <dual-list [source]="matieres" [(destination)]="formateur.matieresDebutant" display="nom"></dual-list>
+</div>
 <br>
 <div>
     <div>Select the fields where your competence level is "Intermediate"</div>
@@ -22,7 +59,7 @@
 <div>
     <div>Select the fields where your competence level is "Confirmed"</div>
     <dual-list [source]="formateur.matieres" [(destination)]="formateur.matieresDebutant"></dual-list>
-</div>
+</div> -->
 
 
 

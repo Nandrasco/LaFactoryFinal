@@ -36,12 +36,12 @@
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.formateur.ville" for="field_ville">Ville</label>
                     <input type="text" class="form-control" name="ville" id="field_ville" [(ngModel)]="formateur.ville" />
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label jhiTranslate="laFactoryFinalApp.module.matieres" for="field_matieres">Matieres</label>
                     <select class="form-control" id="field_matieres" multiple name="matieres" [(ngModel)]="formateur.matieres">
                         <option [ngValue]="getSelected(formateur.matieres, matiereOption)" *ngFor="let matiereOption of matieres; trackBy: trackMatiereById">{{matiereOption.nom}}</option>
                     </select>
-                </div>
+                </div> -->
                 <div>
                     <a [routerLink]="['/formateur/editListMatieresCompetence', formateur.id]" routerLinkActive="router-link-active">Edit Fields/Competence</a>
                 </div>
