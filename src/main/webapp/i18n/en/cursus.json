@@ -22,6 +22,8 @@
             "objectifs": "Objectifs",
             "contenu": "Contenu",
             "gestionnaire": "Gestionnaire",
+            "gestionnaire.prenom": "Administrator first name",
+            "gestionnaire.nom": "Administrator last name",
             "salle": "Salle",
             "stagiaires": "Stagiaires",
             "modules": "Modules"

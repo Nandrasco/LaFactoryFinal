@@ -49,10 +49,15 @@
                     <input type="text" class="form-control" name="contenu" id="field_contenu" [(ngModel)]="cursus.contenu" />
                 </div>
 
-                <div class="form-group">
+                <div *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE']" class="form-group">
+                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.gestionnaire.prenom" for="field_gestionnaire_prenom">Prenom gestionnaire</label>
+                    <input type="text" class="form-control" id="field_gestionnaire_prenom" name="field_gestionnaire_prenom" [(ngModel)]="cursus.gestionnaire.prenom" readonly />
+                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.gestionnaire.nom" for="field_gestionnaire_nom">Nom gestionnaire</label>
+                    <input type="text" class="form-control" id="field_gestionnaire_nom" name="field_gestionnaire_nom" [(ngModel)]="cursus.gestionnaire.nom" readonly />                   
+                </div>
+                <div *jhiHasAnyAuthority="['ROLE_USER']" class="form-group">
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.gestionnaire" for="field_gestionnaire">Gestionnaire</label>
-                    <input *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE']" type="text" class="form-control" id="field_gestionnaire" name="field_gestionnaire" [(ngModel)]="cursus.gestionnaire.prenom" readonly />
-                    <select *jhiHasAnyAuthority="['ROLE_USER']" class="form-control" id="field_gestionnaire" name="gestionnaire" [(ngModel)]="cursus.gestionnaire">
+                    <select  class="form-control" id="field_gestionnaire" name="gestionnaire" [(ngModel)]="cursus.gestionnaire">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="gestionnaireOption.id === cursus.gestionnaire?.id ? cursus.gestionnaire : gestionnaireOption" *ngFor="let gestionnaireOption of gestionnaires; trackBy: trackGestionnaireById">{{gestionnaireOption.prenom}} {{gestionnaireOption.nom}}</option>
                     </select>
