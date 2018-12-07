@@ -23,6 +23,9 @@ import { Principal } from 'app/core';
 })
 export class CursusUpdateComponent implements OnInit {
     cursus: ICursus;
+
+    overbooked = false;
+
     isSaving: boolean;
 
     gestionnaires: IGestionnaire[];
@@ -46,7 +49,7 @@ export class CursusUpdateComponent implements OnInit {
         private moduleService: ModuleService,
         private activatedRoute: ActivatedRoute,
         private principal: Principal
-    ) { }
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -153,6 +156,16 @@ export class CursusUpdateComponent implements OnInit {
             return true;
         } else {
             return false;
+        }
+    }
+
+    isOverbooked() {
+        console.log(this.cursus.stagiaires.length);
+        console.log(this.cursus.salle.capaciteMax);
+        if (this.cursus.stagiaires.length > this.cursus.salle.capaciteMax) {
+            this.overbooked = true;
+        } else {
+            this.overbooked = false;
         }
     }
 }

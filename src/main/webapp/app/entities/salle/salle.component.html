@@ -28,9 +28,6 @@
                 <td>{{salle.code}}</td>
                 <td>{{salle.cout}}</td>
                 <td>{{salle.capaciteMax}}</td>
-                <td *ngIf="salle.cursus">
-                    <a [routerLink]="['../salle', cursus.salle?.id, 'view' ]" >{{salle.cursus?.nom}}</a>
-                    </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
