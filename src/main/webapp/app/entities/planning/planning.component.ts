@@ -45,7 +45,7 @@ export class PlanningComponent implements OnInit {
 
     viewDate: Date = new Date();
 
-    events$: Observable<Array<CalendarEvent<{ salle: Salle }>>>;
+    events$: Observable<Array<CalendarEvent<{ film: Film }>>>;
 
     activeDayIsOpen: boolean = false;
 
@@ -54,6 +54,7 @@ export class PlanningComponent implements OnInit {
     ngOnInit(): void {
         this.fetchEvents();
     }
+
     fetchEvents(): void {
         const getStart: any = {
             month: startOfMonth,
@@ -79,19 +80,19 @@ export class PlanningComponent implements OnInit {
             .set('api_key', '0ec33936a68018857d727958dca1424f');
 
         this.events$ = this.http
-            .get(SERVER_API_URL + 'api/salles', { params })
+            .get('https://api.themoviedb.org/3/discover/movie', { params })
             .pipe(
-                map(({ results }: { results: Salle[] }) => {
-                    return results.map((salle: Salle) => {
+                map(({ results }: { results: Film[] }) => {
+                    return results.map((film: Film) => {
                         return {
-                            title: salle.code,
+                            title: film.title,
                             start: new Date(
-                                salle.cursus.dateDebut + getTimezoneOffsetString(this.viewDate)
+                                film.release_date + getTimezoneOffsetString(this.viewDate)
                             ),
                             color: colors.yellow,
                             allDay: true,
                             meta: {
-                                salle
+                                film
                             }
                         };
                     });
@@ -104,7 +105,7 @@ export class PlanningComponent implements OnInit {
                    events
                }: {
         date: Date;
-        events: Array<CalendarEvent<{ salle: Salle }>>;
+        events: Array<CalendarEvent<{ film: Film }>>;
     }): void {
         if (isSameMonth(date, this.viewDate)) {
             if (
@@ -119,9 +120,9 @@ export class PlanningComponent implements OnInit {
         }
     }
 
-    eventClicked(event: CalendarEvent<{ salle: Salle }>): void {
+    eventClicked(event: CalendarEvent<{ film: Film }>): void {
         window.open(
-            SERVER_API_URL + 'api/salles/${event.meta.salle.id}/view',
+            `https://www.themoviedb.org/movie/${event.meta.film.id}`,
             '_blank'
         );
     }
