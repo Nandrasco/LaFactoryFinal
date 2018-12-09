@@ -22,7 +22,7 @@
     </div>
 </ng-template>
 
-<div class="row text-center">
+<div id="content" #content class="row text-center">
     <div class="col-md-4">
         <div class="btn-group">
             <div
@@ -121,6 +121,8 @@
         Afficher planning des cursus </button>
     <button  type="button" class="btn btn-warning" (click)="pushFormateurPlanning(formateurs)">
         Afficher planning des formateurs </button>
+    <button  type="button" class="btn btn-dark" (click)="downloadPDF()">
+        Telecharger en pdf </button>
 </h3>
 
 <table class="table table-bordered">

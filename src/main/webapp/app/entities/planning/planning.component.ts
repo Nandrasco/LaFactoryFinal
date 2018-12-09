@@ -2,7 +2,7 @@ import {
     Component,
     ChangeDetectionStrategy,
     ViewChild,
-    TemplateRef, ViewEncapsulation, OnInit
+    TemplateRef, ViewEncapsulation, OnInit, ElementRef
 } from '@angular/core';
 import {
     startOfDay,
@@ -16,6 +16,7 @@ import {
 } from 'date-fns';
 import {Subject, Subscription} from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as jsPDF from 'jspdf';
 import {
     CalendarEvent,
     CalendarEventAction,
@@ -42,6 +43,10 @@ import {FormateurService} from "app/entities/formateur";
 export class PlanningComponent implements OnInit {
     @ViewChild('modalContent')
     modalContent: TemplateRef<any>;
+
+    @ViewChild('content') content: ElementRef;
+
+
 
     view: CalendarView = CalendarView.Month;
     currentAccount: any;
@@ -261,4 +266,20 @@ export class PlanningComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
+    public downloadPDF(){
+        let doc = new jsPDF();
+        let specialElementHandlers = {
+            '#editor': function(element, renderer) {
+            return true;
+        }
+        };
+        let content = this.content.nativeElement;
+        doc.fromHTML(content.innerHTML, 15,15, {
+           'width': 190,
+                'elementHandlers': specialElementHandlers
+        });
+
+        doc.save("test.pdf");
+    }
 }
+
