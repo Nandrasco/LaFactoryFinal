@@ -27,6 +27,10 @@ export class MatiereService {
         return this.http.get<IMatiere>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
+    findByStagiaireId(id: number): Observable<EntityArrayResponseType> {
+        return this.http.get<IMatiere[]>(`${this.resourceUrl}/stagiaire/${id}`, { observe: 'response' });
+    }
+
     query(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
         return this.http.get<IMatiere[]>(this.resourceUrl, { params: options, observe: 'response' });

@@ -1,10 +1,12 @@
 package io.github.jhipster.application.domain;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +21,13 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Objects;
 
 /**
  * A Formateur.
@@ -38,8 +47,7 @@ public class Formateur implements Serializable {
 	@Column(name = "nom")
 	private String nom;
 
-	@Column(name = "prenom")
-	private String prenom;
+	@Column(name = "prenom")	private String prenom;
 
 	@Column(name = "coordonnees")
 	private String coordonnees;
@@ -65,6 +73,28 @@ public class Formateur implements Serializable {
 	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 	@JsonIgnore
 	private Set<Module> modules = new HashSet<>();
+	
+	@Column(name = "matieres_debutant")
+    @ManyToMany(mappedBy = "formateurs")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+	private Set<Matiere> matieresDebutant = new HashSet<>();
+    @Column(name = "matieres_intermediaire")
+    @ManyToMany(mappedBy = "formateurs")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+	private Set<Matiere> matieresIntermediaire = new HashSet<>();
+
+	@Column(name = "matieres_avance")
+    @ManyToMany(mappedBy = "formateurs")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+	private Set<Matiere> matieresAvance = new HashSet<>();
+
+	@Column(name = "matieres_confirme")
+    @ManyToMany(mappedBy = "formateurs")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+	private Set<Matiere> matieresConfirme = new HashSet<>();
+
+
+
 
 //	@OneToOne(mappedBy = "formateur")
 //	@JsonIgnore
@@ -200,14 +230,6 @@ public class Formateur implements Serializable {
 		return modules;
 	}
 
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
-
 	public Formateur modules(Set<Module> modules) {
 		this.modules = modules;
 		return this;
@@ -246,7 +268,39 @@ public class Formateur implements Serializable {
 		return Objects.equals(getId(), formateur.getId());
 	}
 
-	@Override
+    public Set<Matiere> getMatieresDebutant() {
+        return matieresDebutant;
+    }
+
+    public void setMatieresDebutant(Set<Matiere> matieresDebutant) {
+        this.matieresDebutant = matieresDebutant;
+    }
+
+    public Set<Matiere> getMatieresIntermediaire() {
+        return matieresIntermediaire;
+    }
+
+    public void setMatieresIntermediaire(Set<Matiere> matieresIntermediaire) {
+        this.matieresIntermediaire = matieresIntermediaire;
+    }
+
+    public Set<Matiere> getMatieresAvance() {
+        return matieresAvance;
+    }
+
+    public void setMatieresAvance(Set<Matiere> matieresAvance) {
+        this.matieresAvance = matieresAvance;
+    }
+
+    public Set<Matiere> getMatieresConfirme() {
+        return matieresConfirme;
+    }
+
+    public void setMatieresConfirme(Set<Matiere> matieresConfirme) {
+        this.matieresConfirme = matieresConfirme;
+    }
+
+    @Override
 	public int hashCode() {
 		return Objects.hashCode(getId());
 	}

@@ -15,6 +15,7 @@ import { IStagiaire } from 'app/shared/model/stagiaire.model';
 import { StagiaireService } from 'app/entities/stagiaire';
 import { IModule } from 'app/shared/model/module.model';
 import { ModuleService } from 'app/entities/module';
+import { Principal } from 'app/core';
 
 @Component({
     selector: 'jhi-cursus-update',
@@ -34,6 +35,8 @@ export class CursusUpdateComponent implements OnInit {
     dateDebutDp: any;
     dateFinDp: any;
 
+    currentAccount: any;
+
     constructor(
         private jhiAlertService: JhiAlertService,
         private cursusService: CursusService,
@@ -41,8 +44,9 @@ export class CursusUpdateComponent implements OnInit {
         private salleService: SalleService,
         private stagiaireService: StagiaireService,
         private moduleService: ModuleService,
-        private activatedRoute: ActivatedRoute
-    ) {}
+        private activatedRoute: ActivatedRoute,
+        private principal: Principal
+    ) { }
 
     ngOnInit() {
         this.isSaving = false;
@@ -82,6 +86,9 @@ export class CursusUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+        this.principal.identity().then(account => {
+            this.currentAccount = account;
+        });
     }
 
     previousState() {
@@ -139,5 +146,13 @@ export class CursusUpdateComponent implements OnInit {
             }
         }
         return option;
+    }
+
+    private toHide(): boolean {
+        if (this.currentAccount.authorities.includes('ROLE_GESTIONNAIRE')) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -27,6 +27,7 @@ export class CursusComponent implements OnInit, OnDestroy {
         this.cursusService.query().subscribe(
             (res: HttpResponse<ICursus[]>) => {
                 this.cursuses = res.body;
+
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );

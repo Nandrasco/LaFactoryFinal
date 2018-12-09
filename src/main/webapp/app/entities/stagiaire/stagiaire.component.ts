@@ -6,6 +6,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { IStagiaire } from 'app/shared/model/stagiaire.model';
 import { Principal } from 'app/core';
 import { StagiaireService } from './stagiaire.service';
+import index from '@angular/cli/lib/cli';
 
 @Component({
     selector: 'jhi-stagiaire',

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
@@ -6,51 +6,39 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { IMatiere } from 'app/shared/model/matiere.model';
 import { Principal } from 'app/core';
 import { MatiereService } from './matiere.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-matiere',
-    templateUrl: './matiere.component.html'
+    templateUrl: './matieres-stagiaire.component.html'
 })
-export class MatiereComponent implements OnInit, OnDestroy {
-    @Input()
+export class MatieresStagiaireComponent implements OnInit {
     matieres: IMatiere[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
     constructor(
+        private activatedRoute: ActivatedRoute,
+        private route: Router,
         private matiereService: MatiereService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private principal: Principal
     ) {}
 
-    loadAll() {
-        this.matiereService.query().subscribe(
-            (res: HttpResponse<IMatiere[]>) => {
-                this.matieres = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-    }
-
     ngOnInit() {
-        this.loadAll();
+        this.activatedRoute.params.subscribe(param => {
+            this.matiereService.findByStagiaireId(param.id).subscribe(res => {
+                this.matieres = res.body;
+            });
+        });
         this.principal.identity().then(account => {
             this.currentAccount = account;
         });
-        this.registerChangeInMatieres();
-    }
-
-    ngOnDestroy() {
-        this.eventManager.destroy(this.eventSubscriber);
     }
 
     trackId(index: number, item: IMatiere) {
         return item.id;
-    }
-
-    registerChangeInMatieres() {
-        this.eventSubscriber = this.eventManager.subscribe('matiereListModification', response => this.loadAll());
     }
 
     private onError(errorMessage: string) {
