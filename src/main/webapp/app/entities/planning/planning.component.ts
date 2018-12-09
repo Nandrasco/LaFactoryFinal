@@ -29,6 +29,8 @@ import {CursusService} from "app/entities/cursus";
 import {JhiAlertService, JhiEventManager} from "ng-jhipster";
 import {Principal} from "app/core";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {Formateur, IFormateur} from "app/shared/model/formateur.model";
+import {FormateurService} from "app/entities/formateur";
 
 
 @Component({
@@ -43,6 +45,7 @@ export class PlanningComponent implements OnInit {
 
     view: CalendarView = CalendarView.Month;
     currentAccount: any;
+    formateurs: IFormateur[];
     cursuses: ICursus[];
     eventSubscriber: Subscription;
 
@@ -117,6 +120,7 @@ export class PlanningComponent implements OnInit {
     activeDayIsOpen: boolean = true;
 
     constructor(private modal: NgbModal,
+                private formateurService: FormateurService,
                 private cursusService: CursusService,
                 private jhiAlertService: JhiAlertService,
                 private eventManager: JhiEventManager,
@@ -171,6 +175,28 @@ export class PlanningComponent implements OnInit {
         }
     }
 
+
+
+
+    pushFormateurPlanning(formateurs: Formateur[]){
+        this.events= [];
+        for(let formateur of formateurs){
+            for(let module of formateur.modules){
+            this.events.push({
+                title: formateur.nom,
+                start: startOfDay(new Date(module.dateDebut.toDate())),
+                end: endOfDay(new Date(module.dateFin.toString())),
+                color: colors.blue,
+                draggable: true,
+                resizable: {
+                    beforeStart: true,
+                    afterEnd: true
+                }
+            });
+            this.refresh.next();
+        }}
+    }
+
     addEvent(): void {
         this.events.push({
             title: 'New event',
@@ -193,6 +219,12 @@ export class PlanningComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+        this.formateurService.query().subscribe(
+            (res: HttpResponse<IFormateur[]>) => {
+                this.formateurs = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
     }
 
 
@@ -203,8 +235,16 @@ export class PlanningComponent implements OnInit {
             this.currentAccount = account;
         });
         this.registerChangeInCursuses();
+        this.registerChangeInFormateurs();
     }
 
+    trackIdF(index: number, item: IFormateur) {
+        return item.id;
+    }
+
+    registerChangeInFormateurs() {
+        this.eventSubscriber = this.eventManager.subscribe('formateurListModification', response => this.loadAll());
+    }
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
     }
