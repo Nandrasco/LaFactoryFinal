@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.module.dateDebut" for="field_dateDebut">Date Debut</label>
                     <div class="input-group">
-                        <input id="field_dateDebut" type="text" class="form-control" name="dateDebut" ngbDatepicker  #dateDebutDp="ngbDatepicker" [(ngModel)]="module.dateDebut" (ngModelChange)="event.start=module.dateDebut"
+                        <input id="field_dateDebut" type="text" class="form-control" name="dateDebut" ngbDatepicker  #dateDebutDp="ngbDatepicker" [(ngModel)]="module.dateDebut" (ngModelChange)="event.start=module.dateDebut.toDate()"
                         />
                         <span class="input-group-append">
                             <button type="button" class="btn btn-secondary" (click)="dateDebutDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.module.dateFin" for="field_dateFin">Date Fin</label>
                     <div class="input-group">
-                        <input id="field_dateFin" type="text" class="form-control" name="dateFin" ngbDatepicker  #dateFinDp="ngbDatepicker" [(ngModel)]="module.dateFin" (ngModelChange)="event.end=module.dateFin"
+                        <input id="field_dateFin" type="text" class="form-control" name="dateFin" ngbDatepicker  #dateFinDp="ngbDatepicker" [(ngModel)]="module.dateFin" (ngModelChange)="event.end=module.dateFin.toDate()"
                         />
                         <span class="input-group-append">
                             <button type="button" class="btn btn-secondary" (click)="dateFinDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>

@@ -21,7 +21,7 @@
                     <div class="input-group">
                         <input id="field_dateDebut" type="text" class="form-control" name="dateDebut" ngbDatepicker
                                #dateDebutDp="ngbDatepicker"
-                               [(ngModel)]="cursus.dateDebut" (ngModelChange)="event.start=cursus.dateDebut"/>
+                               [(ngModel)]="cursus.dateDebut" (ngModelChange)="event.start=cursus.dateDebut.toDate()"/>
                         <span class="input-group-append">
                             <button type="button" class="btn btn-secondary" (click)="dateDebutDp.toggle()">
                                 <fa-icon [icon]="'calendar-alt'"></fa-icon>
@@ -35,7 +35,7 @@
                     <div class="input-group">
                         <input id="field_dateFin" type="text" class="form-control" name="dateFin" ngbDatepicker
                                #dateFinDp="ngbDatepicker" [(ngModel)]="cursus.dateFin"
-                               (ngModelChange)="event.end=cursus.dateFin"
+                               (ngModelChange)="event.end=cursus.dateFin.toDate()"
                         />
                         <span class="input-group-append">
                             <button type="button" class="btn btn-secondary" (click)="dateFinDp.toggle()">

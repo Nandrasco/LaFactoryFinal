@@ -47,7 +47,7 @@ export class PlanningService {
 
     refresh: Subject<any> = new Subject();
 
-    activeDayIsOpen: boolean = true;
+    activeDayIsOpen = true;
 
     constructor(private modal: NgbModal) {}
 
