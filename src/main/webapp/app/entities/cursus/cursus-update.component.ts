@@ -4,7 +4,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { JhiAlertService } from 'ng-jhipster';
-
+import { CalendarEvent } from 'angular-calendar';
 import { ICursus } from 'app/shared/model/cursus.model';
 import { CursusService } from './cursus.service';
 import { IGestionnaire } from 'app/shared/model/gestionnaire.model';
@@ -16,6 +16,9 @@ import { StagiaireService } from 'app/entities/stagiaire';
 import { IModule } from 'app/shared/model/module.model';
 import { ModuleService } from 'app/entities/module';
 import { Principal } from 'app/core';
+import { allEvents } from 'app/entities/planning/all-events';
+import { colors } from 'app/entities/demo-modules/colors';
+import { PlanningService } from 'app/entities/planning/planning.service';
 
 @Component({
     selector: 'jhi-cursus-update',
@@ -37,10 +40,20 @@ export class CursusUpdateComponent implements OnInit {
     modules: IModule[];
     dateDebutDp: any;
     dateFinDp: any;
-
+    event: CalendarEvent = new class implements CalendarEvent {
+        allDay: boolean;
+        cssClass: string;
+        draggable: boolean;
+        end: Date;
+        id: string | number;
+        resizable: { beforeStart?: boolean; afterEnd?: boolean };
+        start: Date;
+        title: string;
+    }();
     currentAccount: any;
 
     constructor(
+        private planningService: PlanningService,
         private jhiAlertService: JhiAlertService,
         private cursusService: CursusService,
         private gestionnaireService: GestionnaireService,
@@ -52,6 +65,9 @@ export class CursusUpdateComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.event.title = null;
+        this.event.start = null;
+        this.event.end = null;
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ cursus }) => {
             this.cursus = cursus;
@@ -159,9 +175,21 @@ export class CursusUpdateComponent implements OnInit {
         }
     }
 
+    createEvent() {
+        console.log(this.event);
+        this.event.color = colors.red;
+        this.event.actions = this.planningService.actions;
+        this.event.allDay = true;
+        this.event.resizable = {
+            beforeStart: true,
+            afterEnd: true
+        };
+        this.event.draggable = true;
+        allEvents.push(this.event);
+        console.log('AAAAA', allEvents);
+    }
+
     isOverbooked() {
-        console.log(this.cursus.stagiaires.length);
-        console.log(this.cursus.salle.capaciteMax);
         if (this.cursus.stagiaires.length > this.cursus.salle.capaciteMax) {
             this.overbooked = true;
         } else {

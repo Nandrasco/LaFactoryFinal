@@ -9,6 +9,7 @@ import { colors } from 'app/entities/demo-modules/colors';
 import { SERVER_API_URL } from 'app/app.constants';
 import { Salle } from 'app/shared/model/salle.model';
 import { Cursus, ICursus } from 'app/shared/model/cursus.model';
+import { allEvents } from 'app/entities/planning/all-events';
 
 interface Film {
     id: number;
@@ -32,17 +33,18 @@ function getTimezoneOffsetString(date: Date): string {
     encapsulation: ViewEncapsulation.None
 })
 export class PlanningComponent implements OnInit {
-    view: string = 'month';
+    view = 'month';
 
     viewDate: Date = new Date();
 
-    events$: Observable<Array<CalendarEvent<{ cursus: ICursus }>>>;
+    events = allEvents;
 
-    activeDayIsOpen: boolean = false;
+    activeDayIsOpen = false;
 
     constructor(private http: HttpClient, private router: Router) {}
 
     ngOnInit(): void {
+        console.log(allEvents);
         this.fetchEvents();
     }
 
@@ -62,32 +64,15 @@ export class PlanningComponent implements OnInit {
         const params = new HttpParams()
             .set('primary_release_date.gte', format(getStart(this.viewDate), 'YYYY-MM-DD'))
             .set('primary_release_date.lte', format(getEnd(this.viewDate), 'YYYY-MM-DD'));
-
-        this.events$ = this.http.get('http://localhost:9000/#/cursus', { params }).pipe(
-            map(({ results }: { results: Cursus[] }) => {
-                return results.map((cursus: Cursus) => {
-                    return {
-                        title: cursus.nom,
-                        start: new Date(cursus.dateDebut + getTimezoneOffsetString(this.viewDate)),
-                        end: new Date(cursus.dateFin + getTimezoneOffsetString(this.viewDate)),
-                        color: colors.yellow,
-                        allDay: true,
-                        meta: {
-                            cursus
-                        }
-                    };
-                });
-            })
-        );
     }
 
-    dayClicked({ date, events }: { date: Date; events: Array<CalendarEvent<{ cursus: Cursus }>> }): void {
+    dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
         if (isSameMonth(date, this.viewDate)) {
+            this.viewDate = date;
             if ((isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0) {
                 this.activeDayIsOpen = false;
             } else {
                 this.activeDayIsOpen = true;
-                this.viewDate = date;
             }
         }
     }

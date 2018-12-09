@@ -91,10 +91,4 @@ export class SalleUpdateComponent implements OnInit {
     trackCursusById(index: number, item: ICursus) {
         return item.id;
     }
-
-    calculOccupation() {
-        this.stagiaireService.findBySalleId(this.salle.id).subscribe(res => {
-            this.salle.occupationAct = res.body.length;
-        });
-    }
 }
