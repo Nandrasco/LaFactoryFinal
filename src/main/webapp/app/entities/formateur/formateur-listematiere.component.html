@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html>
 <div>
-    <form (ngSubmit)="save()">
+    <form (ngSubmit)="saveMatieresCompetence(f)" #f="ngForm">
         <div>
             <p>Select the fields where your competence level is: "Beginner"</p>
-            <select class="form-control" id="field_matieresDebutant" [(ngModel)]="formateur.matieresDebutant" name="matieresDebutant" multiple>
-                <option>math</option>
-                <!-- <option *ngFor="let item of matieres">{{item.nom}}</option> -->
+            <select class="form-control" id="field_matieresDebutant" ngModel name="matieresDebutant" multiple>
+                <option class="form-control" *ngFor="let item of matieres">{{item.nom}}</option>
             </select>
         </div>
         <br>
         <div>
             <p>Select the fields where your competence level is: "Intermediate"</p>
-            <select class="form-control" id="field_matieresDebutant" [(ngModel)]="formateur.matieresIntermediaire" name="matieresIntermediaire" multiple>
-                <option *ngFor="let item of matieres">{{item.nom}}</option>
+            <select class="form-control" id="field_matieresDebutant" ngModel name="matieresIntermediaire" multiple>
+                <option class="form-control" *ngFor="let item of matieres">{{item.nom}}</option>
             </select>
         </div>
         <br>
         <div>
             <p>Select the fields where your competence level is: "Advanced"</p>
-            <select class="form-control" id="field_matieresDebutant" [(ngModel)]="formateur.matieresAvance" name="matieresAvance" multiple>
-                <option *ngFor="let item of matieres">{{item.nom}}</option>
+            <select class="form-control" id="field_matieresDebutant" ngModel name="matieresAvance" multiple>
+                <option class="form-control" *ngFor="let item of matieres">{{item.nom}}</option>
             </select>
         </div>
         <br>
         <div>
             <p>Select the fields where your competence level is: "Confirmed"</p>
-            <select class="form-control" id="field_matieresDebutant" [(ngModel)]="formateur.matieresConfirme" name="matieresConfirme" multiple>
-                <option *ngFor="let item of matieres">{{item.nom}}</option>
+            <select class="form-control" id="field_matieresDebutant" ngModel name="matieresConfirme" multiple>
+                <option class="form-control" *ngFor="let item of matieres">{{item.nom}}</option>
             </select>
         </div>
         <button type="submit" class="btn btn-success">Save changes</button>
