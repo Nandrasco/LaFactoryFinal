@@ -47,8 +47,33 @@ public class Formateur implements Serializable {
     @Column(name = "ville")
     private String ville;
 
-    @Column(name = "login")
-    private String login;
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "formateur_matieres_debutant",
+               joinColumns = @JoinColumn(name = "formateurs_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "matieres_debutants_id", referencedColumnName = "id"))
+    private Set<Matiere> matieresDebutants = new HashSet<>();
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "formateur_matieres_intermedaire",
+               joinColumns = @JoinColumn(name = "formateurs_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "matieres_intermedaires_id", referencedColumnName = "id"))
+    private Set<Matiere> matieresIntermedaires = new HashSet<>();
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "formateur_matieres_avance",
+               joinColumns = @JoinColumn(name = "formateurs_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "matieres_avances_id", referencedColumnName = "id"))
+    private Set<Matiere> matieresAvances = new HashSet<>();
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "formateur_matieres_confirme",
+               joinColumns = @JoinColumn(name = "formateurs_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "matieres_confirmes_id", referencedColumnName = "id"))
+    private Set<Matiere> matieresConfirmes = new HashSet<>();
 
     @ManyToMany(mappedBy = "formateurs")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -160,17 +185,104 @@ public class Formateur implements Serializable {
         this.ville = ville;
     }
 
-    public String getLogin() {
-        return login;
+    public Set<Matiere> getMatieresDebutants() {
+        return matieresDebutants;
     }
 
-    public Formateur login(String login) {
-        this.login = login;
+    public Formateur matieresDebutants(Set<Matiere> matieres) {
+        this.matieresDebutants = matieres;
         return this;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public Formateur addMatieresDebutant(Matiere matiere) {
+        this.matieresDebutants.add(matiere);
+        matiere.getDebutantMatieres().add(this);
+        return this;
+    }
+
+    public Formateur removeMatieresDebutant(Matiere matiere) {
+        this.matieresDebutants.remove(matiere);
+        matiere.getDebutantMatieres().remove(this);
+        return this;
+    }
+
+    public void setMatieresDebutants(Set<Matiere> matieres) {
+        this.matieresDebutants = matieres;
+    }
+
+    public Set<Matiere> getMatieresIntermedaires() {
+        return matieresIntermedaires;
+    }
+
+    public Formateur matieresIntermedaires(Set<Matiere> matieres) {
+        this.matieresIntermedaires = matieres;
+        return this;
+    }
+
+    public Formateur addMatieresIntermedaire(Matiere matiere) {
+        this.matieresIntermedaires.add(matiere);
+        matiere.getIntermediaireMatieres().add(this);
+        return this;
+    }
+
+    public Formateur removeMatieresIntermedaire(Matiere matiere) {
+        this.matieresIntermedaires.remove(matiere);
+        matiere.getIntermediaireMatieres().remove(this);
+        return this;
+    }
+
+    public void setMatieresIntermedaires(Set<Matiere> matieres) {
+        this.matieresIntermedaires = matieres;
+    }
+
+    public Set<Matiere> getMatieresAvances() {
+        return matieresAvances;
+    }
+
+    public Formateur matieresAvances(Set<Matiere> matieres) {
+        this.matieresAvances = matieres;
+        return this;
+    }
+
+    public Formateur addMatieresAvance(Matiere matiere) {
+        this.matieresAvances.add(matiere);
+        matiere.getAvanceMatieres().add(this);
+        return this;
+    }
+
+    public Formateur removeMatieresAvance(Matiere matiere) {
+        this.matieresAvances.remove(matiere);
+        matiere.getAvanceMatieres().remove(this);
+        return this;
+    }
+
+    public void setMatieresAvances(Set<Matiere> matieres) {
+        this.matieresAvances = matieres;
+    }
+
+    public Set<Matiere> getMatieresConfirmes() {
+        return matieresConfirmes;
+    }
+
+    public Formateur matieresConfirmes(Set<Matiere> matieres) {
+        this.matieresConfirmes = matieres;
+        return this;
+    }
+
+    public Formateur addMatieresConfirme(Matiere matiere) {
+        this.matieresConfirmes.add(matiere);
+        matiere.getConfirmeMatieres().add(this);
+        return this;
+    }
+
+    public Formateur removeMatieresConfirme(Matiere matiere) {
+        this.matieresConfirmes.remove(matiere);
+        matiere.getConfirmeMatieres().remove(this);
+        return this;
+    }
+
+    public void setMatieresConfirmes(Set<Matiere> matieres) {
+        this.matieresConfirmes = matieres;
     }
 
     public Set<Matiere> getMatieres() {
@@ -181,6 +293,7 @@ public class Formateur implements Serializable {
         this.matieres = matieres;
         return this;
     }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     public Formateur addMatieres(Matiere matiere) {
         this.matieres.add(matiere);
@@ -255,7 +368,6 @@ public class Formateur implements Serializable {
             ", rue='" + getRue() + "'" +
             ", codePostal='" + getCodePostal() + "'" +
             ", ville='" + getVille() + "'" +
-            ", login='" + getLogin() + "'" +
             "}";
     }
 }

@@ -18,7 +18,11 @@
             "nom": "Nom",
             "duree": "Duree",
             "formateurs": "Formateurs",
-            "modules": "Modules"
+            "modules": "Modules",
+            "debutantMatieres": "Debutant Matieres",
+            "intermediaireMatieres": "Intermediaire Matieres",
+            "avanceMatieres": "Avance Matieres",
+            "confirmeMatieres": "Confirme Matieres"
         }
     }
 }

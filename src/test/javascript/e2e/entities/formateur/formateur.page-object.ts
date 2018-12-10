@@ -33,7 +33,10 @@ export class FormateurUpdatePage {
     rueInput = element(by.id('field_rue'));
     codePostalInput = element(by.id('field_codePostal'));
     villeInput = element(by.id('field_ville'));
-    loginInput = element(by.id('field_login'));
+    matieresDebutantSelect = element(by.id('field_matieresDebutant'));
+    matieresIntermedaireSelect = element(by.id('field_matieresIntermedaire'));
+    matieresAvanceSelect = element(by.id('field_matieresAvance'));
+    matieresConfirmeSelect = element(by.id('field_matieresConfirme'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -95,12 +98,80 @@ export class FormateurUpdatePage {
         return this.villeInput.getAttribute('value');
     }
 
-    async setLoginInput(login) {
-        await this.loginInput.sendKeys(login);
+    async matieresDebutantSelectLastOption() {
+        await this.matieresDebutantSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
     }
 
-    async getLoginInput() {
-        return this.loginInput.getAttribute('value');
+    async matieresDebutantSelectOption(option) {
+        await this.matieresDebutantSelect.sendKeys(option);
+    }
+
+    getMatieresDebutantSelect(): ElementFinder {
+        return this.matieresDebutantSelect;
+    }
+
+    async getMatieresDebutantSelectedOption() {
+        return this.matieresDebutantSelect.element(by.css('option:checked')).getText();
+    }
+
+    async matieresIntermedaireSelectLastOption() {
+        await this.matieresIntermedaireSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    async matieresIntermedaireSelectOption(option) {
+        await this.matieresIntermedaireSelect.sendKeys(option);
+    }
+
+    getMatieresIntermedaireSelect(): ElementFinder {
+        return this.matieresIntermedaireSelect;
+    }
+
+    async getMatieresIntermedaireSelectedOption() {
+        return this.matieresIntermedaireSelect.element(by.css('option:checked')).getText();
+    }
+
+    async matieresAvanceSelectLastOption() {
+        await this.matieresAvanceSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    async matieresAvanceSelectOption(option) {
+        await this.matieresAvanceSelect.sendKeys(option);
+    }
+
+    getMatieresAvanceSelect(): ElementFinder {
+        return this.matieresAvanceSelect;
+    }
+
+    async getMatieresAvanceSelectedOption() {
+        return this.matieresAvanceSelect.element(by.css('option:checked')).getText();
+    }
+
+    async matieresConfirmeSelectLastOption() {
+        await this.matieresConfirmeSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    async matieresConfirmeSelectOption(option) {
+        await this.matieresConfirmeSelect.sendKeys(option);
+    }
+
+    getMatieresConfirmeSelect(): ElementFinder {
+        return this.matieresConfirmeSelect;
+    }
+
+    async getMatieresConfirmeSelectedOption() {
+        return this.matieresConfirmeSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {
