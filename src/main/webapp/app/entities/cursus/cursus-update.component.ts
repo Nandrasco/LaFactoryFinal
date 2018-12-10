@@ -52,6 +52,8 @@ export class CursusUpdateComponent implements OnInit {
     }();
     currentAccount: any;
 
+    currentAccount: any;
+
     constructor(
         private planningService: PlanningService,
         private jhiAlertService: JhiAlertService,
