@@ -46,6 +46,9 @@ public class Formateur implements Serializable {
 
     @Column(name = "ville")
     private String ville;
+    
+    @Column(name = "login")
+    private String login;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -274,7 +277,12 @@ public class Formateur implements Serializable {
         matiere.getConfirmeMatieres().add(this);
         return this;
     }
-
+    
+    public Formateur login(String login) {
+        this.login=login;
+        return this;
+    }
+        
     public Formateur removeMatieresConfirme(Matiere matiere) {
         this.matieresConfirmes.remove(matiere);
         matiere.getConfirmeMatieres().remove(this);
@@ -368,6 +376,17 @@ public class Formateur implements Serializable {
             ", rue='" + getRue() + "'" +
             ", codePostal='" + getCodePostal() + "'" +
             ", ville='" + getVille() + "'" +
+            ", login='" + getLogin() + "'" +
             "}";
     }
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+    
+    
 }
