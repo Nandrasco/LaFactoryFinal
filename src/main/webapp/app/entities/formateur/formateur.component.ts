@@ -18,7 +18,7 @@ export class FormateurComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
     private searchTerms = new Subject<string>();
     private searchDebounce = 300;
-
+    searchTerm: String;
     constructor(
         private formateurService: FormateurService,
         private jhiAlertService: JhiAlertService,
@@ -26,7 +26,6 @@ export class FormateurComponent implements OnInit, OnDestroy {
         private principal: Principal
     ) {
     }
-
     loadAll() {
 
         this.formateurService.query().subscribe(
@@ -36,7 +35,6 @@ export class FormateurComponent implements OnInit, OnDestroy {
             (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
-
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then(account => {
@@ -48,6 +46,7 @@ export class FormateurComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
     }
+
 
     trackId(index: number, item: IFormateur) {
         return item.id;

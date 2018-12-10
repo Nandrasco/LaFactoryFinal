@@ -10,26 +10,12 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div id="search-component">
-        <h4> Formateur search by name : </h4>
 
-        <input #searchBox id="search-box" (input)="search(searchBox.value)" />
 
-        <ul class="search-result">
-                <li *ngFor="let formateur of formateurs | async" >
-                <a routerLink="/view/{{formateur.id}}">
-                    {{formateur.nom}}
-                </a>
-            </li>
-        </ul>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="searchTerm" style="width:300px">
     </div>
 
-    <div class="right">
-        <form id="search">
-            <input #search type="search" placeholder="Search" [ngClass]="{'filled':filled}"
-                   (click)="filled=true" (blur)="filled=search.value?true:false">
-        </form>
-    </div>
 
     <div class="table-responsive" *ngIf="formateurs">
 
@@ -52,7 +38,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let formateur of formateurs ;trackBy: trackId">
+            <tr *ngFor="let formateur of formateurs | keys:searchTerm">
                 <td><a [routerLink]="['/formateur', formateur.id, 'view' ]">{{formateur.id}}</a></td>
                 <td>{{formateur.nom}}</td>
                 <td>{{formateur.prenom}}</td>

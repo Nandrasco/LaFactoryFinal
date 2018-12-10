@@ -11,6 +11,7 @@ import {
     formateurRoute,
     formateurPopupRoute
 } from './';
+import {KeysPipe} from "app/entities/formateur/keys.pipe";
 
 const ENTITY_STATES = [...formateurRoute, ...formateurPopupRoute];
 
@@ -21,7 +22,8 @@ const ENTITY_STATES = [...formateurRoute, ...formateurPopupRoute];
         FormateurDetailComponent,
         FormateurUpdateComponent,
         FormateurDeleteDialogComponent,
-        FormateurDeletePopupComponent
+        FormateurDeletePopupComponent,
+        KeysPipe
     ],
     entryComponents: [FormateurComponent, FormateurUpdateComponent, FormateurDeleteDialogComponent, FormateurDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
