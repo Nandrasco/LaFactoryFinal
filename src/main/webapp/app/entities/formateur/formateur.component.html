@@ -39,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let formateur of formateurs ;trackBy: trackId| keys:searchTerm">
+            <tr *ngFor="let formateur of formateurs | keys:searchTerm">
                 <td><a [routerLink]="['/formateur', formateur.id, 'view' ]">{{formateur.id}}</a></td>
                 <td>{{formateur.nom}}</td>
                 <td>{{formateur.prenom}}</td>
