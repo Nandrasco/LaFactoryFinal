@@ -65,6 +65,14 @@ public class CacheConfiguration {
             cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() +".matieresDebutant", jcacheConfiguration );
             cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() +".matieresAvance", jcacheConfiguration );
             cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() +".matieresConfirme", jcacheConfiguration );
+            cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() + ".matieresDebutants", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() + ".matieresIntermedaires", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() + ".matieresAvances", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() + ".matieresConfirmes", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Matiere.class.getName() + ".debutantMatieres", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Matiere.class.getName() + ".intermediaireMatieres", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Matiere.class.getName() + ".avanceMatieres", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Matiere.class.getName() + ".confirmeMatieres", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -56,6 +56,50 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         
+        <createTable tableName="formateur_matieres_debutant">
+            <column name="matieres_debutants_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="formateurs_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="formateurs_id, matieres_debutants_id" tableName="formateur_matieres_debutant"/>
+        
+        <createTable tableName="formateur_matieres_intermedaire">
+            <column name="matieres_intermedaires_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="formateurs_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="formateurs_id, matieres_intermedaires_id" tableName="formateur_matieres_intermedaire"/>
+        
+        <createTable tableName="formateur_matieres_avance">
+            <column name="matieres_avances_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="formateurs_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="formateurs_id, matieres_avances_id" tableName="formateur_matieres_avance"/>
+        
+        <createTable tableName="formateur_matieres_confirme">
+            <column name="matieres_confirmes_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="formateurs_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="formateurs_id, matieres_confirmes_id" tableName="formateur_matieres_confirme"/>
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

@@ -45,8 +45,11 @@ describe('Formateur e2e test', () => {
             formateurUpdatePage.setNumeroRueInput('5'),
             formateurUpdatePage.setRueInput('rue'),
             formateurUpdatePage.setCodePostalInput('codePostal'),
-            formateurUpdatePage.setVilleInput('ville'),
-            formateurUpdatePage.setLoginInput('login')
+            formateurUpdatePage.setVilleInput('ville')
+            // formateurUpdatePage.matieresDebutantSelectLastOption(),
+            // formateurUpdatePage.matieresIntermedaireSelectLastOption(),
+            // formateurUpdatePage.matieresAvanceSelectLastOption(),
+            // formateurUpdatePage.matieresConfirmeSelectLastOption(),
         ]);
         expect(await formateurUpdatePage.getNomInput()).to.eq('nom');
         expect(await formateurUpdatePage.getPrenomInput()).to.eq('prenom');

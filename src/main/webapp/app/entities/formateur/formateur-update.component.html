@@ -44,12 +44,31 @@
                     <input type="text" class="form-control" name="ville" id="field_ville"
                         [(ngModel)]="formateur.ville" />
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.formateur.login" for="field_login">Login</label>
-                    <input type="text" class="form-control" name="login" id="field_login"
-                        [(ngModel)]="formateur.login" />
-                </div>
 
+                <div class="form-group">
+                    <label jhiTranslate="laFactoryFinalApp.formateur.matieresDebutant" for="field_matieresDebutant">Matieres Debutant</label>
+                    <select class="form-control" id="field_matieresDebutant" multiple name="matieresDebutant" [(ngModel)]="formateur.matieresDebutants">
+                        <option [ngValue]="getSelected(formateur.matieresDebutants, matiereOption)" *ngFor="let matiereOption of matieres; trackBy: trackMatiereById">{{matiereOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="laFactoryFinalApp.formateur.matieresIntermedaire" for="field_matieresIntermedaire">Matieres Intermedaire</label>
+                    <select class="form-control" id="field_matieresIntermedaire" multiple name="matieresIntermedaire" [(ngModel)]="formateur.matieresIntermedaires">
+                        <option [ngValue]="getSelected(formateur.matieresIntermedaires, matiereOption)" *ngFor="let matiereOption of matieres; trackBy: trackMatiereById">{{matiereOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="laFactoryFinalApp.formateur.matieresAvance" for="field_matieresAvance">Matieres Avance</label>
+                    <select class="form-control" id="field_matieresAvance" multiple name="matieresAvance" [(ngModel)]="formateur.matieresAvances">
+                        <option [ngValue]="getSelected(formateur.matieresAvances, matiereOption)" *ngFor="let matiereOption of matieres; trackBy: trackMatiereById">{{matiereOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="laFactoryFinalApp.formateur.matieresConfirme" for="field_matieresConfirme">Matieres Confirme</label>
+                    <select class="form-control" id="field_matieresConfirme" multiple name="matieresConfirme" [(ngModel)]="formateur.matieresConfirmes">
+                        <option [ngValue]="getSelected(formateur.matieresConfirmes, matiereOption)" *ngFor="let matiereOption of matieres; trackBy: trackMatiereById">{{matiereOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

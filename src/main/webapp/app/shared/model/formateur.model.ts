@@ -10,7 +10,10 @@ export interface IFormateur {
     rue?: string;
     codePostal?: string;
     ville?: string;
-    login?: string;
+    matieresDebutants?: IMatiere[];
+    matieresIntermedaires?: IMatiere[];
+    matieresAvances?: IMatiere[];
+    matieresConfirmes?: IMatiere[];
     matieres?: IMatiere[];
     modules?: IModule[];
 }
@@ -25,7 +28,10 @@ export class Formateur implements IFormateur {
         public rue?: string,
         public codePostal?: string,
         public ville?: string,
-        public login?: string,
+        public matieresDebutants?: IMatiere[],
+        public matieresIntermedaires?: IMatiere[],
+        public matieresAvances?: IMatiere[],
+        public matieresConfirmes?: IMatiere[],
         public matieres?: IMatiere[],
         public modules?: IModule[]
     ) {}

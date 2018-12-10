@@ -7,14 +7,21 @@ export interface IMatiere {
     duree?: number;
     formateurs?: IFormateur[];
     modules?: IModule[];
+    debutantMatieres?: IFormateur[];
+    intermediaireMatieres?: IFormateur[];
+    avanceMatieres?: IFormateur[];
+    confirmeMatieres?: IFormateur[];
 }
 
 export class Matiere implements IMatiere {
     constructor(
         public id?: number,
         public nom?: string,
-        public duree?: number,
         public formateurs?: IFormateur[],
-        public modules?: IModule[]
+        public modules?: IModule[],
+        public debutantMatieres?: IFormateur[],
+        public intermediaireMatieres?: IFormateur[],
+        public avanceMatieres?: IFormateur[],
+        public confirmeMatieres?: IFormateur[]
     ) {}
 }

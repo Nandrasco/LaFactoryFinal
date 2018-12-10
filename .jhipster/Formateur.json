@@ -37,6 +37,38 @@
     "relationships": [
         {
             "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "debutantMatieres",
+            "relationshipName": "matieresDebutant",
+            "otherEntityName": "matiere",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "intermediaireMatieres",
+            "relationshipName": "matieresIntermedaire",
+            "otherEntityName": "matiere",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "avanceMatieres",
+            "relationshipName": "matieresAvance",
+            "otherEntityName": "matiere",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "confirmeMatieres",
+            "relationshipName": "matieresConfirme",
+            "otherEntityName": "matiere",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
             "relationshipName": "matieres",
             "otherEntityName": "matiere",
             "ownerSide": false,
