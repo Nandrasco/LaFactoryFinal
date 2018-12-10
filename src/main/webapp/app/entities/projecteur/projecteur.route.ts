@@ -33,7 +33,7 @@ export const projecteurRoute: Routes = [
         path: 'projecteur',
         component: ProjecteurComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_TECHNICIEN'],
             pageTitle: 'laFactoryFinalApp.projecteur.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const projecteurRoute: Routes = [
             projecteur: ProjecteurResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_TECHNICIEN'],
             pageTitle: 'laFactoryFinalApp.projecteur.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -57,7 +57,7 @@ export const projecteurRoute: Routes = [
             projecteur: ProjecteurResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_TECHNICIEN'],
             pageTitle: 'laFactoryFinalApp.projecteur.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -69,7 +69,7 @@ export const projecteurRoute: Routes = [
             projecteur: ProjecteurResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_TECHNICIEN'],
             pageTitle: 'laFactoryFinalApp.projecteur.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -84,7 +84,7 @@ export const projecteurPopupRoute: Routes = [
             projecteur: ProjecteurResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_TECHNICIEN'],
             pageTitle: 'laFactoryFinalApp.projecteur.home.title'
         },
         canActivate: [UserRouteAccessService],
