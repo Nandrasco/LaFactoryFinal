@@ -27,6 +27,7 @@ export class MatiereUpdatePage {
     saveButton = element(by.id('save-entity'));
     cancelButton = element(by.id('cancel-save'));
     nomInput = element(by.id('field_nom'));
+    dureeInput = element(by.id('field_duree'));
     formateursSelect = element(by.id('field_formateurs'));
 
     async getPageTitle() {
@@ -39,6 +40,14 @@ export class MatiereUpdatePage {
 
     async getNomInput() {
         return this.nomInput.getAttribute('value');
+    }
+
+    async setDureeInput(duree) {
+        await this.dureeInput.sendKeys(duree);
+    }
+
+    async getDureeInput() {
+        return this.dureeInput.getAttribute('value');
     }
 
     async formateursSelectLastOption() {

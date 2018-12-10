@@ -1,98 +1,54 @@
     <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="formateur">
-            <h2>
-                <span jhiTranslate="laFactoryFinalApp.formateur.detail.title">Formateur</span> {{formateur.id}}</h2>
+            <h2><span jhiTranslate="laFactoryFinalApp.formateur.detail.title">Formateur</span> {{formateur.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.nom">Nom</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.nom">Nom</span></dt>
                 <dd>
                     <span>{{formateur.nom}}</span>
                 </dd>
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.prenom">Prenom</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.prenom">Prenom</span></dt>
                 <dd>
                     <span>{{formateur.prenom}}</span>
                 </dd>
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.coordonnees">Coordonnees</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.coordonnees">Coordonnees</span></dt>
                 <dd>
                     <span>{{formateur.coordonnees}}</span>
                 </dd>
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.numeroRue">Numero Rue</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.numeroRue">Numero Rue</span></dt>
                 <dd>
                     <span>{{formateur.numeroRue}}</span>
                 </dd>
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.rue">Rue</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.rue">Rue</span></dt>
                 <dd>
                     <span>{{formateur.rue}}</span>
                 </dd>
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.codePostal">Code Postal</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.codePostal">Code Postal</span></dt>
                 <dd>
                     <span>{{formateur.codePostal}}</span>
                 </dd>
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.ville">Ville</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.ville">Ville</span></dt>
                 <dd>
                     <span>{{formateur.ville}}</span>
                 </dd>
-
-                <dt>Fields list where competence : "Beginner"</dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.login">Login</span></dt>
                 <dd>
-                    <div>
-                        {{formateur.matieresDebutant}}
-                        <ul>
-                            <li>{{formateur.nom}}</li>
-                            <li *ngFor="let item of formateur.matieresDebutant">{{item.nom}}</li>
-                        </ul>
-                    </div>
-                </dd>
-                <dt>Fields list where competence : "Intermediate"</dt>
-                <dd>
-                    <div>
-                        <ul>
-                            <li *ngFor="let matiereI of formateur.matieresIntermediaire">{{matiereI.nom}}</li>
-                        </ul>
-                    </div>
-                </dd>
-                <dt>Fields list where competence : "Advanced"</dt>
-                <dd>
-                    <div>
-                        <ul>
-                            <li *ngFor="let matiereA of formateur.matieresAvance">{{matiereA.nom}}</li>
-                        </ul>
-                    </div>
-                </dd>
-                <dt>Fields list where competence : "Confirmed"</dt>
-                <dd>
-                    <div>
-                        <ul>
-                            <li *ngFor="let matiereC of formateur.matieresConfirme">{{matiereC.nom}}</li>
-                        </ul>
-                    </div>
+                    <span>{{formateur.login}}</span>
                 </dd>
             </dl>
 
-            <button type="submit" (click)="previousState()" class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;
-                <span jhiTranslate="entity.action.back"> Back</span>
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
-            <button type="button" [routerLink]="['/formateur', formateur.id, 'edit']" class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                <span jhiTranslate="entity.action.edit"> Edit</span>
+            <button type="button"
+                    [routerLink]="['/formateur', formateur.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
     </div>

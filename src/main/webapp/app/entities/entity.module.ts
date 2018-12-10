@@ -10,7 +10,7 @@ import { LaFactoryFinalMatiereModule } from './matiere/matiere.module';
 import { LaFactoryFinalOrdinateurModule } from './ordinateur/ordinateur.module';
 import { LaFactoryFinalProjecteurModule } from './projecteur/projecteur.module';
 import { LaFactoryFinalSalleModule } from './salle/salle.module';
-import {LaFactoryFinalPlanningModule} from "app/entities/planning/planning.module";
+import { LaFactoryFinalPlanningModule } from 'app/entities/planning/planning.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({

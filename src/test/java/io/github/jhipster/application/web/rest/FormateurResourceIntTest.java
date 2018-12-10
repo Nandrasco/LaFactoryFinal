@@ -61,6 +61,9 @@ public class FormateurResourceIntTest {
     private static final String DEFAULT_VILLE = "AAAAAAAAAA";
     private static final String UPDATED_VILLE = "BBBBBBBBBB";
 
+    private static final String DEFAULT_LOGIN = "AAAAAAAAAA";
+    private static final String UPDATED_LOGIN = "BBBBBBBBBB";
+
     @Autowired
     private FormateurRepository formateurRepository;
 
@@ -108,7 +111,8 @@ public class FormateurResourceIntTest {
             .numeroRue(DEFAULT_NUMERO_RUE)
             .rue(DEFAULT_RUE)
             .codePostal(DEFAULT_CODE_POSTAL)
-            .ville(DEFAULT_VILLE);
+            .ville(DEFAULT_VILLE)
+            .login(DEFAULT_LOGIN);
         return formateur;
     }
 
@@ -139,6 +143,7 @@ public class FormateurResourceIntTest {
         assertThat(testFormateur.getRue()).isEqualTo(DEFAULT_RUE);
         assertThat(testFormateur.getCodePostal()).isEqualTo(DEFAULT_CODE_POSTAL);
         assertThat(testFormateur.getVille()).isEqualTo(DEFAULT_VILLE);
+        assertThat(testFormateur.getLogin()).isEqualTo(DEFAULT_LOGIN);
     }
 
     @Test
@@ -177,7 +182,8 @@ public class FormateurResourceIntTest {
             .andExpect(jsonPath("$.[*].numeroRue").value(hasItem(DEFAULT_NUMERO_RUE)))
             .andExpect(jsonPath("$.[*].rue").value(hasItem(DEFAULT_RUE.toString())))
             .andExpect(jsonPath("$.[*].codePostal").value(hasItem(DEFAULT_CODE_POSTAL.toString())))
-            .andExpect(jsonPath("$.[*].ville").value(hasItem(DEFAULT_VILLE.toString())));
+            .andExpect(jsonPath("$.[*].ville").value(hasItem(DEFAULT_VILLE.toString())))
+            .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN.toString())));
     }
     
     @Test
@@ -197,7 +203,8 @@ public class FormateurResourceIntTest {
             .andExpect(jsonPath("$.numeroRue").value(DEFAULT_NUMERO_RUE))
             .andExpect(jsonPath("$.rue").value(DEFAULT_RUE.toString()))
             .andExpect(jsonPath("$.codePostal").value(DEFAULT_CODE_POSTAL.toString()))
-            .andExpect(jsonPath("$.ville").value(DEFAULT_VILLE.toString()));
+            .andExpect(jsonPath("$.ville").value(DEFAULT_VILLE.toString()))
+            .andExpect(jsonPath("$.login").value(DEFAULT_LOGIN.toString()));
     }
 
     @Test
@@ -227,7 +234,8 @@ public class FormateurResourceIntTest {
             .numeroRue(UPDATED_NUMERO_RUE)
             .rue(UPDATED_RUE)
             .codePostal(UPDATED_CODE_POSTAL)
-            .ville(UPDATED_VILLE);
+            .ville(UPDATED_VILLE)
+            .login(UPDATED_LOGIN);
 
         restFormateurMockMvc.perform(put("/api/formateurs")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -245,6 +253,7 @@ public class FormateurResourceIntTest {
         assertThat(testFormateur.getRue()).isEqualTo(UPDATED_RUE);
         assertThat(testFormateur.getCodePostal()).isEqualTo(UPDATED_CODE_POSTAL);
         assertThat(testFormateur.getVille()).isEqualTo(UPDATED_VILLE);
+        assertThat(testFormateur.getLogin()).isEqualTo(UPDATED_LOGIN);
     }
 
     @Test

@@ -13,10 +13,14 @@
                 <dd>
                     <span>{{projecteur.cout}}</span>
                 </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.projecteur.stock">Stock</span></dt>
+                <dd>
+                    <span>{{projecteur.stock}}</span>
+                </dd>
                 <dt><span jhiTranslate="laFactoryFinalApp.projecteur.salle">Salle</span></dt>
                 <dd>
                     <div *ngIf="projecteur.salle">
-                        <a [routerLink]="['/salle', projecteur.salle?.id, 'view']">{{projecteur.salle?.code}}</a>
+                        <a [routerLink]="['/salle', projecteur.salle?.id, 'view']">{{projecteur.salle?.id}}</a>
                     </div>
                 </dd>
             </dl>

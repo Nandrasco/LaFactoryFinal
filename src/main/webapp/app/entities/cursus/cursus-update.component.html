@@ -1,22 +1,27 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-            <h2 id="jhi-cursus-heading" jhiTranslate="laFactoryFinalApp.cursus.home.createOrEditLabel">Create or edit a Cursus</h2>
+            <h2 id="jhi-cursus-heading" jhiTranslate="laFactoryFinalApp.cursus.home.createOrEditLabel">Create or edit a
+                Cursus</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!cursus.id">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="cursus.id" readonly />
+                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="cursus.id" readonly/>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.nom" for="field_nom">Nom</label>
-                    <input type="text" class="form-control" name="nom" id="field_nom" [(ngModel)]="cursus.nom" />
+                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.nom"
+                           for="field_nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom" [(ngModel)]="cursus.nom"
+                           (ngModelChange)="event.title=cursus.nom"/>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.dateDebut" for="field_dateDebut">Date Debut</label>
+                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.dateDebut"
+                           for="field_dateDebut">Date Debut</label>
                     <div class="input-group">
-                        <input id="field_dateDebut" type="text" class="form-control" name="dateDebut" ngbDatepicker #dateDebutDp="ngbDatepicker"
-                            [(ngModel)]="cursus.dateDebut" />
+                        <input id="field_dateDebut" type="text" class="form-control" name="dateDebut" ngbDatepicker
+                               #dateDebutDp="ngbDatepicker"
+                               [(ngModel)]="cursus.dateDebut" (ngModelChange)="event.start=cursus.dateDebut.toDate()"/>
                         <span class="input-group-append">
                             <button type="button" class="btn btn-secondary" (click)="dateDebutDp.toggle()">
                                 <fa-icon [icon]="'calendar-alt'"></fa-icon>
@@ -25,9 +30,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.dateFin" for="field_dateFin">Date Fin</label>
+                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.dateFin"
+                           for="field_dateFin">Date Fin</label>
                     <div class="input-group">
-                        <input id="field_dateFin" type="text" class="form-control" name="dateFin" ngbDatepicker #dateFinDp="ngbDatepicker" [(ngModel)]="cursus.dateFin"
+                        <input id="field_dateFin" type="text" class="form-control" name="dateFin" ngbDatepicker
+                               #dateFinDp="ngbDatepicker" [(ngModel)]="cursus.dateFin"
+                               (ngModelChange)="event.end=cursus.dateFin.toDate()"
                         />
                         <span class="input-group-append">
                             <button type="button" class="btn btn-secondary" (click)="dateFinDp.toggle()">
@@ -37,48 +45,67 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.prerequis" for="field_prerequis">Prerequis</label>
-                    <input type="text" class="form-control" name="prerequis" id="field_prerequis" [(ngModel)]="cursus.prerequis" />
+                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.prerequis"
+                           for="field_prerequis">Prerequis</label>
+                    <input type="text" class="form-control" name="prerequis" id="field_prerequis"
+                           [(ngModel)]="cursus.prerequis"/>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.objectifs" for="field_objectifs">Objectifs</label>
-                    <input type="text" class="form-control" name="objectifs" id="field_objectifs" [(ngModel)]="cursus.objectifs" />
+                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.objectifs"
+                           for="field_objectifs">Objectifs</label>
+                    <input type="text" class="form-control" name="objectifs" id="field_objectifs"
+                           [(ngModel)]="cursus.objectifs"/>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.contenu" for="field_contenu">Contenu</label>
-                    <input type="text" class="form-control" name="contenu" id="field_contenu" [(ngModel)]="cursus.contenu" />
+                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.contenu"
+                           for="field_contenu">Contenu</label>
+                    <input type="text" class="form-control" name="contenu" id="field_contenu"
+                           [(ngModel)]="cursus.contenu"/>
                 </div>
 
                 <div *jhiHasAnyAuthority="['ROLE_GESTIONNAIRE']" class="form-group">
-                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.gestionnaire.prenom" for="field_gestionnaire_prenom">Prenom gestionnaire</label>
-                    <input type="text" class="form-control" id="field_gestionnaire_prenom" name="field_gestionnaire_prenom" [(ngModel)]="cursus.gestionnaire.prenom" readonly />
-                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.gestionnaire.nom" for="field_gestionnaire_nom">Nom gestionnaire</label>
-                    <input type="text" class="form-control" id="field_gestionnaire_nom" name="field_gestionnaire_nom" [(ngModel)]="cursus.gestionnaire.nom" readonly />                   
+                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.gestionnaire.prenom"
+                           for="field_gestionnaire_prenom">Prenom gestionnaire</label>
+                    <input type="text" class="form-control" id="field_gestionnaire_prenom"
+                           name="field_gestionnaire_prenom" [(ngModel)]="cursus.gestionnaire.prenom" readonly/>
+                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.gestionnaire.nom"
+                           for="field_gestionnaire_nom">Nom gestionnaire</label>
+                    <input type="text" class="form-control" id="field_gestionnaire_nom" name="field_gestionnaire_nom"
+                           [(ngModel)]="cursus.gestionnaire.nom" readonly/>
                 </div>
                 <div *jhiHasAnyAuthority="['ROLE_USER']" class="form-group">
-                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.gestionnaire" for="field_gestionnaire">Gestionnaire</label>
-                    <select  class="form-control" id="field_gestionnaire" name="gestionnaire" [(ngModel)]="cursus.gestionnaire">
+                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.gestionnaire"
+                           for="field_gestionnaire">Gestionnaire</label>
+                    <select class="form-control" id="field_gestionnaire" name="gestionnaire"
+                            [(ngModel)]="cursus.gestionnaire">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="gestionnaireOption.id === cursus.gestionnaire?.id ? cursus.gestionnaire : gestionnaireOption" *ngFor="let gestionnaireOption of gestionnaires; trackBy: trackGestionnaireById">{{gestionnaireOption.prenom}} {{gestionnaireOption.nom}}</option>
+                        <option
+                            [ngValue]="gestionnaireOption.id === cursus.gestionnaire?.id ? cursus.gestionnaire : gestionnaireOption"
+                            *ngFor="let gestionnaireOption of gestionnaires; trackBy: trackGestionnaireById">{{gestionnaireOption.prenom}} {{gestionnaireOption.nom}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.cursus.salle" for="field_salle">Salle</label>
                     <select class="form-control" id="field_salle" name="salle" [(ngModel)]="cursus.salle">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="salleOption.id === cursus.salle?.id ? cursus.salle : salleOption" *ngFor="let salleOption of salles; trackBy: trackSalleById">{{salleOption.code}}</option>
+                        <option [ngValue]="salleOption.id === cursus.salle?.id ? cursus.salle : salleOption"
+                                *ngFor="let salleOption of salles; trackBy: trackSalleById">{{salleOption.code}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label jhiTranslate="laFactoryFinalApp.cursus.stagiaires" for="field_stagiaires">Stagiaires</label>
-                    <select class="form-control" id="field_stagiaires" multiple name="stagiaires" [(ngModel)]="cursus.stagiaires">
-                        <option [ngValue]="getSelected(cursus.stagiaires, stagiaireOption)" *ngFor="let stagiaireOption of stagiaires; trackBy: trackStagiaireById">{{stagiaireOption.prenom}} {{stagiaireOption.nom}}</option>
+                    <select class="form-control" id="field_stagiaires" multiple name="stagiaires"
+                            (change)="isOverbooked()" [(ngModel)]="cursus.stagiaires">
+                        <option [ngValue]="getSelected(cursus.stagiaires, stagiaireOption)"
+                                *ngFor="let stagiaireOption of stagiaires; trackBy: trackStagiaireById">{{stagiaireOption.prenom}} {{stagiaireOption.nom}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label jhiTranslate="laFactoryFinalApp.cursus.modules" for="field_modules">Modules</label>
-                    <select class="form-control" id="field_modules" multiple name="modules" [(ngModel)]="cursus.modules">
-                        <option [ngValue]="getSelected(cursus.modules, moduleOption)" *ngFor="let moduleOption of modules; trackBy: trackModuleById">{{moduleOption.nom}}</option>
+                    <select class="form-control" id="field_modules" multiple name="modules"
+                            [(ngModel)]="cursus.modules">
+                        <option [ngValue]="getSelected(cursus.modules, moduleOption)"
+                                *ngFor="let moduleOption of modules; trackBy: trackModuleById">{{moduleOption.nom}}</option>
                     </select>
                 </div>
             </div>
@@ -87,7 +114,8 @@
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;
                     <span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" (click)="createEvent()"
+                        [disabled]="editForm.form.invalid || isSaving || overbooked" class="btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;
                     <span jhiTranslate="entity.action.save">Save</span>
                 </button>

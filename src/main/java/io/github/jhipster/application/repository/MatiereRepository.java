@@ -24,9 +24,6 @@ public interface MatiereRepository extends JpaRepository<Matiere, Long> {
     @Query(value = "select distinct matiere from Matiere matiere left join fetch matiere.formateurs")
     List<Matiere> findAllWithEagerRelationships();
 
-    @Query("select distinct scm.matieres from Stagiaire s left join s.cursuses sc left join sc.modules scm where s.id=:id")
-    List<Matiere> findMatieresByStagiaireId(@Param("id") Long id);
-
     @Query("select matiere from Matiere matiere left join fetch matiere.formateurs where matiere.id =:id")
     Optional<Matiere> findOneWithEagerRelationships(@Param("id") Long id);
 

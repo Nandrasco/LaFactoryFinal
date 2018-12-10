@@ -9,11 +9,11 @@ import {
     FormateurDeletePopupComponent,
     FormateurDeleteDialogComponent,
     formateurRoute,
-    formateurPopupRoute,
-    FormateurListeMatiereComponent
+    formateurPopupRoute
 } from './';
 
 const ENTITY_STATES = [...formateurRoute, ...formateurPopupRoute];
+
 @NgModule({
     imports: [LaFactoryFinalSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
@@ -21,16 +21,9 @@ const ENTITY_STATES = [...formateurRoute, ...formateurPopupRoute];
         FormateurDetailComponent,
         FormateurUpdateComponent,
         FormateurDeleteDialogComponent,
-        FormateurDeletePopupComponent,
-        FormateurListeMatiereComponent
+        FormateurDeletePopupComponent
     ],
-    entryComponents: [
-        FormateurComponent,
-        FormateurUpdateComponent,
-        FormateurDeleteDialogComponent,
-        FormateurDeletePopupComponent,
-        FormateurListeMatiereComponent
-    ],
+    entryComponents: [FormateurComponent, FormateurUpdateComponent, FormateurDeleteDialogComponent, FormateurDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class LaFactoryFinalFormateurModule {}

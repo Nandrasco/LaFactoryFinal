@@ -29,6 +29,9 @@ public class Matiere implements Serializable {
     @Column(name = "nom")
     private String nom;
 
+    @Column(name = "duree")
+    private Integer duree;
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "matiere_formateurs",
@@ -61,6 +64,19 @@ public class Matiere implements Serializable {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public Integer getDuree() {
+        return duree;
+    }
+
+    public Matiere duree(Integer duree) {
+        this.duree = duree;
+        return this;
+    }
+
+    public void setDuree(Integer duree) {
+        this.duree = duree;
     }
 
     public Set<Formateur> getFormateurs() {
@@ -139,6 +155,7 @@ public class Matiere implements Serializable {
         return "Matiere{" +
             "id=" + getId() +
             ", nom='" + getNom() + "'" +
+            ", duree=" + getDuree() +
             "}";
     }
 }

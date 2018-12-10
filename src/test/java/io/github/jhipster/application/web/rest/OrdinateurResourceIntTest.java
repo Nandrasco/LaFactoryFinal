@@ -60,6 +60,9 @@ public class OrdinateurResourceIntTest {
     private static final LocalDate DEFAULT_DATE_ACHAT = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATE_ACHAT = LocalDate.now(ZoneId.systemDefault());
 
+    private static final Integer DEFAULT_STOCK = 1;
+    private static final Integer UPDATED_STOCK = 2;
+
     @Autowired
     private OrdinateurRepository ordinateurRepository;
 
@@ -106,7 +109,8 @@ public class OrdinateurResourceIntTest {
             .processeur(DEFAULT_PROCESSEUR)
             .ram(DEFAULT_RAM)
             .dd(DEFAULT_DD)
-            .dateAchat(DEFAULT_DATE_ACHAT);
+            .dateAchat(DEFAULT_DATE_ACHAT)
+            .stock(DEFAULT_STOCK);
         return ordinateur;
     }
 
@@ -136,6 +140,7 @@ public class OrdinateurResourceIntTest {
         assertThat(testOrdinateur.getRam()).isEqualTo(DEFAULT_RAM);
         assertThat(testOrdinateur.getDd()).isEqualTo(DEFAULT_DD);
         assertThat(testOrdinateur.getDateAchat()).isEqualTo(DEFAULT_DATE_ACHAT);
+        assertThat(testOrdinateur.getStock()).isEqualTo(DEFAULT_STOCK);
     }
 
     @Test
@@ -173,7 +178,8 @@ public class OrdinateurResourceIntTest {
             .andExpect(jsonPath("$.[*].processeur").value(hasItem(DEFAULT_PROCESSEUR.toString())))
             .andExpect(jsonPath("$.[*].ram").value(hasItem(DEFAULT_RAM)))
             .andExpect(jsonPath("$.[*].dd").value(hasItem(DEFAULT_DD)))
-            .andExpect(jsonPath("$.[*].dateAchat").value(hasItem(DEFAULT_DATE_ACHAT.toString())));
+            .andExpect(jsonPath("$.[*].dateAchat").value(hasItem(DEFAULT_DATE_ACHAT.toString())))
+            .andExpect(jsonPath("$.[*].stock").value(hasItem(DEFAULT_STOCK)));
     }
     
     @Test
@@ -192,7 +198,8 @@ public class OrdinateurResourceIntTest {
             .andExpect(jsonPath("$.processeur").value(DEFAULT_PROCESSEUR.toString()))
             .andExpect(jsonPath("$.ram").value(DEFAULT_RAM))
             .andExpect(jsonPath("$.dd").value(DEFAULT_DD))
-            .andExpect(jsonPath("$.dateAchat").value(DEFAULT_DATE_ACHAT.toString()));
+            .andExpect(jsonPath("$.dateAchat").value(DEFAULT_DATE_ACHAT.toString()))
+            .andExpect(jsonPath("$.stock").value(DEFAULT_STOCK));
     }
 
     @Test
@@ -221,7 +228,8 @@ public class OrdinateurResourceIntTest {
             .processeur(UPDATED_PROCESSEUR)
             .ram(UPDATED_RAM)
             .dd(UPDATED_DD)
-            .dateAchat(UPDATED_DATE_ACHAT);
+            .dateAchat(UPDATED_DATE_ACHAT)
+            .stock(UPDATED_STOCK);
 
         restOrdinateurMockMvc.perform(put("/api/ordinateurs")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -238,6 +246,7 @@ public class OrdinateurResourceIntTest {
         assertThat(testOrdinateur.getRam()).isEqualTo(UPDATED_RAM);
         assertThat(testOrdinateur.getDd()).isEqualTo(UPDATED_DD);
         assertThat(testOrdinateur.getDateAchat()).isEqualTo(UPDATED_DATE_ACHAT);
+        assertThat(testOrdinateur.getStock()).isEqualTo(UPDATED_STOCK);
     }
 
     @Test

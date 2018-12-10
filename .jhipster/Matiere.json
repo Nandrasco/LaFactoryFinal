@@ -4,6 +4,10 @@
         {
             "fieldName": "nom",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "duree",
+            "fieldType": "Integer"
         }
     ],
     "relationships": [

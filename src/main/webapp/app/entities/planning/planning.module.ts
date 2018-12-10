@@ -29,6 +29,7 @@ const ENTITY_STATES = [...planningRoute];
     declarations: [
         PlanningComponent
     ],
+    declarations: [PlanningComponent],
     entryComponents: [PlanningComponent]
 })
 export class LaFactoryFinalPlanningModule {}
