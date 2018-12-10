@@ -108,7 +108,7 @@
 <br><br><br>
 <h3>
     Edit events
-    <button
+    <button *jhiHasAnyAuthority="['ROLE_USER', 'ROLE_GESTIONNAIRE']"
         class="btn btn-primary pull-right"
         (click)="addEvent()">
         Add new
@@ -125,7 +125,7 @@
         Telecharger en pdf </button>
 </h3>
 
-<table class="table table-bordered">
+<table *jhiHasAnyAuthority="['ROLE_USER', 'ROLE_GESTIONNAIRE']" class="table table-bordered">
 
     <thead>
     <tr>
