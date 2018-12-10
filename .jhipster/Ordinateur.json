@@ -24,6 +24,10 @@
         {
             "fieldName": "dateAchat",
             "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "stock",
+            "fieldType": "Integer"
         }
     ],
     "relationships": [

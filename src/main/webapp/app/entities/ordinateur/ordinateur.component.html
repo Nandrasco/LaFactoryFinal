@@ -21,6 +21,7 @@
             <th><span jhiTranslate="laFactoryFinalApp.ordinateur.ram">Ram</span></th>
             <th><span jhiTranslate="laFactoryFinalApp.ordinateur.dd">Dd</span></th>
             <th><span jhiTranslate="laFactoryFinalApp.ordinateur.dateAchat">Date Achat</span></th>
+            <th><span jhiTranslate="laFactoryFinalApp.ordinateur.stock">Stock</span></th>
             <th><span jhiTranslate="laFactoryFinalApp.ordinateur.stagiaire">Stagiaire</span></th>
             <th></th>
             </tr>
@@ -34,9 +35,10 @@
                 <td>{{ordinateur.ram}}</td>
                 <td>{{ordinateur.dd}}</td>
                 <td>{{ordinateur.dateAchat | date:'mediumDate'}}</td>
+                <td>{{ordinateur.stock}}</td>
                 <td>
                     <div *ngIf="ordinateur.stagiaire">
-                        <a [routerLink]="['../stagiaire', ordinateur.stagiaire?.id, 'view' ]" >{{ordinateur.stagiaire?.prenom}} {{ordinateur.stagiaire?.nom}}</a>
+                        <a [routerLink]="['../stagiaire', ordinateur.stagiaire?.id, 'view' ]" >{{ordinateur.stagiaire?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

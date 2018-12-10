@@ -4,4 +4,3 @@ export * from './formateur-delete-dialog.component';
 export * from './formateur-detail.component';
 export * from './formateur.component';
 export * from './formateur.route';
-export * from './formateur-listematiere.component';

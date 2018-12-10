@@ -28,6 +28,10 @@
             <column name="cout" type="${floatType}">
                 <constraints nullable="true" />
             </column>
+
+            <column name="stock" type="integer">
+                <constraints nullable="true" />
+            </column>
             <column name="salle_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_projecteur_salle_id" />
             </column>

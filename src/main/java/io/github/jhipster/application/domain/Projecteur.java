@@ -29,6 +29,9 @@ public class Projecteur implements Serializable {
     @Column(name = "cout")
     private Float cout;
 
+    @Column(name = "stock")
+    private Integer stock;
+
     @OneToOne    @JoinColumn(unique = true)
     private Salle salle;
 
@@ -65,6 +68,19 @@ public class Projecteur implements Serializable {
 
     public void setCout(Float cout) {
         this.cout = cout;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public Projecteur stock(Integer stock) {
+        this.stock = stock;
+        return this;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public Salle getSalle() {
@@ -107,6 +123,7 @@ public class Projecteur implements Serializable {
             "id=" + getId() +
             ", code='" + getCode() + "'" +
             ", cout=" + getCout() +
+            ", stock=" + getStock() +
             "}";
     }
 }

@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(MatiereService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Matiere(0, 'AAAAAAA');
+            elemDefault = new Matiere(0, 'AAAAAAA', 0);
         });
 
         describe('Service methods', async () => {
@@ -55,7 +55,8 @@ describe('Service Tests', () => {
             it('should update a Matiere', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        nom: 'BBBBBB'
+                        nom: 'BBBBBB',
+                        duree: 1
                     },
                     elemDefault
                 );
@@ -72,7 +73,8 @@ describe('Service Tests', () => {
             it('should return a list of Matiere', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        nom: 'BBBBBB'
+                        nom: 'BBBBBB',
+                        duree: 1
                     },
                     elemDefault
                 );

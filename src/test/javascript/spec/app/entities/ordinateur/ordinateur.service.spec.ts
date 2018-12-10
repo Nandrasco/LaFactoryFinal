@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new Ordinateur(0, 'AAAAAAA', 0, 'AAAAAAA', 0, 0, currentDate);
+            elemDefault = new Ordinateur(0, 'AAAAAAA', 0, 'AAAAAAA', 0, 0, currentDate, 0);
         });
 
         describe('Service methods', async () => {
@@ -75,7 +75,8 @@ describe('Service Tests', () => {
                         processeur: 'BBBBBB',
                         ram: 1,
                         dd: 1,
-                        dateAchat: currentDate.format(DATE_FORMAT)
+                        dateAchat: currentDate.format(DATE_FORMAT),
+                        stock: 1
                     },
                     elemDefault
                 );
@@ -102,7 +103,8 @@ describe('Service Tests', () => {
                         processeur: 'BBBBBB',
                         ram: 1,
                         dd: 1,
-                        dateAchat: currentDate.format(DATE_FORMAT)
+                        dateAchat: currentDate.format(DATE_FORMAT),
+                        stock: 1
                     },
                     elemDefault
                 );

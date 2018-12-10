@@ -1,7 +1,7 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="laFactoryFinalApp.formateur.home.title">Formateurs</span>
-        <button *jhiHasAnyAuthority="['ROLE_USER']" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-formateur" [routerLink]="['/formateur/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-formateur" [routerLink]="['/formateur/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="laFactoryFinalApp.formateur.home.createLabel">
             Create new Formateur
@@ -10,21 +10,7 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-
-
-<div class="form-group">
-    <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="searchTerm" style="width:300px">
-</div>
-    <div  *ngFor="let formateur of formateurs | keys:searchTerm" >
-        <a [routerLink]="['/formateur', formateur.id, 'edit']">{{formateur.id}}  </a>
-        {{formateur.nom}}
-        {{formateur.prenom}}
-    </div>
-
-
-
     <div class="table-responsive" *ngIf="formateurs">
-
         <table class="table table-striped">
             <thead>
             <tr>
@@ -36,10 +22,12 @@
             <th><span jhiTranslate="laFactoryFinalApp.formateur.rue">Rue</span></th>
             <th><span jhiTranslate="laFactoryFinalApp.formateur.codePostal">Code Postal</span></th>
             <th><span jhiTranslate="laFactoryFinalApp.formateur.ville">Ville</span></th>
+            <th><span jhiTranslate="laFactoryFinalApp.formateur.login">Login</span></th>
+            <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let formateur of formateurs | keys:searchTerm">
+            <tr *ngFor="let formateur of formateurs ;trackBy: trackId">
                 <td><a [routerLink]="['/formateur', formateur.id, 'view' ]">{{formateur.id}}</a></td>
                 <td>{{formateur.nom}}</td>
                 <td>{{formateur.prenom}}</td>
@@ -48,8 +36,9 @@
                 <td>{{formateur.rue}}</td>
                 <td>{{formateur.codePostal}}</td>
                 <td>{{formateur.ville}}</td>
+                <td>{{formateur.login}}</td>
                 <td class="text-right">
-                    <div class="btn-group flex-btn-group-container" *jhiHasAnyAuthority="['ROLE_USER']">
+                    <div class="btn-group flex-btn-group-container">
                         <button type="submit"
                                 [routerLink]="['/formateur', formateur.id, 'view' ]"
                                 class="btn btn-info btn-sm">

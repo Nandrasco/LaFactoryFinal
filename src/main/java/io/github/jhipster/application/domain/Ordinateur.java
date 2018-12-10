@@ -42,6 +42,9 @@ public class Ordinateur implements Serializable {
     @Column(name = "date_achat")
     private LocalDate dateAchat;
 
+    @Column(name = "stock")
+    private Integer stock;
+
     @OneToOne    @JoinColumn(unique = true)
     private Stagiaire stagiaire;
 
@@ -132,6 +135,19 @@ public class Ordinateur implements Serializable {
         this.dateAchat = dateAchat;
     }
 
+    public Integer getStock() {
+        return stock;
+    }
+
+    public Ordinateur stock(Integer stock) {
+        this.stock = stock;
+        return this;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
     public Stagiaire getStagiaire() {
         return stagiaire;
     }
@@ -176,6 +192,7 @@ public class Ordinateur implements Serializable {
             ", ram=" + getRam() +
             ", dd=" + getDd() +
             ", dateAchat='" + getDateAchat() + "'" +
+            ", stock=" + getStock() +
             "}";
     }
 }

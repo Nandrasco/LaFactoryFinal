@@ -8,6 +8,10 @@
         {
             "fieldName": "cout",
             "fieldType": "Float"
+        },
+        {
+            "fieldName": "stock",
+            "fieldType": "Integer"
         }
     ],
     "relationships": [
