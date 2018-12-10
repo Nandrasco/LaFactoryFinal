@@ -25,6 +25,34 @@
             "otherEntityName": "module",
             "ownerSide": false,
             "otherEntityRelationshipName": "matieres"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "debutantMatieres",
+            "otherEntityName": "formateur",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "matieresDebutant"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "intermediaireMatieres",
+            "otherEntityName": "formateur",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "matieresIntermedaire"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "avanceMatieres",
+            "otherEntityName": "formateur",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "matieresAvance"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "confirmeMatieres",
+            "otherEntityName": "formateur",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "matieresConfirme"
         }
     ],
     "changelogDate": "20181205120817",

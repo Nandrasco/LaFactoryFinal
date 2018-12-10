@@ -6,6 +6,8 @@ import io.github.jhipster.application.repository.FormateurRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,9 +50,18 @@ public class FormateurServiceImpl implements FormateurService {
     @Transactional(readOnly = true)
     public List<Formateur> findAll() {
         log.debug("Request to get all Formateurs");
-        return formateurRepository.findAll();
+        return formateurRepository.findAllWithEagerRelationships();
     }
 
+    /**
+     * Get all the Formateur with eager load of many-to-many relationships.
+     *
+     * @return the list of entities
+     */
+    public Page<Formateur> findAllWithEagerRelationships(Pageable pageable) {
+        return formateurRepository.findAllWithEagerRelationships(pageable);
+    }
+    
 
     /**
      * Get one formateur by id.
@@ -62,7 +73,7 @@ public class FormateurServiceImpl implements FormateurService {
     @Transactional(readOnly = true)
     public Optional<Formateur> findOne(Long id) {
         log.debug("Request to get Formateur : {}", id);
-        return formateurRepository.findById(id);
+        return formateurRepository.findOneWithEagerRelationships(id);
     }
 
     /**

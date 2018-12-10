@@ -10,9 +10,12 @@ import io.github.jhipster.application.web.rest.errors.ExceptionTranslator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -22,12 +25,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 
 import static io.github.jhipster.application.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -66,6 +71,12 @@ public class FormateurResourceIntTest {
 
     @Autowired
     private FormateurRepository formateurRepository;
+
+    @Mock
+    private FormateurRepository formateurRepositoryMock;
+
+    @Mock
+    private FormateurService formateurServiceMock;
 
     @Autowired
     private FormateurService formateurService;
@@ -186,6 +197,39 @@ public class FormateurResourceIntTest {
             .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN.toString())));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllFormateursWithEagerRelationshipsIsEnabled() throws Exception {
+        FormateurResource formateurResource = new FormateurResource(formateurServiceMock);
+        when(formateurServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        MockMvc restFormateurMockMvc = MockMvcBuilders.standaloneSetup(formateurResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restFormateurMockMvc.perform(get("/api/formateurs?eagerload=true"))
+        .andExpect(status().isOk());
+
+        verify(formateurServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllFormateursWithEagerRelationshipsIsNotEnabled() throws Exception {
+        FormateurResource formateurResource = new FormateurResource(formateurServiceMock);
+            when(formateurServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            MockMvc restFormateurMockMvc = MockMvcBuilders.standaloneSetup(formateurResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restFormateurMockMvc.perform(get("/api/formateurs?eagerload=true"))
+        .andExpect(status().isOk());
+
+            verify(formateurServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getFormateur() throws Exception {

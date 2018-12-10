@@ -33,9 +33,29 @@
                 <dd>
                     <span>{{formateur.ville}}</span>
                 </dd>
-                <dt><span jhiTranslate="laFactoryFinalApp.formateur.login">Login</span></dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.matieresDebutant">Matieres Debutant</span></dt>
                 <dd>
-                    <span>{{formateur.login}}</span>
+                    <span *ngFor="let matieresDebutant of formateur.matieresDebutants; let last = last">
+                        <a [routerLink]="['/matiere', matieresDebutant?.id, 'view' ]">{{matieresDebutant.nom}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.matieresIntermedaire">Matieres Intermedaire</span></dt>
+                <dd>
+                    <span *ngFor="let matieresIntermedaire of formateur.matieresIntermedaires; let last = last">
+                        <a [routerLink]="['/matiere', matieresIntermedaire?.id, 'view' ]">{{matieresIntermedaire.nom}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.matieresAvance">Matieres Avance</span></dt>
+                <dd>
+                    <span *ngFor="let matieresAvance of formateur.matieresAvances; let last = last">
+                        <a [routerLink]="['/matiere', matieresAvance?.id, 'view' ]">{{matieresAvance.nom}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.matieresConfirme">Matieres Confirme</span></dt>
+                <dd>
+                    <span *ngFor="let matieresConfirme of formateur.matieresConfirmes; let last = last">
+                        <a [routerLink]="['/matiere', matieresConfirme?.id, 'view' ]">{{matieresConfirme.nom}}</a>{{last ? '' : ', '}}
+                    </span>
                 </dd>
             </dl>
 

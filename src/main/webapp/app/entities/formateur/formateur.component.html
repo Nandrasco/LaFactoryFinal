@@ -22,7 +22,10 @@
             <th><span jhiTranslate="laFactoryFinalApp.formateur.rue">Rue</span></th>
             <th><span jhiTranslate="laFactoryFinalApp.formateur.codePostal">Code Postal</span></th>
             <th><span jhiTranslate="laFactoryFinalApp.formateur.ville">Ville</span></th>
-            <th><span jhiTranslate="laFactoryFinalApp.formateur.login">Login</span></th>
+            <th><span jhiTranslate="laFactoryFinalApp.formateur.matieresDebutant">Matieres Debutant</span></th>
+            <th><span jhiTranslate="laFactoryFinalApp.formateur.matieresIntermedaire">Matieres Intermedaire</span></th>
+            <th><span jhiTranslate="laFactoryFinalApp.formateur.matieresAvance">Matieres Avance</span></th>
+            <th><span jhiTranslate="laFactoryFinalApp.formateur.matieresConfirme">Matieres Confirme</span></th>
             <th></th>
             </tr>
             </thead>
@@ -36,7 +39,26 @@
                 <td>{{formateur.rue}}</td>
                 <td>{{formateur.codePostal}}</td>
                 <td>{{formateur.ville}}</td>
-                <td>{{formateur.login}}</td>
+                <td>
+                    <span *ngFor="let matieresDebutant of formateur.matieresDebutants; let last = last">
+                            <a class="form-control-static" [routerLink]="['../matiere', matieresDebutant?.nom, 'view' ]">{{matieresDebutant.nom}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let matieresIntermedaire of formateur.matieresIntermedaires; let last = last">
+                            <a class="form-control-static" [routerLink]="['../matiere', matieresIntermedaire?.nom, 'view' ]">{{matieresIntermedaire.nom}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let matieresAvance of formateur.matieresAvances; let last = last">
+                            <a class="form-control-static" [routerLink]="['../matiere', matieresAvance?.nom, 'view' ]">{{matieresAvance.nom}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let matieresConfirme of formateur.matieresConfirmes; let last = last">
+                            <a class="form-control-static" [routerLink]="['../matiere', matieresConfirme?.nom, 'view' ]">{{matieresConfirme.nom}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
