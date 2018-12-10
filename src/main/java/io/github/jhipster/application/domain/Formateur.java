@@ -74,17 +74,24 @@ public class Formateur implements Serializable {
 	@JsonIgnore
 	private Set<Module> modules = new HashSet<>();
 	
-//	@Column(name = "matieres_debutant")
-//	private Set<Matiere> matieresDebutant = new HashSet<>();
-//	
-//	@Column(name = "matieres_intermediaire")
-//	private Set<Matiere> matieresIntermediaire = new HashSet<>();
-//	
-//	@Column(name = "matieres_avance")
-//	private Set<Matiere> matieresAvance = new HashSet<>();
-//	
-//	@Column(name = "matieres_confirme")
-//	private Set<Matiere> matieresConfirme = new HashSet<>();
+	@Column(name = "matieres_debutant")
+    @ManyToMany(mappedBy = "formateurs")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+	private Set<Matiere> matieresDebutant = new HashSet<>();
+    @Column(name = "matieres_intermediaire")
+    @ManyToMany(mappedBy = "formateurs")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+	private Set<Matiere> matieresIntermediaire = new HashSet<>();
+
+	@Column(name = "matieres_avance")
+    @ManyToMany(mappedBy = "formateurs")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+	private Set<Matiere> matieresAvance = new HashSet<>();
+
+	@Column(name = "matieres_confirme")
+    @ManyToMany(mappedBy = "formateurs")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+	private Set<Matiere> matieresConfirme = new HashSet<>();
 
 
 
@@ -261,7 +268,39 @@ public class Formateur implements Serializable {
 		return Objects.equals(getId(), formateur.getId());
 	}
 
-	@Override
+    public Set<Matiere> getMatieresDebutant() {
+        return matieresDebutant;
+    }
+
+    public void setMatieresDebutant(Set<Matiere> matieresDebutant) {
+        this.matieresDebutant = matieresDebutant;
+    }
+
+    public Set<Matiere> getMatieresIntermediaire() {
+        return matieresIntermediaire;
+    }
+
+    public void setMatieresIntermediaire(Set<Matiere> matieresIntermediaire) {
+        this.matieresIntermediaire = matieresIntermediaire;
+    }
+
+    public Set<Matiere> getMatieresAvance() {
+        return matieresAvance;
+    }
+
+    public void setMatieresAvance(Set<Matiere> matieresAvance) {
+        this.matieresAvance = matieresAvance;
+    }
+
+    public Set<Matiere> getMatieresConfirme() {
+        return matieresConfirme;
+    }
+
+    public void setMatieresConfirme(Set<Matiere> matieresConfirme) {
+        this.matieresConfirme = matieresConfirme;
+    }
+
+    @Override
 	public int hashCode() {
 		return Objects.hashCode(getId());
 	}

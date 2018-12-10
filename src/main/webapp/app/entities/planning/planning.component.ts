@@ -1,75 +1,104 @@
-import { Component, ChangeDetectionStrategy, OnInit, ViewEncapsulation } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { CalendarEvent } from 'angular-calendar';
-import { ActivatedRoute, Router } from '@angular/router';
-import { isSameMonth, isSameDay, startOfMonth, endOfMonth, startOfWeek, endOfWeek, startOfDay, endOfDay, format } from 'date-fns';
-import { Observable } from 'rxjs';
-import { colors } from 'app/entities/demo-modules/colors';
-import { SERVER_API_URL } from 'app/app.constants';
-import { Salle } from 'app/shared/model/salle.model';
-import { Cursus, ICursus } from 'app/shared/model/cursus.model';
-import { allEvents } from 'app/entities/planning/all-events';
+import {
+    Component,
+    ChangeDetectionStrategy,
+    ViewChild,
+    TemplateRef, ViewEncapsulation, OnInit, ElementRef
+} from '@angular/core';
+import {
+    startOfDay,
+    endOfDay,
+    subDays,
+    addDays,
+    endOfMonth,
+    isSameDay,
+    isSameMonth,
+    addHours
+} from 'date-fns';
+import {Subject, Subscription} from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as jsPDF from 'jspdf';
+import {
+    CalendarEvent,
+    CalendarEventAction,
+    CalendarEventTimesChangedEvent,
+    CalendarView
+} from 'angular-calendar';
 
-interface Film {
-    id: number;
-    title: string;
-    release_date: string;
-}
+import {colors} from 'app/entities/demo-modules/colors';
+import {Cursus, ICursus} from'app/shared/model/cursus.model';
+import {CursusService} from 'app/entities/cursus';
+import {JhiAlertService, JhiEventManager} from 'ng-jhipster';
+import {Principal} from 'app/core';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {Formateur, IFormateur} from 'app/shared/model/formateur.model';
+import {FormateurService} from 'app/entities/formateur';
 
-function getTimezoneOffsetString(date: Date): string {
-    const timezoneOffset = date.getTimezoneOffset();
-    const hoursOffset = String(Math.floor(Math.abs(timezoneOffset / 60))).padStart(2, '0');
-    const minutesOffset = String(Math.abs(timezoneOffset % 60)).padEnd(2, '0');
-    const direction = timezoneOffset > 0 ? '-' : '+';
-    return `T00:00:00${direction}${hoursOffset}${minutesOffset}`;
-}
 
 @Component({
     selector: 'jhi-planning',
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './planning.component.html',
-    styleUrls: ['angular-calendar.css'],
-    encapsulation: ViewEncapsulation.None
+    styleUrls: ['angular-calendar.css'], encapsulation: ViewEncapsulation.None
 })
 export class PlanningComponent implements OnInit {
-    view = 'month';
+    @ViewChild('modalContent')
+    modalContent: TemplateRef<any>;
+
+    @ViewChild('content') content: ElementRef;
+
+
+
+    view: CalendarView = CalendarView.Month;
+    currentAccount: any;
+    formateurs: IFormateur[];
+    cursuses: ICursus[];
+    eventSubscriber: Subscription;
+
+    CalendarView = CalendarView;
 
     viewDate: Date = new Date();
 
-    events = allEvents;
+    modalData: {
+        action: string;
+        event: CalendarEvent;
+    };
 
-    activeDayIsOpen = false;
+    actions: CalendarEventAction[] = [
+        {
+            label: '<i class="fa fa-fw fa-pencil"></i>',
+            onClick: ({ event }: { event: CalendarEvent }): void => {
+                this.handleEvent('Edited', event);
+            }
+        },
+        {
+            label: '<i class="fa fa-fw fa-times"></i>',
+            onClick: ({ event }: { event: CalendarEvent }): void => {
+                this.events = this.events.filter(iEvent => iEvent !== event);
+                this.handleEvent('Deleted', event);
+            }
+        }
+    ];
 
-    constructor(private http: HttpClient, private router: Router) {}
+    refresh: Subject<any> = new Subject();
 
-    ngOnInit(): void {
-        console.log(allEvents);
-        this.fetchEvents();
-    }
+    events: CalendarEvent[] = [];
 
-    fetchEvents(): void {
-        const getStart: any = {
-            month: startOfMonth,
-            week: startOfWeek,
-            day: startOfDay
-        }[this.view];
+    activeDayIsOpen: boolean = true;
 
-        const getEnd: any = {
-            month: endOfMonth,
-            week: endOfWeek,
-            day: endOfDay
-        }[this.view];
-
-        const params = new HttpParams()
-            .set('primary_release_date.gte', format(getStart(this.viewDate), 'YYYY-MM-DD'))
-            .set('primary_release_date.lte', format(getEnd(this.viewDate), 'YYYY-MM-DD'));
-    }
+    constructor(private modal: NgbModal,
+                private formateurService: FormateurService,
+                private cursusService: CursusService,
+                private jhiAlertService: JhiAlertService,
+                private eventManager: JhiEventManager,
+                private principal: Principal) {}
 
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
         if (isSameMonth(date, this.viewDate)) {
             this.viewDate = date;
-            if ((isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0) {
+            if (
+                (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+                events.length === 0
+            ) {
                 this.activeDayIsOpen = false;
             } else {
                 this.activeDayIsOpen = true;
@@ -77,7 +106,141 @@ export class PlanningComponent implements OnInit {
         }
     }
 
-    eventClicked(event: CalendarEvent<{ cursus: Cursus }>): void {
-        window.open(`cursus/${event.meta.cursus.id}`, '_blank');
+    eventTimesChanged({
+                          event,
+                          newStart,
+                          newEnd
+                      }: CalendarEventTimesChangedEvent): void {
+        event.start = newStart;
+        event.end = newEnd;
+        this.handleEvent('Dropped or resized', event);
+        this.refresh.next();
+    }
+
+    handleEvent(action: string, event: CalendarEvent): void {
+        this.modalData = { event, action };
+        this.modal.open(this.modalContent, { size: 'lg' });
+    }
+
+
+    pushCursusPlanning(cursuses: Cursus[]){
+        this.events= [];
+        for(let cursus of cursuses){
+            this.events.push({
+                title: cursus.nom,
+                start: startOfDay(new Date(cursus.dateDebut.toDate())),
+                end: endOfDay(new Date(cursus.dateFin.toString())),
+                color: colors.red,
+                draggable: true,
+                resizable: {
+                    beforeStart: true,
+                    afterEnd: true
+                }
+            });
+            this.refresh.next();
+        }
+    }
+
+
+
+
+    pushFormateurPlanning(formateurs: Formateur[]){
+        this.events= [];
+        for(let formateur of formateurs){
+            for(let module of formateur.modules){
+            this.events.push({
+                title: formateur.nom,
+                start: startOfDay(new Date(module.dateDebut.toDate())),
+                end: endOfDay(new Date(module.dateFin.toString())),
+                color: colors.blue,
+                draggable: true,
+                resizable: {
+                    beforeStart: true,
+                    afterEnd: true
+                }
+            });
+            this.refresh.next();
+        }}
+    }
+
+    addEvent(): void {
+        this.events.push({
+            title: 'New event',
+            start: startOfDay(new Date()),
+            end: endOfDay(new Date()),
+            color: colors.red,
+            draggable: true,
+            resizable: {
+                beforeStart: true,
+                afterEnd: true
+            }
+        });
+        this.refresh.next();
+    }
+    loadAll() {
+        this.cursusService.query().subscribe(
+            (res: HttpResponse<ICursus[]>) => {
+                this.cursuses = res.body;
+
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.formateurService.query().subscribe(
+            (res: HttpResponse<IFormateur[]>) => {
+                this.formateurs = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    }
+
+
+
+    ngOnInit() {
+        this.loadAll();
+        this.principal.identity().then(account => {
+            this.currentAccount = account;
+        });
+        this.registerChangeInCursuses();
+        this.registerChangeInFormateurs();
+    }
+
+    trackIdF(index: number, item: IFormateur) {
+        return item.id;
+    }
+
+    registerChangeInFormateurs() {
+        this.eventSubscriber = this.eventManager.subscribe('formateurListModification', response => this.loadAll());
+    }
+    ngOnDestroy() {
+        this.eventManager.destroy(this.eventSubscriber);
+    }
+
+    trackId(index: number, item: ICursus) {
+        return item.id;
+    }
+
+    registerChangeInCursuses() {
+        this.eventSubscriber = this.eventManager.subscribe('cursusListModification', response => this.loadAll());
+    }
+
+    private onError(errorMessage: string) {
+        this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    public downloadPDF(){
+        let doc = new jsPDF();
+        let specialElementHandlers = {
+            '#editor': function(element, renderer) {
+            return true;
+        }
+        };
+        let content = this.content.nativeElement;
+        doc.fromHTML(content.innerHTML, 15,15, {
+           'width': 190,
+                'elementHandlers': specialElementHandlers
+        });
+
+        doc.save('planning.pdf');
     }
 }
+
