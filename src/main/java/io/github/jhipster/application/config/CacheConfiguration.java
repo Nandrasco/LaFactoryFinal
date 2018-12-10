@@ -61,6 +61,10 @@ public class CacheConfiguration {
             cm.createCache(io.github.jhipster.application.domain.Ordinateur.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.jhipster.application.domain.Projecteur.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.jhipster.application.domain.Salle.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() +".matieresIntermediaire", jcacheConfiguration );
+            cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() +".matieresDebutant", jcacheConfiguration );
+            cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() +".matieresAvance", jcacheConfiguration );
+            cm.createCache(io.github.jhipster.application.domain.Formateur.class.getName() +".matieresConfirme", jcacheConfiguration );
             // jhipster-needle-ehcache-add-entry
         };
     }
