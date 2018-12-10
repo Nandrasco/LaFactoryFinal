@@ -10,6 +10,7 @@ import { IProjecteur } from 'app/shared/model/projecteur.model';
 import { ProjecteurService } from 'app/entities/projecteur';
 import { ICursus } from 'app/shared/model/cursus.model';
 import { CursusService } from 'app/entities/cursus';
+import { StagiaireService } from 'app/entities/stagiaire';
 
 @Component({
     selector: 'jhi-salle-update',
@@ -23,9 +24,12 @@ export class SalleUpdateComponent implements OnInit {
 
     cursuses: ICursus[];
 
+    private currentNumb: number;
+
     constructor(
         private jhiAlertService: JhiAlertService,
         private salleService: SalleService,
+        private stagiaireService: StagiaireService,
         private projecteurService: ProjecteurService,
         private cursusService: CursusService,
         private activatedRoute: ActivatedRoute
