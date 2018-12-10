@@ -6,7 +6,7 @@ coordonnees String,
  numeroRue Integer,
  rue String,
  codePostal String,
- ville String
+ ville String,
 }
 entity Stagiaire {
 id Integer,
@@ -55,7 +55,8 @@ entity Cursus {
 }
 entity Matiere {
 	id Integer,
-    nom String
+    nom String,
+	duree Integer
 } 
 
 entity Ordinateur {
@@ -65,14 +66,16 @@ entity Ordinateur {
     processeur String,
     ram Integer,
     dd Integer,
-    dateAchat LocalDate
+    dateAchat LocalDate,
+	stock Integer
 }
 
 
 entity Projecteur {
 	code String,
     cout Float, 
-	id Integer
+	id Integer,
+	stock Integer
 }
 entity Salle {
 code String,
@@ -89,7 +92,11 @@ Matiere{formateurs} to Formateur{matieres},
 Module{matieres} to Matiere{modules},
 Module{formateurs} to Formateur{modules}, 
 Cursus{stagiaires} to Stagiaire{cursus},
-Cursus{modules}	to Module{cursus} 
+Cursus{modules}	to Module{cursus} ,
+Formateur{matieresDebutant}to Matiere{debutantMatieres},
+Formateur{matieresIntermedaire}to Matiere{intermediaireMatieres},
+Formateur{matieresAvance}to Matiere{avanceMatieres},
+Formateur{matieresConfirme}to Matiere{confirmeMatieres}
 }  
 
 relationship OneToOne {

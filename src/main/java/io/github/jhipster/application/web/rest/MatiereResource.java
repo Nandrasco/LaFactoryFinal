@@ -90,20 +90,6 @@ public class MatiereResource {
     }
 
     /**
-     * GET  /matieres/stagiaire/:id : get matieres of a given stagiaire.
-     *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
-     * @return the ResponseEntity with status 200 (OK) and the list of matieres in body
-     */
-    @GetMapping("/matieres/stagiaire/{id}")
-    @Timed
-    public List<Matiere> getMatieresByStagiaireId(@PathVariable Long id) {
-        log.debug("REST request to get Matieres by stagiaire id: {}", id);
-        return matiereService.findMatieresByStagiaireId(id);
-    }
-
-
-    /**
      * GET  /matieres/:id : get the "id" matiere.
      *
      * @param id the id of the matiere to retrieve

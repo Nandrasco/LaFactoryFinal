@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(ProjecteurService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Projecteur(0, 'AAAAAAA', 0);
+            elemDefault = new Projecteur(0, 'AAAAAAA', 0, 0);
         });
 
         describe('Service methods', async () => {
@@ -56,7 +56,8 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         code: 'BBBBBB',
-                        cout: 1
+                        cout: 1,
+                        stock: 1
                     },
                     elemDefault
                 );
@@ -74,7 +75,8 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         code: 'BBBBBB',
-                        cout: 1
+                        cout: 1,
+                        stock: 1
                     },
                     elemDefault
                 );

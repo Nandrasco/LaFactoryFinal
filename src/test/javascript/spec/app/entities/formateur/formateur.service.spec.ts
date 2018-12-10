@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(FormateurService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Formateur(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new Formateur(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
         });
 
         describe('Service methods', async () => {
@@ -61,7 +61,8 @@ describe('Service Tests', () => {
                         numeroRue: 1,
                         rue: 'BBBBBB',
                         codePostal: 'BBBBBB',
-                        ville: 'BBBBBB'
+                        ville: 'BBBBBB',
+                        login: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -84,7 +85,8 @@ describe('Service Tests', () => {
                         numeroRue: 1,
                         rue: 'BBBBBB',
                         codePostal: 'BBBBBB',
-                        ville: 'BBBBBB'
+                        ville: 'BBBBBB',
+                        login: 'BBBBBB'
                     },
                     elemDefault
                 );

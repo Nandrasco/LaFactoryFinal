@@ -6,55 +6,76 @@
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!formateur.id">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="formateur.id" readonly />
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="formateur.id" readonly />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.formateur.nom" for="field_nom">Nom</label>
-                    <input type="text" class="form-control" name="nom" id="field_nom" [(ngModel)]="formateur.nom" />
+                    <input type="text" class="form-control" name="nom" id="field_nom"
+                        [(ngModel)]="formateur.nom" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.formateur.prenom" for="field_prenom">Prenom</label>
-                    <input type="text" class="form-control" name="prenom" id="field_prenom" [(ngModel)]="formateur.prenom" />
+                    <input type="text" class="form-control" name="prenom" id="field_prenom"
+                        [(ngModel)]="formateur.prenom" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.formateur.coordonnees" for="field_coordonnees">Coordonnees</label>
-                    <input type="text" class="form-control" name="coordonnees" id="field_coordonnees" [(ngModel)]="formateur.coordonnees" />
+                    <input type="text" class="form-control" name="coordonnees" id="field_coordonnees"
+                        [(ngModel)]="formateur.coordonnees" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.formateur.numeroRue" for="field_numeroRue">Numero Rue</label>
-                    <input type="number" class="form-control" name="numeroRue" id="field_numeroRue" [(ngModel)]="formateur.numeroRue" />
+                    <input type="number" class="form-control" name="numeroRue" id="field_numeroRue"
+                        [(ngModel)]="formateur.numeroRue" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.formateur.rue" for="field_rue">Rue</label>
-                    <input type="text" class="form-control" name="rue" id="field_rue" [(ngModel)]="formateur.rue" />
+                    <input type="text" class="form-control" name="rue" id="field_rue"
+                        [(ngModel)]="formateur.rue" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.formateur.codePostal" for="field_codePostal">Code Postal</label>
-                    <input type="text" class="form-control" name="codePostal" id="field_codePostal" [(ngModel)]="formateur.codePostal" />
+                    <input type="text" class="form-control" name="codePostal" id="field_codePostal"
+                        [(ngModel)]="formateur.codePostal" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.formateur.ville" for="field_ville">Ville</label>
-                    <input type="text" class="form-control" name="ville" id="field_ville" [(ngModel)]="formateur.ville" />
+                    <input type="text" class="form-control" name="ville" id="field_ville"
+                        [(ngModel)]="formateur.ville" />
                 </div>
-                <!-- <div class="form-group">
-                    <label jhiTranslate="laFactoryFinalApp.module.matieres" for="field_matieres">Matieres</label>
-                    <select class="form-control" id="field_matieres" multiple name="matieres" [(ngModel)]="formateur.matieres">
-                        <option [ngValue]="getSelected(formateur.matieres, matiereOption)" *ngFor="let matiereOption of matieres; trackBy: trackMatiereById">{{matiereOption.nom}}</option>
+
+                <div class="form-group">
+                    <label jhiTranslate="laFactoryFinalApp.formateur.matieresDebutant" for="field_matieresDebutant">Matieres Debutant</label>
+                    <select class="form-control" id="field_matieresDebutant" multiple name="matieresDebutant" [(ngModel)]="formateur.matieresDebutants">
+                        <option [ngValue]="getSelected(formateur.matieresDebutants, matiereOption)" *ngFor="let matiereOption of matieres; trackBy: trackMatiereById">{{matiereOption.id}}</option>
                     </select>
-                </div> -->
-                <div>
-                    <a [routerLink]="['/formateur/editListMatieresCompetence', formateur.id]" routerLinkActive="router-link-active">Edit Fields/Competence</a>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="laFactoryFinalApp.formateur.matieresIntermedaire" for="field_matieresIntermedaire">Matieres Intermedaire</label>
+                    <select class="form-control" id="field_matieresIntermedaire" multiple name="matieresIntermedaire" [(ngModel)]="formateur.matieresIntermedaires">
+                        <option [ngValue]="getSelected(formateur.matieresIntermedaires, matiereOption)" *ngFor="let matiereOption of matieres; trackBy: trackMatiereById">{{matiereOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="laFactoryFinalApp.formateur.matieresAvance" for="field_matieresAvance">Matieres Avance</label>
+                    <select class="form-control" id="field_matieresAvance" multiple name="matieresAvance" [(ngModel)]="formateur.matieresAvances">
+                        <option [ngValue]="getSelected(formateur.matieresAvances, matiereOption)" *ngFor="let matiereOption of matieres; trackBy: trackMatiereById">{{matiereOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="laFactoryFinalApp.formateur.matieresConfirme" for="field_matieresConfirme">Matieres Confirme</label>
+                    <select class="form-control" id="field_matieresConfirme" multiple name="matieresConfirme" [(ngModel)]="formateur.matieresConfirmes">
+                        <option [ngValue]="getSelected(formateur.matieresConfirmes, matiereOption)" *ngFor="let matiereOption of matieres; trackBy: trackMatiereById">{{matiereOption.id}}</option>
+                    </select>
                 </div>
             </div>
-            <br>
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;
-                    <span jhiTranslate="entity.action.cancel">Cancel</span>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
                 <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;
-                    <span jhiTranslate="entity.action.save">Save</span>
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
         </form>

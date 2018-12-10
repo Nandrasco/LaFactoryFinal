@@ -22,6 +22,10 @@
             "rue": "Rue",
             "codePostal": "Code Postal",
             "ville": "Ville",
+            "matieresDebutant": "Matieres Debutant",
+            "matieresIntermedaire": "Matieres Intermedaire",
+            "matieresAvance": "Matieres Avance",
+            "matieresConfirme": "Matieres Confirme",
             "matieres": "Matieres",
             "modules": "Modules"
         }

@@ -98,8 +98,4 @@ export class FormateurUpdateComponent implements OnInit {
         }
         return option;
     }
-
-    get_formateur(): IFormateur {
-        return this.formateur;
-    }
 }

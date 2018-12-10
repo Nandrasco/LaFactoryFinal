@@ -39,10 +39,12 @@ describe('Matiere e2e test', () => {
 
         await matiereComponentsPage.clickOnCreateButton();
         await promise.all([
-            matiereUpdatePage.setNomInput('nom')
+            matiereUpdatePage.setNomInput('nom'),
+            matiereUpdatePage.setDureeInput('5')
             // matiereUpdatePage.formateursSelectLastOption(),
         ]);
         expect(await matiereUpdatePage.getNomInput()).to.eq('nom');
+        expect(await matiereUpdatePage.getDureeInput()).to.eq('5');
         await matiereUpdatePage.save();
         expect(await matiereUpdatePage.getSaveButton().isPresent()).to.be.false;
 

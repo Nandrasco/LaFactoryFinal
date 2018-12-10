@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
-import {Formateur, IFormateur} from 'app/shared/model/formateur.model';
-import {catchError, tap} from "rxjs/operators";
+import { IFormateur } from 'app/shared/model/formateur.model';
 
 type EntityResponseType = HttpResponse<IFormateur>;
 type EntityArrayResponseType = HttpResponse<IFormateur[]>;
@@ -36,9 +35,4 @@ export class FormateurService {
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
-    search(term: string): Observable<EntityArrayResponseType> {
-        return this.http.get<IFormateur[]>(`${this.resourceUrl}/?name=${term}`, {observe: 'response' });
-    }
-
-
 }

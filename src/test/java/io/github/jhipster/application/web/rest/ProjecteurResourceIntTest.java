@@ -46,6 +46,9 @@ public class ProjecteurResourceIntTest {
     private static final Float DEFAULT_COUT = 1F;
     private static final Float UPDATED_COUT = 2F;
 
+    private static final Integer DEFAULT_STOCK = 1;
+    private static final Integer UPDATED_STOCK = 2;
+
     @Autowired
     private ProjecteurRepository projecteurRepository;
 
@@ -88,7 +91,8 @@ public class ProjecteurResourceIntTest {
     public static Projecteur createEntity(EntityManager em) {
         Projecteur projecteur = new Projecteur()
             .code(DEFAULT_CODE)
-            .cout(DEFAULT_COUT);
+            .cout(DEFAULT_COUT)
+            .stock(DEFAULT_STOCK);
         return projecteur;
     }
 
@@ -114,6 +118,7 @@ public class ProjecteurResourceIntTest {
         Projecteur testProjecteur = projecteurList.get(projecteurList.size() - 1);
         assertThat(testProjecteur.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testProjecteur.getCout()).isEqualTo(DEFAULT_COUT);
+        assertThat(testProjecteur.getStock()).isEqualTo(DEFAULT_STOCK);
     }
 
     @Test
@@ -147,7 +152,8 @@ public class ProjecteurResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(projecteur.getId().intValue())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
-            .andExpect(jsonPath("$.[*].cout").value(hasItem(DEFAULT_COUT.doubleValue())));
+            .andExpect(jsonPath("$.[*].cout").value(hasItem(DEFAULT_COUT.doubleValue())))
+            .andExpect(jsonPath("$.[*].stock").value(hasItem(DEFAULT_STOCK)));
     }
     
     @Test
@@ -162,7 +168,8 @@ public class ProjecteurResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(projecteur.getId().intValue()))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
-            .andExpect(jsonPath("$.cout").value(DEFAULT_COUT.doubleValue()));
+            .andExpect(jsonPath("$.cout").value(DEFAULT_COUT.doubleValue()))
+            .andExpect(jsonPath("$.stock").value(DEFAULT_STOCK));
     }
 
     @Test
@@ -187,7 +194,8 @@ public class ProjecteurResourceIntTest {
         em.detach(updatedProjecteur);
         updatedProjecteur
             .code(UPDATED_CODE)
-            .cout(UPDATED_COUT);
+            .cout(UPDATED_COUT)
+            .stock(UPDATED_STOCK);
 
         restProjecteurMockMvc.perform(put("/api/projecteurs")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -200,6 +208,7 @@ public class ProjecteurResourceIntTest {
         Projecteur testProjecteur = projecteurList.get(projecteurList.size() - 1);
         assertThat(testProjecteur.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testProjecteur.getCout()).isEqualTo(UPDATED_COUT);
+        assertThat(testProjecteur.getStock()).isEqualTo(UPDATED_STOCK);
     }
 
     @Test

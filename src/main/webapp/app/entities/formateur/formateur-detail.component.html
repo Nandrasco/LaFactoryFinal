@@ -1,98 +1,74 @@
-    <div class="row justify-content-center">
+<div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="formateur">
-            <h2>
-                <span jhiTranslate="laFactoryFinalApp.formateur.detail.title">Formateur</span> {{formateur.id}}</h2>
+            <h2><span jhiTranslate="laFactoryFinalApp.formateur.detail.title">Formateur</span> {{formateur.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.nom">Nom</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.nom">Nom</span></dt>
                 <dd>
                     <span>{{formateur.nom}}</span>
                 </dd>
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.prenom">Prenom</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.prenom">Prenom</span></dt>
                 <dd>
                     <span>{{formateur.prenom}}</span>
                 </dd>
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.coordonnees">Coordonnees</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.coordonnees">Coordonnees</span></dt>
                 <dd>
                     <span>{{formateur.coordonnees}}</span>
                 </dd>
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.numeroRue">Numero Rue</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.numeroRue">Numero Rue</span></dt>
                 <dd>
                     <span>{{formateur.numeroRue}}</span>
                 </dd>
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.rue">Rue</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.rue">Rue</span></dt>
                 <dd>
                     <span>{{formateur.rue}}</span>
                 </dd>
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.codePostal">Code Postal</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.codePostal">Code Postal</span></dt>
                 <dd>
                     <span>{{formateur.codePostal}}</span>
                 </dd>
-                <dt>
-                    <span jhiTranslate="laFactoryFinalApp.formateur.ville">Ville</span>
-                </dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.ville">Ville</span></dt>
                 <dd>
                     <span>{{formateur.ville}}</span>
                 </dd>
-
-                <dt>Fields list where competence : "Beginner"</dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.matieresDebutant">Matieres Debutant</span></dt>
                 <dd>
-                    <div>
-                        {{formateur.matieresDebutant}}
-                        <ul>
-                            <li>{{formateur.nom}}</li>
-                            <li *ngFor="let item of formateur.matieresDebutant">{{item.nom}}</li>
-                        </ul>
-                    </div>
+                    <span *ngFor="let matieresDebutant of formateur.matieresDebutants; let last = last">
+                        <a [routerLink]="['/matiere', matieresDebutant?.id, 'view' ]">{{matieresDebutant.nom}}</a>{{last ? '' : ', '}}
+                    </span>
                 </dd>
-                <dt>Fields list where competence : "Intermediate"</dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.matieresIntermedaire">Matieres Intermedaire</span></dt>
                 <dd>
-                    <div>
-                        <ul>
-                            <li *ngFor="let matiereI of formateur.matieresIntermediaire">{{matiereI.nom}}</li>
-                        </ul>
-                    </div>
+                    <span *ngFor="let matieresIntermedaire of formateur.matieresIntermedaires; let last = last">
+                        <a [routerLink]="['/matiere', matieresIntermedaire?.id, 'view' ]">{{matieresIntermedaire.nom}}</a>{{last ? '' : ', '}}
+                    </span>
                 </dd>
-                <dt>Fields list where competence : "Advanced"</dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.matieresAvance">Matieres Avance</span></dt>
                 <dd>
-                    <div>
-                        <ul>
-                            <li *ngFor="let matiereA of formateur.matieresAvance">{{matiereA.nom}}</li>
-                        </ul>
-                    </div>
+                    <span *ngFor="let matieresAvance of formateur.matieresAvances; let last = last">
+                        <a [routerLink]="['/matiere', matieresAvance?.id, 'view' ]">{{matieresAvance.nom}}</a>{{last ? '' : ', '}}
+                    </span>
                 </dd>
-                <dt>Fields list where competence : "Confirmed"</dt>
+                <dt><span jhiTranslate="laFactoryFinalApp.formateur.matieresConfirme">Matieres Confirme</span></dt>
                 <dd>
-                    <div>
-                        <ul>
-                            <li *ngFor="let matiereC of formateur.matieresConfirme">{{matiereC.nom}}</li>
-                        </ul>
-                    </div>
+                    <span *ngFor="let matieresConfirme of formateur.matieresConfirmes; let last = last">
+                        <a [routerLink]="['/matiere', matieresConfirme?.id, 'view' ]">{{matieresConfirme.nom}}</a>{{last ? '' : ', '}}
+                    </span>
                 </dd>
             </dl>
 
-            <button type="submit" (click)="previousState()" class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;
-                <span jhiTranslate="entity.action.back"> Back</span>
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
-            <button type="button" [routerLink]="['/formateur', formateur.id, 'edit']" class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;
-                <span jhiTranslate="entity.action.edit"> Edit</span>
+            <button type="button"
+                    [routerLink]="['/formateur', formateur.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
     </div>

@@ -28,6 +28,7 @@ export class ProjecteurUpdatePage {
     cancelButton = element(by.id('cancel-save'));
     codeInput = element(by.id('field_code'));
     coutInput = element(by.id('field_cout'));
+    stockInput = element(by.id('field_stock'));
     salleSelect = element(by.id('field_salle'));
 
     async getPageTitle() {
@@ -48,6 +49,14 @@ export class ProjecteurUpdatePage {
 
     async getCoutInput() {
         return this.coutInput.getAttribute('value');
+    }
+
+    async setStockInput(stock) {
+        await this.stockInput.sendKeys(stock);
+    }
+
+    async getStockInput() {
+        return this.stockInput.getAttribute('value');
     }
 
     async salleSelectLastOption() {

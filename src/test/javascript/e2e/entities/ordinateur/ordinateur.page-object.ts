@@ -32,6 +32,7 @@ export class OrdinateurUpdatePage {
     ramInput = element(by.id('field_ram'));
     ddInput = element(by.id('field_dd'));
     dateAchatInput = element(by.id('field_dateAchat'));
+    stockInput = element(by.id('field_stock'));
     stagiaireSelect = element(by.id('field_stagiaire'));
 
     async getPageTitle() {
@@ -84,6 +85,14 @@ export class OrdinateurUpdatePage {
 
     async getDateAchatInput() {
         return this.dateAchatInput.getAttribute('value');
+    }
+
+    async setStockInput(stock) {
+        await this.stockInput.sendKeys(stock);
+    }
+
+    async getStockInput() {
+        return this.stockInput.getAttribute('value');
     }
 
     async stagiaireSelectLastOption() {
