@@ -4,9 +4,10 @@ export interface IProjecteur {
     id?: number;
     code?: string;
     cout?: number;
+    stock?: number;
     salle?: ISalle;
 }
 
 export class Projecteur implements IProjecteur {
-    constructor(public id?: number, public code?: string, public cout?: number, public salle?: ISalle) {}
+    constructor(public id?: number, public code?: string, public cout?: number, public stock?: number, public salle?: ISalle) {}
 }

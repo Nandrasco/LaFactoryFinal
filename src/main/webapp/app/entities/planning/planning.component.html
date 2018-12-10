@@ -21,7 +21,6 @@
         <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
     </div>
 </ng-template>
-
 <div id="content" #content class="row text-center">
     <div class="col-md-4">
         <div class="btn-group">
@@ -49,9 +48,11 @@
             </div>
         </div>
     </div>
+
     <div class="col-md-4">
         <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
     </div>
+
     <div class="col-md-4">
         <div class="btn-group">
             <div
@@ -74,6 +75,15 @@
             </div>
         </div>
     </div>
+</div>
+
+<div align="center">
+    <button  type="button" class="btn btn-light" (click)="pushCursusPlanning(cursuses)">
+        Afficher planning des cursus </button>
+    <button  type="button" class="btn btn-warning" (click)="pushFormateurPlanning(formateurs, cursuses)">
+        Afficher planning des formateurs </button>
+    <button  type="button" class="btn btn-dark" (click)="downloadPDF()">
+        Telecharger en pdf </button>
 </div>
 <br>
 <div [ngSwitch]="view">
@@ -106,27 +116,7 @@
 </div>
 
 <br><br><br>
-<h3>
-    Edit events
-    <button *jhiHasAnyAuthority="['ROLE_USER', 'ROLE_GESTIONNAIRE']"
-        class="btn btn-primary pull-right"
-        (click)="addEvent()">
-        Add new
-    </button>
-    <div class="clearfix"></div>
-
-
-
-    <button  type="button" class="btn btn-light" (click)="pushCursusPlanning(cursuses)">
-        Afficher planning des cursus </button>
-    <button  type="button" class="btn btn-warning" (click)="pushFormateurPlanning(formateurs)">
-        Afficher planning des formateurs </button>
-    <button  type="button" class="btn btn-dark" (click)="downloadPDF()">
-        Telecharger en pdf </button>
-</h3>
-
 <table *jhiHasAnyAuthority="['ROLE_USER', 'ROLE_GESTIONNAIRE']" class="table table-bordered">
-
     <thead>
     <tr>
         <th>Title</th>

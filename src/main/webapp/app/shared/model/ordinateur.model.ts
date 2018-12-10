@@ -9,6 +9,7 @@ export interface IOrdinateur {
     ram?: number;
     dd?: number;
     dateAchat?: Moment;
+    stock?: number;
     stagiaire?: IStagiaire;
 }
 
@@ -21,6 +22,7 @@ export class Ordinateur implements IOrdinateur {
         public ram?: number,
         public dd?: number,
         public dateAchat?: Moment,
+        public stock?: number,
         public stagiaire?: IStagiaire
     ) {}
 }

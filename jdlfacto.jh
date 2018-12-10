@@ -6,7 +6,8 @@ coordonnees String,
  numeroRue Integer,
  rue String,
  codePostal String,
- ville String
+ ville String,
+ login String
 }
 entity Stagiaire {
 id Integer,
@@ -55,7 +56,8 @@ entity Cursus {
 }
 entity Matiere {
 	id Integer,
-    nom String
+    nom String,
+	duree Integer
 } 
 
 entity Ordinateur {
@@ -65,14 +67,16 @@ entity Ordinateur {
     processeur String,
     ram Integer,
     dd Integer,
-    dateAchat LocalDate
+    dateAchat LocalDate,
+	stock Integer
 }
 
 
 entity Projecteur {
 	code String,
     cout Float, 
-	id Integer
+	id Integer,
+	stock Integer
 }
 entity Salle {
 code String,

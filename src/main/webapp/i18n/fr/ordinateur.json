@@ -21,6 +21,7 @@
             "ram": "Ram",
             "dd": "Dd",
             "dateAchat": "Date Achat",
+            "stock": "Stock",
             "stagiaire": "Stagiaire"
         }
     }

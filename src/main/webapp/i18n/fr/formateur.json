@@ -22,6 +22,7 @@
             "rue": "Rue",
             "codePostal": "Code Postal",
             "ville": "Ville",
+            "login": "Login",
             "matieres": "Matieres",
             "modules": "Modules"
         }

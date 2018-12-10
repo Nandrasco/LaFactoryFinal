@@ -14,11 +14,16 @@
                     <input type="text" class="form-control" name="nom" id="field_nom"
                         [(ngModel)]="matiere.nom" />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.matiere.duree" for="field_duree">Duree</label>
+                    <input type="number" class="form-control" name="duree" id="field_duree"
+                        [(ngModel)]="matiere.duree" />
+                </div>
 
                 <div class="form-group">
                     <label jhiTranslate="laFactoryFinalApp.matiere.formateurs" for="field_formateurs">Formateurs</label>
                     <select class="form-control" id="field_formateurs" multiple name="formateurs" [(ngModel)]="matiere.formateurs">
-                        <option [ngValue]="getSelected(matiere.formateurs, formateurOption)" *ngFor="let formateurOption of formateurs; trackBy: trackFormateurById">{{formateurOption.prenom}} {{formateurOption.nom}}</option>
+                        <option [ngValue]="getSelected(matiere.formateurs, formateurOption)" *ngFor="let formateurOption of formateurs; trackBy: trackFormateurById">{{formateurOption.id}}</option>
                     </select>
                 </div>
             </div>

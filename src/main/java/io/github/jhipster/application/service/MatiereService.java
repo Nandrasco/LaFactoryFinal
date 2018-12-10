@@ -27,7 +27,7 @@ public interface MatiereService {
      * @return the list of entities
      */
     List<Matiere> findAll();
-    List<Matiere> findMatieresByStagiaireId(Long id);
+
     /**
      * Get all the Matiere with eager load of many-to-many relationships.
      *

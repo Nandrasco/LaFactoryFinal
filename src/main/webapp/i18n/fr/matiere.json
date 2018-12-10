@@ -16,6 +16,7 @@
                 "title": "Matiere"
             },
             "nom": "Nom",
+            "duree": "Duree",
             "formateurs": "Formateurs",
             "modules": "Modules"
         }
