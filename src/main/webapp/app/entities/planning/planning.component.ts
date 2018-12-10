@@ -24,21 +24,21 @@ import {
     CalendarView
 } from 'angular-calendar';
 
-import {colors} from "app/entities/demo-modules/colors";
-import {Cursus, ICursus} from "app/shared/model/cursus.model";
-import {CursusService} from "app/entities/cursus";
-import {JhiAlertService, JhiEventManager} from "ng-jhipster";
-import {Principal} from "app/core";
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
-import {Formateur, IFormateur} from "app/shared/model/formateur.model";
-import {FormateurService} from "app/entities/formateur";
+import {colors} from 'app/entities/demo-modules/colors';
+import {Cursus, ICursus} from'app/shared/model/cursus.model';
+import {CursusService} from 'app/entities/cursus';
+import {JhiAlertService, JhiEventManager} from 'ng-jhipster';
+import {Principal} from 'app/core';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {Formateur, IFormateur} from 'app/shared/model/formateur.model';
+import {FormateurService} from 'app/entities/formateur';
 
 
 @Component({
     selector: 'jhi-planning',
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './planning.component.html',
-    styleUrls: ["angular-calendar.css"], encapsulation: ViewEncapsulation.None
+    styleUrls: ['angular-calendar.css'], encapsulation: ViewEncapsulation.None
 })
 export class PlanningComponent implements OnInit {
     @ViewChild('modalContent')
@@ -81,46 +81,7 @@ export class PlanningComponent implements OnInit {
 
     refresh: Subject<any> = new Subject();
 
-    events: CalendarEvent[] = [
-        {
-            start: subDays(startOfDay(new Date()), 1),
-            end: addDays(new Date(), 1),
-            title: 'A 3 day event',
-            color: colors.red,
-            actions: this.actions,
-            allDay: true,
-            resizable: {
-                beforeStart: true,
-                afterEnd: true
-            },
-            draggable: true
-        },
-        {
-            start: startOfDay(new Date()),
-            title: 'An event with no end date',
-            color: colors.yellow,
-            actions: this.actions
-        },
-        {
-            start: subDays(endOfMonth(new Date()), 3),
-            end: addDays(endOfMonth(new Date()), 3),
-            title: 'A long event that spans 2 months',
-            color: colors.blue,
-            allDay: true
-        },
-        {
-            start: addHours(startOfDay(new Date()), 2),
-            end: new Date(),
-            title: 'A draggable and resizable event',
-            color: colors.yellow,
-            actions: this.actions,
-            resizable: {
-                beforeStart: true,
-                afterEnd: true
-            },
-            draggable: true
-        }
-    ];
+    events: CalendarEvent[] = [];
 
     activeDayIsOpen: boolean = true;
 
@@ -279,7 +240,7 @@ export class PlanningComponent implements OnInit {
                 'elementHandlers': specialElementHandlers
         });
 
-        doc.save("test.pdf");
+        doc.save('planning.pdf');
     }
 }
 
