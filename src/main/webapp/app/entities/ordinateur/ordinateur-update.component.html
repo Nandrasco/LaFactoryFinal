@@ -44,12 +44,17 @@
                         </span>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="laFactoryFinalApp.ordinateur.stock" for="field_stock">Stock</label>
+                    <input type="number" class="form-control" name="stock" id="field_stock"
+                        [(ngModel)]="ordinateur.stock" />
+                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="laFactoryFinalApp.ordinateur.stagiaire" for="field_stagiaire">Stagiaire</label>
                     <select class="form-control" id="field_stagiaire" name="stagiaire" [(ngModel)]="ordinateur.stagiaire">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="stagiaireOption.id === ordinateur.stagiaire?.id ? ordinateur.stagiaire : stagiaireOption" *ngFor="let stagiaireOption of stagiaires; trackBy: trackStagiaireById">{{stagiaireOption.prenom}} {{stagiaireOption.nom}}</option>
+                        <option [ngValue]="stagiaireOption.id === ordinateur.stagiaire?.id ? ordinateur.stagiaire : stagiaireOption" *ngFor="let stagiaireOption of stagiaires; trackBy: trackStagiaireById">{{stagiaireOption.id}}</option>
                     </select>
                 </div>
             </div>

@@ -33,6 +33,7 @@ export class FormateurUpdatePage {
     rueInput = element(by.id('field_rue'));
     codePostalInput = element(by.id('field_codePostal'));
     villeInput = element(by.id('field_ville'));
+    loginInput = element(by.id('field_login'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -92,6 +93,14 @@ export class FormateurUpdatePage {
 
     async getVilleInput() {
         return this.villeInput.getAttribute('value');
+    }
+
+    async setLoginInput(login) {
+        await this.loginInput.sendKeys(login);
+    }
+
+    async getLoginInput() {
+        return this.loginInput.getAttribute('value');
     }
 
     async save() {

@@ -45,6 +45,7 @@ describe('Ordinateur e2e test', () => {
             ordinateurUpdatePage.setRamInput('5'),
             ordinateurUpdatePage.setDdInput('5'),
             ordinateurUpdatePage.setDateAchatInput('2000-12-31'),
+            ordinateurUpdatePage.setStockInput('5'),
             ordinateurUpdatePage.stagiaireSelectLastOption()
         ]);
         expect(await ordinateurUpdatePage.getCodeInput()).to.eq('code');
@@ -53,6 +54,7 @@ describe('Ordinateur e2e test', () => {
         expect(await ordinateurUpdatePage.getRamInput()).to.eq('5');
         expect(await ordinateurUpdatePage.getDdInput()).to.eq('5');
         expect(await ordinateurUpdatePage.getDateAchatInput()).to.eq('2000-12-31');
+        expect(await ordinateurUpdatePage.getStockInput()).to.eq('5');
         await ordinateurUpdatePage.save();
         expect(await ordinateurUpdatePage.getSaveButton().isPresent()).to.be.false;
 

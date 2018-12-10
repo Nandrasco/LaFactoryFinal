@@ -147,7 +147,6 @@ export class PlanningComponent implements OnInit {
     pushFormateurPlanning(formateurs: Formateur[]){
         this.events= [];
         for(let formateur of formateurs){
-            for(let module of formateur.modules){
             this.events.push({
                 title: formateur.nom,
                 start: startOfDay(new Date(module.dateDebut.toDate())),
@@ -161,7 +160,7 @@ export class PlanningComponent implements OnInit {
             });
             this.refresh.next();
         }}
-    }
+
 
     addEvent(): void {
         this.events.push({
@@ -243,4 +242,6 @@ export class PlanningComponent implements OnInit {
         doc.save('planning.pdf');
     }
 }
+
+
 

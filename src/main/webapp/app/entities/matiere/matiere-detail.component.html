@@ -9,10 +9,14 @@
                 <dd>
                     <span>{{matiere.nom}}</span>
                 </dd>
+                <dt><span jhiTranslate="laFactoryFinalApp.matiere.duree">Duree</span></dt>
+                <dd>
+                    <span>{{matiere.duree}}</span>
+                </dd>
                 <dt><span jhiTranslate="laFactoryFinalApp.matiere.formateurs">Formateurs</span></dt>
                 <dd>
                     <span *ngFor="let formateurs of matiere.formateurs; let last = last">
-                        <a [routerLink]="['/formateur', formateurs?.id, 'view' ]">{{formateurs.prenom}} {{formateurs.nom}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/formateur', formateurs?.id, 'view' ]">{{formateurs.id}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
             </dl>

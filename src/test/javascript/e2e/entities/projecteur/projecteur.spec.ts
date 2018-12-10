@@ -41,10 +41,12 @@ describe('Projecteur e2e test', () => {
         await promise.all([
             projecteurUpdatePage.setCodeInput('code'),
             projecteurUpdatePage.setCoutInput('5'),
+            projecteurUpdatePage.setStockInput('5'),
             projecteurUpdatePage.salleSelectLastOption()
         ]);
         expect(await projecteurUpdatePage.getCodeInput()).to.eq('code');
         expect(await projecteurUpdatePage.getCoutInput()).to.eq('5');
+        expect(await projecteurUpdatePage.getStockInput()).to.eq('5');
         await projecteurUpdatePage.save();
         expect(await projecteurUpdatePage.getSaveButton().isPresent()).to.be.false;
 

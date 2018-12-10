@@ -33,7 +33,7 @@ export const ordinateurRoute: Routes = [
         path: 'ordinateur',
         component: OrdinateurComponent,
         data: {
-            authorities: ['ROLE_USER', 'ROLE_TECHNICIEN'],
+            authorities: ['ROLE_USER'],
             pageTitle: 'laFactoryFinalApp.ordinateur.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -45,7 +45,7 @@ export const ordinateurRoute: Routes = [
             ordinateur: OrdinateurResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'ROLE_TECHNICIEN'],
+            authorities: ['ROLE_USER'],
             pageTitle: 'laFactoryFinalApp.ordinateur.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -57,7 +57,7 @@ export const ordinateurRoute: Routes = [
             ordinateur: OrdinateurResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'ROLE_TECHNICIEN'],
+            authorities: ['ROLE_USER'],
             pageTitle: 'laFactoryFinalApp.ordinateur.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -69,7 +69,7 @@ export const ordinateurRoute: Routes = [
             ordinateur: OrdinateurResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'ROLE_TECHNICIEN'],
+            authorities: ['ROLE_USER'],
             pageTitle: 'laFactoryFinalApp.ordinateur.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -84,7 +84,7 @@ export const ordinateurPopupRoute: Routes = [
             ordinateur: OrdinateurResolve
         },
         data: {
-            authorities: ['ROLE_USER', 'ROLE_TECHNICIEN'],
+            authorities: ['ROLE_USER'],
             pageTitle: 'laFactoryFinalApp.ordinateur.home.title'
         },
         canActivate: [UserRouteAccessService],

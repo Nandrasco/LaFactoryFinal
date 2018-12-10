@@ -21,7 +21,14 @@
         <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
     </div>
 </ng-template>
-
+<div>
+    <button  type="button" class="btn btn-light" (click)="pushCursusPlanning(cursuses)">
+        Afficher planning des cursus </button>
+    <button  type="button" class="btn btn-warning" (click)="pushFormateurPlanning(formateurs, cursuses)">
+        Afficher planning des formateurs </button>
+    <button  type="button" class="btn btn-dark" (click)="downloadPDF()">
+        Telecharger en pdf </button>
+</div>
 <div id="content" #content class="row text-center">
     <div class="col-md-4">
         <div class="btn-group">
@@ -119,7 +126,7 @@
 
     <button  type="button" class="btn btn-light" (click)="pushCursusPlanning(cursuses)">
         Afficher planning des cursus </button>
-    <button  type="button" class="btn btn-warning" (click)="pushFormateurPlanning(formateurs)">
+    <button  type="button" class="btn btn-warning" (click)="pushFormateurPlanning(formateurs, cursuses)">
         Afficher planning des formateurs </button>
     <button  type="button" class="btn btn-dark" (click)="downloadPDF()">
         Telecharger en pdf </button>
