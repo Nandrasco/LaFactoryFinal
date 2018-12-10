@@ -10,7 +10,15 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
+
+
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="searchTerm" style="width:300px">
+    </div>
+
+
     <div class="table-responsive" *ngIf="formateurs">
+
         <table class="table table-striped">
             <thead>
             <tr>
@@ -30,7 +38,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let formateur of formateurs ;trackBy: trackId">
+            <tr *ngFor="let formateur of formateurs | keys:searchTerm">
                 <td><a [routerLink]="['/formateur', formateur.id, 'view' ]">{{formateur.id}}</a></td>
                 <td>{{formateur.nom}}</td>
                 <td>{{formateur.prenom}}</td>
