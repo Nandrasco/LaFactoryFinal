@@ -101,7 +101,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="salle" routerLinkActive="active" *jhiHasAnyAuthority="['ROLE_USER']" [routerLinkActiveOptions]="{ exact: true }"
+                        <a class="dropdown-item" routerLink="salle" routerLinkActive="active" *jhiHasAnyAuthority="['ROLE_USER', 'ROLE_GESTIONNAIRE']" [routerLinkActiveOptions]="{ exact: true }"
                             (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.salle">Salle</span>
