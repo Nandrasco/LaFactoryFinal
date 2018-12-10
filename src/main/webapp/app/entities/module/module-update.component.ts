@@ -4,7 +4,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { JhiAlertService } from 'ng-jhipster';
-
+import { CalendarEvent } from 'angular-calendar';
 import { IModule } from 'app/shared/model/module.model';
 import { ModuleService } from './module.service';
 import { IMatiere } from 'app/shared/model/matiere.model';
@@ -13,6 +13,9 @@ import { IFormateur } from 'app/shared/model/formateur.model';
 import { FormateurService } from 'app/entities/formateur';
 import { ICursus } from 'app/shared/model/cursus.model';
 import { CursusService } from 'app/entities/cursus';
+import { colors } from 'app/entities/demo-modules/colors';
+import { allEvents } from 'app/entities/planning/all-events';
+import { PlanningService } from 'app/entities/planning/planning.service';
 
 @Component({
     selector: 'jhi-module-update',
@@ -29,8 +32,18 @@ export class ModuleUpdateComponent implements OnInit {
     cursuses: ICursus[];
     dateDebutDp: any;
     dateFinDp: any;
-
+    event: CalendarEvent = new class implements CalendarEvent {
+        allDay: boolean;
+        cssClass: string;
+        draggable: boolean;
+        end: Date;
+        id: string | number;
+        resizable: { beforeStart?: boolean; afterEnd?: boolean };
+        start: Date;
+        title: string;
+    }();
     constructor(
+        private planningService: PlanningService,
         private jhiAlertService: JhiAlertService,
         private moduleService: ModuleService,
         private matiereService: MatiereService,
@@ -40,6 +53,9 @@ export class ModuleUpdateComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.event.title = null;
+        this.event.start = null;
+        this.event.end = null;
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ module }) => {
             this.module = module;
@@ -104,6 +120,20 @@ export class ModuleUpdateComponent implements OnInit {
 
     trackCursusById(index: number, item: ICursus) {
         return item.id;
+    }
+
+    createEvent() {
+        console.log(this.event);
+        this.event.color = colors.blue;
+        this.event.actions = this.planningService.actions;
+        this.event.allDay = true;
+        this.event.resizable = {
+            beforeStart: true,
+            afterEnd: true
+        };
+        this.event.draggable = true;
+        allEvents.push(this.event);
+        console.log('AAAAA', allEvents);
     }
 
     getSelected(selectedVals: Array<any>, option: any) {
